@@ -10,6 +10,7 @@ import { clientKey, rateLimitPersistent } from "@/lib/rate-limit";
 import { acceptsPublicRequests } from "@/lib/inquiry-status";
 import { logError } from "@/lib/safe-log";
 import { duplicateWindowMs, resolveServiceArea } from "@/lib/service-area";
+import { calculateDeliveryQuote, deliveryFeesFromSettings } from "@/lib/delivery-zones";
 import { sendBookingEmail } from "@/lib/email/send";
 
 export type BookingResult =
@@ -44,7 +45,11 @@ export async function submitBooking(input: unknown): Promise<BookingResult> {
     const pkg = await prisma.package.findFirst({ where: { id: data.packageId, active: true } });
     if (!pkg) return { ok: false, error: "package", field: "packageId" };
 
-    const area = resolveServiceArea(data.areaName, data.areaDetail);
+    const area = resolveServiceArea(data.areaName, data.areaDetail, {
+      addressLine: data.addressLine,
+      postalCode: data.postalCode,
+    });
+    const quote = calculateDeliveryQuote(pkg.priceCents, area, deliveryFeesFromSettings(settings));
     const prelaunch = settings.businessStatus === "PRELAUNCH";
     const availability = await getAvailability();
     const avail = {
@@ -115,8 +120,13 @@ export async function submitBooking(input: unknown): Promise<BookingResult> {
         phone: data.phone,
         comments: data.comments,
         pickupNotes: data.pickupNotes,
-        inServiceArea: area.inServiceArea,
-        estimatedTotalCents: pkg.priceCents,
+        inServiceArea: quote.inServiceArea,
+        sharpeningSubtotalCents: quote.sharpeningSubtotalCents,
+        deliveryFeeCents: quote.deliveryFeeCents,
+        deliveryZone: quote.deliveryZone,
+        deliveryNeedsReview: quote.deliveryNeedsReview,
+        deliveryFeeWaived: quote.deliveryFeeWaived,
+        estimatedTotalCents: quote.estimatedTotalCents,
         locale: data.locale,
         consentAt: new Date(),
       },

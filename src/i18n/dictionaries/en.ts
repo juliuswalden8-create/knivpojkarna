@@ -68,7 +68,7 @@ export const en = {
     bookingKicker: "Pre-launch interest",
     bookingTitle: "Register your interest.",
     bookingIntro:
-      "Tell us your package, address and town. We store your interest and contact you when pickup bookings open. This is not a confirmed appointment, and no payment is taken.",
+      "Tell us your package, address and town. We store your interest and contact you when pickup bookings open. This is an expression of interest, not a confirmed order, and no payment is taken.",
     bookingSubmit: "Register interest",
     successTitle: "Thank you for your interest.",
     successText: "Thank you for your interest! We'll contact you when KNIVPOJKARNA opens for bookings.",
@@ -109,11 +109,11 @@ export const en = {
       title: "How we receive your knives",
       pickup: {
         title: "Pickup & return delivery",
-        text: "We collect your knives at your address and bring them back after sharpening. Any pickup cost is confirmed with you before we collect.",
+        text: "We collect your knives at your address and bring them back after sharpening. Pickup and return is one roundtrip fee by zone, free from a €49 sharpening subtotal.",
       },
       area: {
         title: "Marbella to Fuengirola",
-        text: "Our launch area includes San Pedro de Alcántara, Nueva Andalucía, Puerto Banús and Mijas Costa. Nearby neighbourhoods can still register interest.",
+        text: "Zone 1: Marbella, San Pedro, Puerto Banús, Nueva Andalucía. Zone 2: Elviria, Cabopino, Calahonda. Zone 3: Mijas Costa, Fuengirola. Nearby neighbourhoods can still register interest.",
       },
     },
   },
@@ -128,7 +128,7 @@ export const en = {
     book: "Book now",
     knifeOne: "1 standard kitchen knife",
     knifeMany: "{n} standard kitchen knives",
-    note: "Introductory prices. Specialty knives (e.g. Japanese single-bevel, serrated, ceramic), damaged blades and delivery may carry additional charges. We always confirm any extra cost with you before starting.",
+    note: "Introductory prices. Specialty knives (e.g. Japanese single-bevel, serrated, ceramic) and damaged blades may carry additional charges. Pickup and return is a roundtrip fee by zone, and is free when the sharpening subtotal is €49 or more. We always confirm any extra cost with you before starting.",
     viewAll: "See full pricing",
     faqTitle: "Good to know",
     faq: [
@@ -142,7 +142,7 @@ export const en = {
       },
       {
         q: "Is pickup included in the package price?",
-        a: "Package prices cover sharpening. Pickup and return delivery costs, when they apply, are confirmed with you before we collect. We do not advertise pickup as free until that fee is set.",
+        a: "Package prices cover sharpening. Pickup and return is a single roundtrip fee: €5 in Marbella, San Pedro de Alcántara, Puerto Banús and Nueva Andalucía; €8 in Elviria, Cabopino and Calahonda; €12 in Mijas Costa and Fuengirola. Delivery is free when the sharpening subtotal is €49 or more. We never charge pickup and return separately.",
       },
       {
         q: "How do I pay?",
@@ -194,7 +194,7 @@ export const en = {
     intro:
       "Based in Marbella. We collect and return knives at your address between Marbella and Fuengirola, including San Pedro, Nueva Andalucía, Puerto Banús and Mijas Costa.",
     pickupNote:
-      "Pickup and return delivery are available in the launch area, subject to confirmation. We do not offer postal shipping.",
+      "Pickup and return delivery are available in the launch area, subject to confirmation. Roundtrip fees are €5 / €8 / €12 by zone, and free when the sharpening subtotal is €49 or more. We do not offer postal shipping.",
     pickupAvailable: "Pickup available",
     onRequest: "Pickup on request",
     mapCaption: "Marbella to Fuengirola.",
@@ -204,7 +204,7 @@ export const en = {
       {
         kicker: "01",
         title: "Pickup & return delivery",
-        text: "We collect your knives at your address and bring them back after sharpening. Any pickup cost is confirmed with you before we collect.",
+        text: "We collect your knives at your address and bring them back after sharpening. The roundtrip fee is charged once, never separately for pickup and return.",
       },
       {
         kicker: "02",
@@ -219,6 +219,9 @@ export const en = {
       "San Pedro de Alcántara",
       "Nueva Andalucía",
       "Puerto Banús",
+      "Elviria",
+      "Cabopino",
+      "Calahonda",
       "Mijas Costa",
       "Fuengirola",
     ],
@@ -230,7 +233,7 @@ export const en = {
       { num: "03", title: "Sharpen & return", text: "We sharpen your knives and bring them back to your address." },
     ],
     mailInShipping:
-      "Pickup costs, when they apply, are confirmed with you before we collect. Postal shipping is not offered.",
+      "Pickup and return is a single roundtrip fee by zone, free from a €49 sharpening subtotal. Postal shipping is not offered.",
   },
 
   about: {
@@ -353,7 +356,7 @@ export const en = {
       dropOffText: "We collect and return your knives at your address.",
       pickup: "Pickup & return delivery",
       pickupText:
-        "We collect and return your knives at your address from Marbella to Fuengirola, subject to confirmation. Any pickup cost is agreed before we collect.",
+        "We collect and return your knives at your address from Marbella to Fuengirola, subject to confirmation. Pickup and return is one roundtrip fee by zone, free when the sharpening subtotal is €49 or more.",
       pickupReturn: "Pickup & Return Delivery",
       mailIn: "Pickup & return",
       mailInText: "We collect and return your knives at your address.",
@@ -364,7 +367,7 @@ export const en = {
       areaOther: "Another neighbourhood between Marbella and Fuengirola",
       areaOutside: "Outside this area",
       areaDetail: "Neighbourhood or town",
-      areaDetailPlaceholder: "e.g. Elviria, Calahonda, La Cala",
+      areaDetailPlaceholder: "e.g. Guadalmina, Artola, La Cala",
       addressLine: "Pickup address",
       addressPlaceholder: "Street, number, floor / door",
       postalCode: "Postal code",
@@ -413,15 +416,22 @@ export const en = {
       schedule: "Preferred pickup",
       contact: "Contact",
       town: "Town",
+      subtotal: "Sharpening subtotal",
       fee: "Pickup & return",
       feeUnconfigured: "To be confirmed with you",
+      deliveryRoundtrip: "roundtrip, includes pickup and return",
+      deliveryFree: "Free — sharpening subtotal {threshold} or more",
+      deliveryReview: "To be confirmed — we will review your area",
+      deliveryOutside: "Outside the service area — pickup is not confirmed",
       status: "Booking status",
-      statusPrelaunch: "Interest registered — we will contact you when bookings open.",
+      statusPrelaunch: "Expression of interest — not a confirmed order. We will contact you when bookings open.",
       statusActive: "Request received — we will contact you to confirm pickup. This is not a confirmed appointment.",
       statusOutside: "Interest registered from outside the launch area — pickup is not confirmed.",
-      estimate: "Total",
+      estimate: "Estimated total",
       estimateNote:
-        "Package price only. Pickup and return delivery costs are confirmed with you before we collect. This is not a confirmed appointment.",
+        "Sharpening subtotal plus a single roundtrip pickup-and-return fee. This is not a confirmed appointment, and no payment is taken now.",
+      interestNote:
+        "This is an expression of interest, not a confirmed order. No payment is taken now. We will contact you when bookings open.",
       extraKnivesOne: "{n} extra knife at {price} each",
       extraKnivesMany: "{n} extra knives at {price} each",
       submit: "Send booking request",

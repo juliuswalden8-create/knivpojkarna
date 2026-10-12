@@ -60,7 +60,12 @@ export default async function BookPage({
             blocked={availability.blocked}
             businessStatus={settings.businessStatus}
             areas={areas}
-            pickupFeeCents={settings.pickupFeeCents}
+            deliveryFees={{
+              zone1Cents: settings.deliveryZone1FeeCents,
+              zone2Cents: settings.deliveryZone2FeeCents,
+              zone3Cents: settings.deliveryZone3FeeCents,
+              freeThresholdCents: settings.freeDeliveryThresholdCents,
+            }}
             pickupInstructions={locale === "es" ? settings.pickupInstructionsEs : settings.pickupInstructionsEn}
             returnInstructions={locale === "es" ? settings.returnInstructionsEs : settings.returnInstructionsEn}
           />

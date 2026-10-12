@@ -8,7 +8,10 @@ import {
 } from "./service-area";
 
 test("listed launch towns are inside the service area", () => {
-  assert.deepEqual(resolveServiceArea("Marbella"), { areaName: "Marbella", inServiceArea: true });
+  const marbella = resolveServiceArea("Marbella");
+  assert.equal(marbella.areaName, "Marbella");
+  assert.equal(marbella.inServiceArea, true);
+  assert.equal(marbella.needsReview, false);
   assert.equal(resolveServiceArea("Fuengirola").inServiceArea, true);
   assert.equal(resolveServiceArea("San Pedro de Alcántara").inServiceArea, true);
 });
@@ -17,12 +20,14 @@ test("other neighbourhoods in the corridor are accepted", () => {
   const area = resolveServiceArea(AREA_OTHER_IN_CORRIDOR, "Elviria");
   assert.equal(area.inServiceArea, true);
   assert.equal(area.areaName, "Elviria");
+  assert.equal(area.zone, "ZONE_2");
 });
 
 test("outside-area interest is stored without pickup availability", () => {
   const area = resolveServiceArea(AREA_OUTSIDE, "Estepona");
   assert.equal(area.inServiceArea, false);
   assert.equal(area.areaName, "Estepona");
+  assert.equal(area.zone, "OUTSIDE");
 });
 
 test("duplicate window covers repeated clicks within two minutes", () => {

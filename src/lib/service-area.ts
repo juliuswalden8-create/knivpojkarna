@@ -1,37 +1,31 @@
-import { LAUNCH_AREA_NAMES } from "./launch-areas";
+import { resolveDeliveryLocation, type DeliveryLocation } from "./delivery-zones";
 
 export const AREA_OTHER_IN_CORRIDOR = "__IN_CORRIDOR__";
 export const AREA_OUTSIDE = "__OUTSIDE__";
 
-export type ServiceAreaChoice = {
-  areaName: string;
-  inServiceArea: boolean;
-};
+export type ServiceAreaChoice = DeliveryLocation;
 
 export function isListedLaunchTown(name: string) {
-  const needle = name.trim().toLowerCase();
-  return LAUNCH_AREA_NAMES.some((town) => town.toLowerCase() === needle);
+  const resolved = resolveDeliveryLocation({ areaName: name });
+  return resolved.inServiceArea && !resolved.needsReview && resolved.zone !== "REVIEW";
 }
 
 /**
  * Towns on the launch list, or another neighborhood in the Marbella–Fuengirola
  * corridor, count as inside the service area. Explicit "outside" does not.
- * Unknown free-text is treated as in-corridor so we do not reject valid local addresses.
+ * Unknown or boundary locations stay in-area but are flagged for review.
  */
-export function resolveServiceArea(areaName: string, areaDetail?: string | null): ServiceAreaChoice {
-  const name = areaName.trim();
-  const detail = areaDetail?.trim() || "";
-
-  if (!name || name === AREA_OUTSIDE) {
-    return { areaName: detail || "Outside launch area", inServiceArea: false };
-  }
-  if (name === AREA_OTHER_IN_CORRIDOR) {
-    return { areaName: detail || "Marbella–Fuengirola (other)", inServiceArea: true };
-  }
-  if (isListedLaunchTown(name)) {
-    return { areaName: name, inServiceArea: true };
-  }
-  return { areaName: name, inServiceArea: true };
+export function resolveServiceArea(
+  areaName: string,
+  areaDetail?: string | null,
+  extras?: { addressLine?: string | null; postalCode?: string | null },
+): ServiceAreaChoice {
+  return resolveDeliveryLocation({
+    areaName,
+    areaDetail,
+    addressLine: extras?.addressLine,
+    postalCode: extras?.postalCode,
+  });
 }
 
 export function duplicateWindowMs() {

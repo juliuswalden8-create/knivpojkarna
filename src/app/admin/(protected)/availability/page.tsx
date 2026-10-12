@@ -36,6 +36,10 @@ export default async function AvailabilityPage() {
         <input type="hidden" name="returnInstructionsEn" defaultValue={settings.returnInstructionsEn} />
         <input type="hidden" name="returnInstructionsEs" defaultValue={settings.returnInstructionsEs} />
         <input type="hidden" name="pickupFee" defaultValue={settings.pickupFeeCents == null ? "" : (settings.pickupFeeCents / 100).toString()} />
+        <input type="hidden" name="deliveryZone1Fee" defaultValue={(settings.deliveryZone1FeeCents / 100).toString()} />
+        <input type="hidden" name="deliveryZone2Fee" defaultValue={(settings.deliveryZone2FeeCents / 100).toString()} />
+        <input type="hidden" name="deliveryZone3Fee" defaultValue={(settings.deliveryZone3FeeCents / 100).toString()} />
+        <input type="hidden" name="freeDeliveryThreshold" defaultValue={(settings.freeDeliveryThresholdCents / 100).toString()} />
         <fieldset>
           <legend className="kicker">Open weekdays</legend>
           <div className="mt-3 flex flex-wrap gap-3">

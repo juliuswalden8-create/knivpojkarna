@@ -41,8 +41,14 @@ model SiteSettings {
   pickupInstructionsEs String   @default("")
   returnInstructionsEn String   @default("")
   returnInstructionsEs String   @default("")
-  /// Null means pickup/return fee is not configured yet (do not advertise as free).
+  /// Legacy single fee. Zone fees below are the source of truth.
   pickupFeeCents       Int?
+  /// Roundtrip pickup+return fees (never charged twice).
+  deliveryZone1FeeCents Int @default(500)
+  deliveryZone2FeeCents Int @default(800)
+  deliveryZone3FeeCents Int @default(1200)
+  /// Compared to the sharpening subtotal only, never to the total including delivery.
+  freeDeliveryThresholdCents Int @default(4900)
   updatedAt            DateTime @updatedAt
 }
 
@@ -94,6 +100,12 @@ model Booking {
   comments            String?
   pickupNotes         String?
   inServiceArea       Boolean   @default(true)
+  /// Snapshot at submission so later admin fee changes do not rewrite history.
+  sharpeningSubtotalCents Int?
+  deliveryFeeCents        Int?
+  deliveryZone            String?
+  deliveryNeedsReview     Boolean  @default(false)
+  deliveryFeeWaived       Boolean  @default(false)
   estimatedTotalCents Int
   locale              String    @default("en")
   consentAt           DateTime

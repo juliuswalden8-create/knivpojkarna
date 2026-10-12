@@ -45,6 +45,9 @@ export default async function BookingDetail({ params }: { params: Promise<{ id: 
         <p className="mt-2 text-lg leading-snug">{fullAddress || "—"}</p>
         {booking.pickupNotes ? <p className="mt-2 text-stone">{booking.pickupNotes}</p> : null}
         {!booking.inServiceArea ? <p className="mt-2 text-ember">Outside launch area — do not confirm pickup availability.</p> : null}
+        {booking.deliveryNeedsReview ? (
+          <p className="mt-2 text-ember">Delivery zone needs manual review — do not assign the cheapest fee automatically.</p>
+        ) : null}
       </div>
 
       <dl className="mt-8 grid gap-3 border border-line p-5 text-sm sm:grid-cols-2">
@@ -57,8 +60,28 @@ export default async function BookingDetail({ params }: { params: Promise<{ id: 
           <dd>{booking.knifeCount}</dd>
         </div>
         <div>
-          <dt className="text-stone">Price</dt>
+          <dt className="text-stone">Sharpening subtotal</dt>
+          <dd>{formatPrice(booking.sharpeningSubtotalCents ?? booking.estimatedTotalCents)}</dd>
+        </div>
+        <div>
+          <dt className="text-stone">Pickup & return</dt>
+          <dd>
+            {booking.deliveryFeeWaived
+              ? "Free (threshold)"
+              : booking.deliveryFeeCents == null
+                ? booking.deliveryNeedsReview
+                  ? "To be confirmed — review area"
+                  : "—"
+                : `${formatPrice(booking.deliveryFeeCents)} roundtrip`}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-stone">Estimated total</dt>
           <dd>{formatPrice(booking.estimatedTotalCents)}</dd>
+        </div>
+        <div>
+          <dt className="text-stone">Delivery zone</dt>
+          <dd>{booking.deliveryZone ? booking.deliveryZone.replace("_", " ") : "—"}</dd>
         </div>
         <div>
           <dt className="text-stone">Service</dt>

@@ -35,8 +35,8 @@ export default async function BookingsPage({
               ? "Pre-launch interest only. Do not treat these as confirmed appointments."
               : "Requests are not appointments until you confirm pickup."}
           </p>
-          {settings.pickupFeeCents == null ? (
-            <p className="mt-2 text-sm text-ember">Pickup/return fee is not configured. Do not tell customers the service is free.</p>
+          {bookings.some((b) => b.deliveryNeedsReview) ? (
+            <p className="mt-2 text-sm text-ember">Some addresses need a manual zone review — do not assume the cheapest fee.</p>
           ) : null}
         </div>
         <Link href="/admin/export?type=bookings" className="text-xs uppercase tracking-[0.14em] text-forest">
@@ -92,6 +92,8 @@ export default async function BookingsPage({
                     <span className="block text-xs text-stone">
                       {[b.postalCode, b.areaName].filter(Boolean).join(" · ")}
                       {b.inServiceArea ? "" : " · outside area"}
+                      {b.deliveryNeedsReview ? " · zone review" : ""}
+                      {b.deliveryZone && !b.deliveryNeedsReview ? ` · ${b.deliveryZone.replace("_", " ")}` : ""}
                     </span>
                   </td>
                   <td className="px-4 py-3">
@@ -109,7 +111,16 @@ export default async function BookingsPage({
                     )}
                   </td>
                   <td className="px-4 py-3">{BOOKING_STATUS_LABELS[status]}</td>
-                  <td className="px-4 py-3">{formatPrice(b.estimatedTotalCents)}</td>
+                  <td className="px-4 py-3">
+                    {formatPrice(b.estimatedTotalCents)}
+                    {b.deliveryFeeWaived ? (
+                      <span className="block text-xs text-stone">delivery free</span>
+                    ) : b.deliveryFeeCents == null && b.deliveryNeedsReview ? (
+                      <span className="block text-xs text-ember">delivery TBC</span>
+                    ) : b.deliveryFeeCents != null && b.deliveryFeeCents > 0 ? (
+                      <span className="block text-xs text-stone">incl. {formatPrice(b.deliveryFeeCents)} roundtrip</span>
+                    ) : null}
+                  </td>
                 </tr>
               );
             })}

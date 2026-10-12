@@ -192,6 +192,10 @@ export async function saveSettings(formData: FormData) {
   await requireAdmin();
   const weekdays = formData.getAll("weekday").map((v) => String(v)).join(",");
   const pickupFeeCents = optionalEuroCents(formData, "pickupFee");
+  const zone1 = optionalEuroCents(formData, "deliveryZone1Fee");
+  const zone2 = optionalEuroCents(formData, "deliveryZone2Fee");
+  const zone3 = optionalEuroCents(formData, "deliveryZone3Fee");
+  const freeThreshold = optionalEuroCents(formData, "freeDeliveryThreshold");
   await prisma.siteSettings.upsert({
     where: { id: 1 },
     update: {
@@ -221,6 +225,10 @@ export async function saveSettings(formData: FormData) {
         ? String(formData.get("returnInstructionsEs") || "")
         : undefined,
       ...(pickupFeeCents !== undefined ? { pickupFeeCents } : {}),
+      ...(zone1 !== undefined && zone1 !== null ? { deliveryZone1FeeCents: zone1 } : {}),
+      ...(zone2 !== undefined && zone2 !== null ? { deliveryZone2FeeCents: zone2 } : {}),
+      ...(zone3 !== undefined && zone3 !== null ? { deliveryZone3FeeCents: zone3 } : {}),
+      ...(freeThreshold !== undefined && freeThreshold !== null ? { freeDeliveryThresholdCents: freeThreshold } : {}),
     },
     create: { id: 1, businessStatus: parseBusinessStatus(String(formData.get("businessStatus") || "")) },
   });

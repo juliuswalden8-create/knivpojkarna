@@ -67,7 +67,7 @@ export const es: Dictionary = {
     bookingKicker: "Interés previo al lanzamiento",
     bookingTitle: "Registra tu interés.",
     bookingIntro:
-      "Indica el paquete, la dirección y la localidad. Guardamos tu interés y te contactamos cuando abramos las recogidas. No es una cita confirmada y no se cobra ningún pago.",
+      "Indica el paquete, la dirección y la localidad. Guardamos tu interés y te contactamos cuando abramos las recogidas. Es una manifestación de interés, no un pedido confirmado, y no se cobra ningún pago.",
     bookingSubmit: "Registrar interés",
     successTitle: "Gracias por tu interés.",
     successText: "¡Gracias por tu interés! Te contactaremos cuando KNIVPOJKARNA abra las reservas.",
@@ -109,11 +109,11 @@ export const es: Dictionary = {
       title: "Cómo recibimos tus cuchillos",
       pickup: {
         title: "Recogida y devolución a domicilio",
-        text: "Recogemos tus cuchillos en tu dirección y te los devolvemos después del afilado. Cualquier coste de recogida se confirma contigo antes de pasar.",
+        text: "Recogemos tus cuchillos en tu dirección y te los devolvemos después del afilado. Recogida y devolución es una tarifa de ida y vuelta por zona, gratis desde 49 € de subtotal de afilado.",
       },
       area: {
         title: "De Marbella a Fuengirola",
-        text: "Nuestra zona de lanzamiento incluye San Pedro de Alcántara, Nueva Andalucía, Puerto Banús y Mijas Costa. Los barrios cercanos también pueden registrar interés.",
+        text: "Zona 1: Marbella, San Pedro, Puerto Banús, Nueva Andalucía. Zona 2: Elviria, Cabopino, Calahonda. Zona 3: Mijas Costa, Fuengirola. Los barrios cercanos también pueden registrar interés.",
       },
     },
   },
@@ -128,7 +128,7 @@ export const es: Dictionary = {
     book: "Reservar",
     knifeOne: "1 cuchillo de cocina estándar",
     knifeMany: "{n} cuchillos de cocina estándar",
-    note: "Precios de lanzamiento. Los cuchillos especiales (p. ej. japoneses de un solo bisel, serrados, cerámicos), las hojas dañadas y la entrega a domicilio pueden tener un coste adicional. Siempre lo confirmamos contigo antes de empezar.",
+    note: "Precios de lanzamiento. Los cuchillos especiales (p. ej. japoneses de un solo bisel, serrados, cerámicos) y las hojas dañadas pueden tener un coste adicional. Recogida y devolución es una tarifa de ida y vuelta por zona, y es gratis cuando el subtotal de afilado es de 49 € o más. Siempre confirmamos cualquier coste extra contigo antes de empezar.",
     viewAll: "Ver todos los precios",
     faqTitle: "Bueno saberlo",
     faq: [
@@ -142,7 +142,7 @@ export const es: Dictionary = {
       },
       {
         q: "¿La recogida está incluida en el precio del paquete?",
-        a: "Los precios de paquete cubren el afilado. Los costes de recogida y devolución, si aplican, se confirman contigo antes de recoger. No anunciamos la recogida como gratuita hasta fijar esa tarifa.",
+        a: "Los precios de paquete cubren el afilado. Recogida y devolución es una sola tarifa de ida y vuelta: 5 € en Marbella, San Pedro de Alcántara, Puerto Banús y Nueva Andalucía; 8 € en Elviria, Cabopino y Calahonda; 12 € en Mijas Costa y Fuengirola. La entrega es gratis cuando el subtotal de afilado es de 49 € o más. Nunca cobramos la recogida y la devolución por separado.",
       },
       {
         q: "¿Cómo se paga?",
@@ -194,7 +194,7 @@ export const es: Dictionary = {
     intro:
       "Con base en Marbella. Recogemos y devolvemos cuchillos en tu dirección entre Marbella y Fuengirola, incluyendo San Pedro, Nueva Andalucía, Puerto Banús y Mijas Costa.",
     pickupNote:
-      "La recogida y devolución a domicilio están disponibles en la zona de lanzamiento, sujetas a confirmación. No ofrecemos envío postal.",
+      "La recogida y devolución a domicilio están disponibles en la zona de lanzamiento, sujetas a confirmación. Las tarifas de ida y vuelta son 5 € / 8 € / 12 € según la zona, y son gratis cuando el subtotal de afilado es de 49 € o más. No ofrecemos envío postal.",
     pickupAvailable: "Recogida disponible",
     onRequest: "Recogida bajo petición",
     mapCaption: "De Marbella a Fuengirola.",
@@ -204,7 +204,7 @@ export const es: Dictionary = {
       {
         kicker: "01",
         title: "Recogida y devolución a domicilio",
-        text: "Recogemos tus cuchillos en tu dirección y te los devolvemos después del afilado. Cualquier coste de recogida se confirma contigo antes de pasar.",
+        text: "Recogemos tus cuchillos en tu dirección y te los devolvemos después del afilado. La tarifa de ida y vuelta se cobra una sola vez, nunca por separado para la recogida y la devolución.",
       },
       {
         kicker: "02",
@@ -219,6 +219,9 @@ export const es: Dictionary = {
       "San Pedro de Alcántara",
       "Nueva Andalucía",
       "Puerto Banús",
+      "Elviria",
+      "Cabopino",
+      "Calahonda",
       "Mijas Costa",
       "Fuengirola",
     ],
@@ -230,7 +233,7 @@ export const es: Dictionary = {
       { num: "03", title: "Afilamos y devolvemos", text: "Afilamos tus cuchillos y te los devolvemos en tu dirección." },
     ],
     mailInShipping:
-      "Los costes de recogida, si aplican, se confirman contigo antes de pasar. No ofrecemos envío postal.",
+      "Recogida y devolución es una sola tarifa de ida y vuelta por zona, gratis desde 49 € de subtotal de afilado. No ofrecemos envío postal.",
   },
 
   about: {
@@ -353,7 +356,7 @@ export const es: Dictionary = {
       dropOffText: "Recogemos y devolvemos tus cuchillos en tu dirección.",
       pickup: "Recogida y devolución a domicilio",
       pickupText:
-        "Recogemos y devolvemos tus cuchillos en tu dirección de Marbella a Fuengirola, sujeta a confirmación. Cualquier coste de recogida se acuerda antes de pasar.",
+        "Recogemos y devolvemos tus cuchillos en tu dirección de Marbella a Fuengirola, sujeta a confirmación. Recogida y devolución es una tarifa de ida y vuelta por zona, gratis cuando el subtotal de afilado es de 49 € o más.",
       pickupReturn: "Recogida y devolución a domicilio",
       mailIn: "Recogida y devolución",
       mailInText: "Recogemos y devolvemos tus cuchillos en tu dirección.",
@@ -364,7 +367,7 @@ export const es: Dictionary = {
       areaOther: "Otro barrio entre Marbella y Fuengirola",
       areaOutside: "Fuera de esta zona",
       areaDetail: "Barrio o localidad",
-      areaDetailPlaceholder: "p. ej. Elviria, Calahonda, La Cala",
+      areaDetailPlaceholder: "p. ej. Guadalmina, Artola, La Cala",
       addressLine: "Dirección de recogida",
       addressPlaceholder: "Calle, número, piso / puerta",
       postalCode: "Código postal",
@@ -413,15 +416,22 @@ export const es: Dictionary = {
       schedule: "Recogida preferida",
       contact: "Contacto",
       town: "Localidad",
+      subtotal: "Subtotal de afilado",
       fee: "Recogida y devolución",
       feeUnconfigured: "Se confirmará contigo",
+      deliveryRoundtrip: "ida y vuelta, incluye recogida y devolución",
+      deliveryFree: "Gratis — subtotal de afilado de {threshold} o más",
+      deliveryReview: "Por confirmar — revisaremos tu zona",
+      deliveryOutside: "Fuera de la zona de servicio — la recogida no está confirmada",
       status: "Estado de la solicitud",
-      statusPrelaunch: "Interés registrado — te contactaremos cuando abramos las reservas.",
+      statusPrelaunch: "Manifestación de interés — no es un pedido confirmado. Te contactaremos cuando abramos las reservas.",
       statusActive: "Solicitud recibida — te contactaremos para confirmar la recogida. Esto no es una cita confirmada.",
       statusOutside: "Interés registrado desde fuera de la zona de lanzamiento — la recogida no está confirmada.",
-      estimate: "Total",
+      estimate: "Total estimado",
       estimateNote:
-        "Solo el precio del paquete. Los costes de recogida y devolución se confirman contigo antes de pasar. Esto no es una cita confirmada.",
+        "Subtotal de afilado más una sola tarifa de recogida y devolución de ida y vuelta. Esto no es una cita confirmada y no se realiza ningún pago ahora.",
+      interestNote:
+        "Esto es una manifestación de interés, no un pedido confirmado. No se realiza ningún pago ahora. Te contactaremos cuando abramos las reservas.",
       extraKnivesOne: "{n} cuchillo adicional a {price} cada uno",
       extraKnivesMany: "{n} cuchillos adicionales a {price} cada uno",
       submit: "Enviar solicitud de reserva",

@@ -34,9 +34,9 @@ export function savingsCents(pkg: { priceCents: number; knifeCount: number }, si
 }
 
 /**
- * Estimated total = package price + extra knives (beyond those included) at the
- * single-knife price. Specialty/damaged surcharges and delivery are confirmed
- * manually and are intentionally not part of the estimate.
+ * Sharpening subtotal = package price + extra knives (beyond those included)
+ * at the single-knife price. Delivery is calculated separately from the zone
+ * quote and is never included in the free-delivery threshold.
  */
 export function estimateTotalCents(pkg: { priceCents: number; knifeCount: number }, knives: number, extraKnifePriceCents: number) {
   const extra = Math.max(0, knives - pkg.knifeCount);

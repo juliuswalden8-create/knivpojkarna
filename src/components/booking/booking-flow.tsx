@@ -14,6 +14,11 @@ import { SelectField } from "@/components/ui/select-field";
 import { cn } from "@/lib/utils";
 import type { BusinessStatus } from "@/lib/business-status";
 import { AREA_OTHER_IN_CORRIDOR, AREA_OUTSIDE } from "@/lib/service-area";
+import {
+  calculateDeliveryQuote,
+  resolveDeliveryLocation,
+  type DeliveryFeeSettings,
+} from "@/lib/delivery-zones";
 
 type Props = {
   locale: Locale;
@@ -29,7 +34,7 @@ type Props = {
   blocked: string[];
   businessStatus: BusinessStatus;
   areas: { name: string }[];
-  pickupFeeCents: number | null;
+  deliveryFees: DeliveryFeeSettings;
   pickupInstructions: string;
   returnInstructions: string;
 };
@@ -161,10 +166,24 @@ export function BookingFlow(props: Props) {
 
   const townLabel =
     areaName === AREA_OTHER_IN_CORRIDOR || areaName === AREA_OUTSIDE ? areaDetail || dict.booking.service.areaOutside : areaName;
-  const feeLabel =
-    props.pickupFeeCents == null
-      ? dict.booking.review.feeUnconfigured
-      : formatPrice(props.pickupFeeCents, locale);
+  const location = resolveDeliveryLocation({
+    areaName,
+    areaDetail: needsDetail ? areaDetail : null,
+    addressLine,
+    postalCode,
+  });
+  const quote = pkg ? calculateDeliveryQuote(pkg.priceCents, location, props.deliveryFees) : null;
+  const feeLabel = quote
+    ? quote.deliveryFeeWaived
+      ? interpolate(dict.booking.review.deliveryFree, { threshold: formatPrice(props.deliveryFees.freeThresholdCents, locale) })
+      : quote.deliveryNeedsReview
+        ? dict.booking.review.deliveryReview
+        : !quote.inServiceArea
+          ? dict.booking.review.deliveryOutside
+          : quote.deliveryFeeCents == null
+            ? dict.booking.review.feeUnconfigured
+            : `${formatPrice(quote.deliveryFeeCents, locale)} · ${dict.booking.review.deliveryRoundtrip}`
+    : dict.booking.review.feeUnconfigured;
 
   return (
     <div className="border-t border-line pt-8">
@@ -405,7 +424,16 @@ export function BookingFlow(props: Props) {
                 value={preferredDate ? `${preferredDate}${preferredTimeSlot ? ` · ${preferredTimeSlot}` : ""}` : "—"}
               />
             ) : null}
+            <Row label={dict.booking.review.subtotal} value={formatPrice(pkg.priceCents, locale)} />
             <Row label={dict.booking.review.fee} value={feeLabel} />
+            <Row
+              label={dict.booking.review.estimate}
+              value={
+                quote && quote.deliveryFeeCents != null
+                  ? formatPrice(quote.estimatedTotalCents, locale)
+                  : `${formatPrice(pkg.priceCents, locale)} + ${dict.booking.review.feeUnconfigured.toLowerCase()}`
+              }
+            />
             <Row label={dict.booking.review.contact} value={`${name} · ${email} · ${phone}`} />
             <Row
               label={dict.booking.review.status}
@@ -419,8 +447,14 @@ export function BookingFlow(props: Props) {
             />
           </dl>
           <p className="mt-6 kicker">{dict.booking.review.estimate}</p>
-          <p className="font-serif text-4xl">{formatPrice(pkg.priceCents, locale)}</p>
-          <p className="mt-2 text-xs leading-relaxed text-stone">{dict.booking.review.estimateNote}</p>
+          <p className="font-serif text-4xl">
+            {quote && quote.deliveryFeeCents != null
+              ? formatPrice(quote.estimatedTotalCents, locale)
+              : formatPrice(pkg.priceCents, locale)}
+          </p>
+          <p className="mt-2 text-xs leading-relaxed text-stone">
+            {prelaunch ? dict.booking.review.interestNote : dict.booking.review.estimateNote}
+          </p>
         </div>
       )}
 

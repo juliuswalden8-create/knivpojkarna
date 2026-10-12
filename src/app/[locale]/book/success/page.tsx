@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { resolveLocale } from "@/i18n/locale";
 import { prisma } from "@/lib/prisma";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, interpolate } from "@/lib/utils";
 import { localizedPath } from "@/i18n/routes";
 import { ButtonLink } from "@/components/ui/button";
 import { getSettings, whatsappLink } from "@/lib/site";
@@ -51,11 +51,36 @@ export default async function BookingSuccessPage({
             <dt>{dict.booking.review.knives}</dt>
             <dd className="text-ink">{booking.knifeCount}</dd>
           </div>
+          {booking.sharpeningSubtotalCents != null ? (
+            <div className="flex justify-between gap-4">
+              <dt>{dict.booking.review.subtotal}</dt>
+              <dd className="text-ink">{formatPrice(booking.sharpeningSubtotalCents, locale)}</dd>
+            </div>
+          ) : null}
+          {booking.sharpeningSubtotalCents != null ? (
+            <div className="flex justify-between gap-4">
+              <dt>{dict.booking.review.fee}</dt>
+              <dd className="text-ink">
+                {booking.deliveryFeeWaived
+                  ? interpolate(dict.booking.review.deliveryFree, {
+                      threshold: formatPrice(settings.freeDeliveryThresholdCents, locale),
+                    })
+                  : booking.deliveryFeeCents == null
+                    ? booking.deliveryNeedsReview
+                      ? dict.booking.review.deliveryReview
+                      : dict.booking.review.feeUnconfigured
+                    : formatPrice(booking.deliveryFeeCents, locale)}
+              </dd>
+            </div>
+          ) : null}
           <div className="flex justify-between gap-4">
             <dt>{dict.booking.review.estimate}</dt>
             <dd className="text-ink">{formatPrice(booking.estimatedTotalCents, locale)}</dd>
           </div>
         </dl>
+        {settings.businessStatus === "PRELAUNCH" ? (
+          <p className="mt-4 text-xs leading-relaxed text-stone">{dict.booking.review.interestNote}</p>
+        ) : null}
       </div>
       <div className="mt-8 flex flex-wrap gap-3">
         <ButtonLink href={localizedPath(locale, "home")}>{dict.booking.success.home}</ButtonLink>

@@ -79,23 +79,60 @@ export default async function SettingsPage() {
             className="field mt-2"
           />
         </label>
-        <label>
-          <span className="kicker">Pickup & return fee (€)</span>
-          <input
-            name="pickupFee"
-            type="number"
-            step="0.01"
-            min="0"
-            defaultValue={settings.pickupFeeCents == null ? "" : (settings.pickupFeeCents / 100).toString()}
-            placeholder="Leave empty until decided"
-            className="field mt-2"
-          />
-          <span className="mt-1 block text-xs text-stone">
-            {settings.pickupFeeCents == null
-              ? "Not configured. Customers see “to be confirmed” — never advertised as free."
-              : "Shown separately from the package price."}
-          </span>
-        </label>
+        <fieldset className="grid gap-4 border border-line p-4">
+          <legend className="kicker">Pickup & return (roundtrip)</legend>
+          <p className="text-xs text-stone">
+            Each fee includes both pickup and return. It is never charged twice. Free delivery is based on the
+            sharpening subtotal only — never on the total including delivery.
+          </p>
+          <label>
+            <span className="kicker">Zone 1 — € Marbella, San Pedro, Puerto Banús, Nueva Andalucía</span>
+            <input
+              name="deliveryZone1Fee"
+              type="number"
+              step="0.01"
+              min="0"
+              defaultValue={(settings.deliveryZone1FeeCents / 100).toString()}
+              className="field mt-2"
+            />
+          </label>
+          <label>
+            <span className="kicker">Zone 2 — € Elviria, Cabopino, Calahonda</span>
+            <input
+              name="deliveryZone2Fee"
+              type="number"
+              step="0.01"
+              min="0"
+              defaultValue={(settings.deliveryZone2FeeCents / 100).toString()}
+              className="field mt-2"
+            />
+          </label>
+          <label>
+            <span className="kicker">Zone 3 — € Mijas Costa, Fuengirola</span>
+            <input
+              name="deliveryZone3Fee"
+              type="number"
+              step="0.01"
+              min="0"
+              defaultValue={(settings.deliveryZone3FeeCents / 100).toString()}
+              className="field mt-2"
+            />
+          </label>
+          <label>
+            <span className="kicker">Free delivery from sharpening subtotal (€)</span>
+            <input
+              name="freeDeliveryThreshold"
+              type="number"
+              step="0.01"
+              min="0"
+              defaultValue={(settings.freeDeliveryThresholdCents / 100).toString()}
+              className="field mt-2"
+            />
+            <span className="mt-1 block text-xs text-stone">
+              Pickup and return are free when the knife-sharpening subtotal is at least this amount.
+            </span>
+          </label>
+        </fieldset>
         <label>
           <span className="kicker">Customer pickup instructions (EN)</span>
           <textarea name="pickupInstructionsEn" rows={3} defaultValue={settings.pickupInstructionsEn} className="field mt-2" />

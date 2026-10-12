@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   description: "Professional knife sharpening from Marbella to Fuengirola.",
   applicationName: "KNIVPOJKARNA",
   icons: { icon: "/favicon.svg" },
+  verification: {
+    google: "iNj3IBhH3Cu6_zCxLl7Ij43Yk7Z2ugpr6Fl1Ypt8D2Y",
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

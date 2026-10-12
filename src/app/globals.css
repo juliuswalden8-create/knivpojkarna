@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f5f2eb;
+  --color-soft: #faf9f6;
+  --color-ink: #1d1d1b;
+  --color-charcoal: #1d1d1b;
+  --color-charcoal-800: #2a2a27;
+  --color-charcoal-700: #3a3a36;
+  --color-charcoal-600: #4a4a45;
+  --color-stone: #77746e;
+  --color-silver: #77746e;
+  --color-silver-300: #cfcbc3;
+  --color-silver-500: #77746e;
+  --color-silver-700: #5c5954;
+  --color-forest: #24372f;
+  --color-forest-700: #1b2a24;
+  --color-ember: #c66a36;
+  --color-orange: #c66a36;
+  --color-orange-600: #a8562b;
+  --color-orange-100: #f3e4d6;
+  --color-offwhite: #f5f2eb;
+  --color-offwhite-200: #ece7dc;
+  --color-line: #ddd6c8;
+  --color-ink-0: #0f1113;
+
+  --font-serif: var(--font-instrument), "Times New Roman", serif;
+  --font-display: var(--font-instrument), "Times New Roman", serif;
+  --font-sans: var(--font-dm), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: none;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory font-sans text-ink antialiased;
+  }
+  ::selection {
+    background: #24372f;
+    color: #faf9f6;
+  }
+  :focus-visible {
+    outline: 1px solid #24372f;
+    outline-offset: 3px;
+  }
+  a {
+    text-underline-offset: 0.18em;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-[1180px] px-5 sm:px-8 lg:px-10;
+}
+
+@utility display {
+  @apply font-serif font-normal tracking-[-0.025em] leading-[1.12] text-ink;
+}
+
+@utility kicker {
+  @apply font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-stone;
+}
+
+@utility rule {
+  @apply border-line;
+}
+
+@utility field {
+  @apply w-full appearance-none border-0 border-b border-line bg-transparent px-0 py-2.5 text-[16px] text-ink outline-none transition-colors placeholder:text-[#5c5954] focus:border-forest;
+}
+
+@utility form-label {
+  @apply block text-[13px] font-medium text-ink;
+}
+
+@utility form-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  background-image: none;
+  border-radius: 0;
+  box-shadow: none;
+  font: inherit;
+  margin: 0;
+  @apply w-full rounded-none border-0 border-b border-[#c9c2b3] px-0 py-3 text-[16px] leading-normal text-ink outline-none transition-colors placeholder:text-[#5c5954] focus:border-forest;
+}
+
+@utility form-check {
+  -webkit-appearance: none;
+  appearance: none;
+  print-color-adjust: exact;
+  @apply relative m-0 mt-0.5 inline-grid h-[18px] w-[18px] shrink-0 cursor-pointer place-content-center rounded-none border border-[#8a8478] bg-transparent;
+}
+
+@layer components {
+  .form-check:checked {
+    border-color: #24372f;
+    background-color: #24372f;
+  }
+  .form-check:checked::after {
+    content: "";
+    width: 10px;
+    height: 6px;
+    margin-top: -2px;
+    border-left: 1.5px solid #faf9f6;
+    border-bottom: 1.5px solid #faf9f6;
+    transform: rotate(-45deg);
+  }
+  .form-input:-webkit-autofill,
+  .form-input:-webkit-autofill:hover,
+  .form-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #1d1d1b;
+    caret-color: #1d1d1b;
+    box-shadow: 0 0 0 1000px #f5f2eb inset;
+    transition: background-color 9999s ease-out;
+  }
+}

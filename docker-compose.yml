@@ -1,0 +1,15 @@
+# Local PostgreSQL for development. Do not use these credentials in production.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: knivpojkarna
+      POSTGRES_PASSWORD: knivpojkarna
+      POSTGRES_DB: knivpojkarna
+    ports:
+      - "5432:5432"
+    volumes:
+      - kp_pgdata:/var/lib/postgresql/data
+
+volumes:
+  kp_pgdata:

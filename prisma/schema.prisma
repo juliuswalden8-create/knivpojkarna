@@ -1,0 +1,181 @@
+// Knivpojkarna database schema — PostgreSQL (Neon recommended in production).
+// Local SQLite file prisma/dev.db is left untouched. See PRODUCTION_SETUP.md.
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+/// Singleton row (id = 1) with editable site-wide settings.
+model SiteSettings {
+  id                   Int      @id @default(1)
+  whatsappNumber       String   @default("") // International format, digits only, e.g. 34600000000
+  whatsappMessageEn    String   @default("Hi Knivpojkarna! I would like to book a knife sharpening service in Marbella.")
+  whatsappMessageEs    String   @default("¡Hola Knivpojkarna! Me gustaría reservar un servicio de afilado de cuchillos en Marbella.")
+  contactEmail         String   @default("")
+  instagramUrl         String   @default("")
+  /// Comma separated weekday numbers that accept bookings (0 = Sunday … 6 = Saturday)
+  openWeekdays         String   @default("1,2,3,4,5,6")
+  /// Comma separated time windows shown in the booking form
+  timeSlots            String   @default("09:00-12:00,12:00-15:00,15:00-18:00")
+  leadTimeDays         Int      @default(1)
+  bookingWindowDays    Int      @default(60)
+  /// Price per knife above the knives included in a package (cents)
+  extraKnifePriceCents Int      @default(700)
+  /// PRELAUNCH | ACTIVE | PAUSED
+  businessStatus       String   @default("PRELAUNCH")
+  pickupInstructionsEn String   @default("")
+  pickupInstructionsEs String   @default("")
+  returnInstructionsEn String   @default("")
+  returnInstructionsEs String   @default("")
+  /// Null means pickup/return fee is not configured yet (do not advertise as free).
+  pickupFeeCents       Int?
+  updatedAt            DateTime @updatedAt
+}
+
+model Package {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  nameEn      String
+  nameEs      String
+  nameSv      String?
+  priceCents  Int
+  knifeCount  Int
+  /// JSON array of extra feature lines (besides the computed ones)
+  featuresEn  String    @default("[]")
+  featuresEs  String    @default("[]")
+  featuresSv  String?
+  highlighted Boolean   @default(false)
+  active      Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  bookings    Booking[]
+}
+
+/// status: NEW | CONTACTED | PICKUP_CONFIRMED | COLLECTED | SHARPENING |
+///         READY_FOR_RETURN | RETURN_SCHEDULED | COMPLETED | CANCELLED
+/// Legacy values CONFIRMED and IN_PROGRESS are mapped in application code and the migration.
+/// serviceType: PICKUP (DROP_OFF / MAIL_IN may remain on historical rows)
+model Booking {
+  id                  String    @id @default(cuid())
+  reference           String    @unique
+  status              String    @default("NEW")
+  packageId           String?
+  package             Package?  @relation(fields: [packageId], references: [id], onDelete: SetNull)
+  packageName         String
+  knifeCount          Int
+  /// JSON: { standard: n, serrated: n, specialty: n, damaged: boolean }
+  knifeTypes          String    @default("{}")
+  serviceType         String
+  addressLine         String?
+  postalCode          String?
+  areaName            String?
+  preferredDate       DateTime?
+  preferredTimeSlot   String?
+  scheduledDate       DateTime?
+  scheduledTimeSlot   String?
+  customerName        String
+  email               String
+  phone               String
+  comments            String?
+  pickupNotes         String?
+  inServiceArea       Boolean   @default(true)
+  estimatedTotalCents Int
+  locale              String    @default("en")
+  consentAt           DateTime
+  adminNotes          String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  emails              EmailLog[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([email])
+  @@index([phone])
+}
+
+/// status: NEW | CONTACTED | QUOTED | WON | CLOSED
+model BusinessInquiry {
+  id              String   @id @default(cuid())
+  reference       String   @unique
+  status          String   @default("NEW")
+  businessName    String
+  businessType    String
+  contactName     String
+  email           String
+  phone           String
+  estimatedKnives Int?
+  frequency       String?
+  needsPickup     Boolean  @default(false)
+  address         String?
+  message         String?
+  locale          String   @default("en")
+  consentAt       DateTime
+  adminNotes      String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([email])
+  @@index([phone])
+}
+
+/// pickupStatus: PICKUP_AVAILABLE | ON_REQUEST
+model ServiceArea {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  name          String
+  descriptionEn String   @default("")
+  descriptionEs String   @default("")
+  descriptionSv String?
+  pickupStatus  String   @default("ON_REQUEST")
+  /// Position on the stylised map (percentages 0-100)
+  mapX          Float    @default(50)
+  mapY          Float    @default(50)
+  sortOrder     Int      @default(0)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model BlockedDate {
+  id     String   @id @default(cuid())
+  date   DateTime @unique
+  reason String?
+}
+
+/// Persistent rate-limit buckets (serverless-safe).
+model RateLimit {
+  key     String   @id
+  count   Int      @default(0)
+  resetAt DateTime
+}
+
+/// Transactional email attempts. Do not store message bodies.
+model EmailLog {
+  id         String   @id @default(cuid())
+  bookingId  String?
+  booking    Booking? @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  template   String
+  status     String
+  errorName  String?
+  createdAt  DateTime @default(now())
+
+  @@index([bookingId])
+  @@index([createdAt])
+}

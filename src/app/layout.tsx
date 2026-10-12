@@ -3,6 +3,7 @@ import { DM_Sans, Instrument_Serif } from "next/font/google";
 import { headers } from "next/headers";
 import { defaultLocale, localeHtmlLang } from "@/i18n/config";
 import { siteUrl } from "@/lib/site";
+import { VercelAnalytics } from "@/components/layout/analytics";
 import "./globals.css";
 
 const serif = Instrument_Serif({
@@ -40,7 +41,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang={lang} className={`${serif.variable} ${sans.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-ivory font-sans text-ink">{children}</body>
+      <body className="flex min-h-full flex-col bg-ivory font-sans text-ink">
+        {children}
+        <VercelAnalytics />
+      </body>
     </html>
   );
 }

@@ -294,7 +294,7 @@ export const en = {
     necessary: { label: "Strictly necessary", text: "Language preference and admin session. Always on." },
     analytics: {
       label: "Analytics",
-      text: "No analytics tool is currently active. Your choice is stored so it can be respected if one is added.",
+      text: "Anonymous page views via Vercel Analytics. No advertising or tracking cookies.",
     },
     saved: "Preferences saved",
   },
@@ -584,7 +584,7 @@ export const en = {
       {
         title: "Cookies",
         body: [
-          "This website uses only strictly necessary cookies: one to remember your language preference and one to keep the administration area secure for our staff. No analytics, tracking or advertising cookies are currently set.",
+          "This website uses strictly necessary cookies: one to remember your language preference and one to keep the administration area secure for our staff. If you opt in, anonymous page views are measured with Vercel Analytics, which does not set advertising or tracking cookies.",
           "You can review and change your cookie preferences at any time using the cookie settings link in the footer.",
         ],
       },

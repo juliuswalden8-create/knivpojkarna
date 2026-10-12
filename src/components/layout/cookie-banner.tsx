@@ -42,6 +42,7 @@ export function CookieBanner({ locale, dict }: { locale: Locale; dict: Dictionar
     localStorage.setItem(KEY, JSON.stringify(value));
     setAnalytics(next);
     setOpen(false);
+    window.dispatchEvent(new Event("kp:analytics"));
   }
 
   if (!open) return null;

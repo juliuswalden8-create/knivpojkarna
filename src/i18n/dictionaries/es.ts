@@ -294,7 +294,7 @@ export const es: Dictionary = {
     necessary: { label: "Estrictamente necesarias", text: "Preferencia de idioma y sesión de administración. Siempre activas." },
     analytics: {
       label: "Analítica",
-      text: "Actualmente no hay ninguna herramienta de analítica activa. Tu elección se guarda para respetarla si se añade una.",
+      text: "Visitas de página anónimas con Vercel Analytics. Sin cookies de publicidad ni seguimiento.",
     },
     saved: "Preferencias guardadas",
   },
@@ -584,7 +584,7 @@ export const es: Dictionary = {
       {
         title: "Cookies",
         body: [
-          "Este sitio web solo utiliza cookies estrictamente necesarias: una para recordar tu preferencia de idioma y otra para mantener segura el área de administración para nuestro personal. Actualmente no se instalan cookies de analítica, seguimiento ni publicidad.",
+          "Este sitio web utiliza cookies estrictamente necesarias: una para recordar tu preferencia de idioma y otra para mantener segura el área de administración para nuestro personal. Si lo aceptas, las visitas de página anónimas se miden con Vercel Analytics, que no instala cookies de publicidad ni seguimiento.",
           "Puedes revisar y cambiar tus preferencias de cookies en cualquier momento mediante el enlace de configuración de cookies del pie de página.",
         ],
       },

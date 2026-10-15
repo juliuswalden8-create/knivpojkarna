@@ -55,8 +55,21 @@ export async function getAvailability() {
   };
 }
 
+/** Public production origin. Deployment URLs on *.vercel.app are not this host. */
+const PUBLIC_SITE_URL = "https://knivpojkarna.vercel.app";
+
 export function siteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+  const configured = (process.env.NEXT_PUBLIC_SITE_URL || "").trim().replace(/\/$/, "");
+  if (!configured || /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(configured)) {
+    return process.env.NODE_ENV === "production" ? PUBLIC_SITE_URL : configured || "http://localhost:3000";
+  }
+  try {
+    const host = new URL(configured).hostname;
+    if (host.endsWith(".vercel.app") && configured !== PUBLIC_SITE_URL) return PUBLIC_SITE_URL;
+  } catch {
+    return process.env.NODE_ENV === "production" ? PUBLIC_SITE_URL : "http://localhost:3000";
+  }
+  return configured;
 }
 
 export function whatsappLink(number: string, message: string) {

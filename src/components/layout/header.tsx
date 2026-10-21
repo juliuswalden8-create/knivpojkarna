@@ -44,51 +44,68 @@ export function Header({
   ];
 
   return (
-    <header className="z-50 shrink-0 border-b border-line bg-ivory/95 backdrop-blur-sm">
+    <header className="relative z-50 shrink-0">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-forest focus:px-3 focus:py-2 focus:text-soft"
       >
         {dict.nav.skip}
       </a>
-      <div className="container-x flex min-h-16 items-center justify-between gap-4 sm:min-h-[4.5rem]">
-        <Link href={localizedPath(locale, "home")} className="relative z-10 shrink-0" aria-label="BladeBud">
-          <Logo variant="header" />
-        </Link>
-        <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="whitespace-nowrap text-[13px] text-stone transition-colors hover:text-ink"
+      {/* backdrop-filter would become the containing block for the fixed menu and collapse it to the bar height. */}
+      <div className="border-b border-line bg-ivory/95 backdrop-blur-sm">
+        <div className="container-x flex min-h-16 items-center justify-between gap-4 sm:min-h-[4.5rem]">
+          <Link href={localizedPath(locale, "home")} className="relative z-10 shrink-0" aria-label="BladeBud">
+            <Logo variant="header" />
+          </Link>
+          <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="whitespace-nowrap text-[13px] text-stone transition-colors hover:text-ink"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="hidden items-center gap-4 xl:flex">
+            <LanguageSwitcher locale={locale} />
+            <ButtonLink
+              href={localizedPath(locale, "book")}
+              size="sm"
+              className="h-auto min-h-10 whitespace-normal px-4 py-2 text-center leading-snug"
             >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="hidden items-center gap-4 xl:flex">
-          <LanguageSwitcher locale={locale} />
-          <ButtonLink
-            href={localizedPath(locale, "book")}
-            size="sm"
-            className="h-auto min-h-10 whitespace-normal px-4 py-2 text-center leading-snug"
+              {cta}
+            </ButtonLink>
+          </div>
+          <button
+            type="button"
+            className="relative z-10 inline-flex h-11 w-11 items-center justify-center text-ink xl:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? dict.nav.close : dict.nav.menu}
+            onClick={() => setMenuPath(open ? null : pathname)}
           >
-            {cta}
-          </ButtonLink>
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
-        <button
-          type="button"
-          className="relative z-10 inline-flex h-11 w-11 items-center justify-center text-ink xl:hidden"
-          aria-expanded={open}
-          aria-label={open ? dict.nav.close : dict.nav.menu}
-          onClick={() => setMenuPath(open ? null : pathname)}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
       </div>
 
-      <div className={cn("fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ivory sm:top-[4.5rem] xl:hidden", open ? "block" : "hidden")}>
-        <nav className="container-x flex min-h-full flex-col py-8" aria-label="Mobile">
+      <div
+        id="mobile-menu"
+        className={cn(
+          "fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto overscroll-contain bg-ivory sm:top-[4.5rem] xl:hidden",
+          open ? "block" : "hidden",
+        )}
+      >
+        <nav
+          className="container-x flex min-h-full flex-col pt-8 pb-[max(2rem,env(safe-area-inset-bottom))]"
+          aria-label="Mobile"
+          onClick={(event) => {
+            const target = event.target;
+            if (target instanceof Element && target.closest("a, button")) setMenuPath(null);
+          }}
+        >
           {links.map((link) => (
             <Link
               key={link.href}

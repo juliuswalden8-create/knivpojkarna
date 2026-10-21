@@ -67,7 +67,7 @@ export function BeforeAfter({ dict }: { dict: Dictionary }) {
                 className="border-t border-line"
               />
             </div>
-            <figcaption className="mt-3 text-[11px] leading-relaxed tracking-[0.04em] text-stone">
+            <figcaption className="mt-3 max-w-md text-[13px] leading-relaxed text-stone">
               {dict.beforeAfter.illustrative}
             </figcaption>
           </figure>

@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { defaultLocale, localeHtmlLang } from "@/i18n/config";
 import { siteUrl } from "@/lib/site";
 import { VercelAnalytics } from "@/components/layout/analytics";
+import { MotionProvider } from "@/components/ui/motion-provider";
 import "./globals.css";
 
 const serif = Instrument_Serif({
@@ -45,7 +46,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={lang} className={`${serif.variable} ${sans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-ivory font-sans text-ink">
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <VercelAnalytics />
       </body>
     </html>

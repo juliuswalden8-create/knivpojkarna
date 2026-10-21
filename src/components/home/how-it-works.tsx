@@ -11,13 +11,13 @@ export function HowItWorks({ dict }: { dict: Dictionary }) {
         </Reveal>
         <ol className="mt-14 grid gap-10 lg:grid-cols-3">
           {dict.how.steps.map((step, i) => (
-            <Reveal key={step.num} delay={i * 0.05}>
-              <li className="border-t border-soft/20 pt-6">
+            <li key={step.num} className="border-t border-soft/20 pt-6">
+              <Reveal delay={i * 0.05}>
                 <span className="font-serif text-3xl text-sage">{step.num}</span>
                 <h3 className="mt-4 font-serif text-3xl">{step.title}</h3>
                 <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-soft/80">{step.text}</p>
-              </li>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
         </ol>
         <div className="mt-16 grid gap-8 border-t border-soft/20 pt-10 md:grid-cols-2">

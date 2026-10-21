@@ -27,9 +27,11 @@ export function Header({
   const open = menuPath === pathname;
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const scroller = document.querySelector("[data-scroll-root]");
+    if (!(scroller instanceof HTMLElement)) return;
+    scroller.style.overflow = open ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "";
+      scroller.style.overflow = "";
     };
   }, [open]);
 
@@ -42,37 +44,41 @@ export function Header({
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-ivory/95 backdrop-blur-sm">
+    <header className="z-50 shrink-0 border-b border-line bg-ivory/95 backdrop-blur-sm">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-forest focus:px-3 focus:py-2 focus:text-soft"
       >
         {dict.nav.skip}
       </a>
-      <div className="container-x flex h-16 items-center justify-between gap-4 sm:h-[4.5rem]">
+      <div className="container-x flex min-h-16 items-center justify-between gap-4 sm:min-h-[4.5rem]">
         <Link href={localizedPath(locale, "home")} className="relative z-10 shrink-0" aria-label="BladeBud">
           <Logo variant="header" />
         </Link>
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-[13px] text-stone transition-colors hover:text-ink"
+              className="whitespace-nowrap text-[13px] text-stone transition-colors hover:text-ink"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-4 xl:flex">
           <LanguageSwitcher locale={locale} />
-          <ButtonLink href={localizedPath(locale, "book")} size="sm">
+          <ButtonLink
+            href={localizedPath(locale, "book")}
+            size="sm"
+            className="h-auto min-h-10 whitespace-normal px-4 py-2 text-center leading-snug"
+          >
             {cta}
           </ButtonLink>
         </div>
         <button
           type="button"
-          className="relative z-10 inline-flex h-10 w-10 items-center justify-center text-ink lg:hidden"
+          className="relative z-10 inline-flex h-11 w-11 items-center justify-center text-ink xl:hidden"
           aria-expanded={open}
           aria-label={open ? dict.nav.close : dict.nav.menu}
           onClick={() => setMenuPath(open ? null : pathname)}
@@ -81,7 +87,7 @@ export function Header({
         </button>
       </div>
 
-      <div className={cn("fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ivory lg:hidden", open ? "block" : "hidden")}>
+      <div className={cn("fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ivory sm:top-[4.5rem] xl:hidden", open ? "block" : "hidden")}>
         <nav className="container-x flex min-h-full flex-col py-8" aria-label="Mobile">
           {links.map((link) => (
             <Link
@@ -95,7 +101,11 @@ export function Header({
           ))}
           <div className="mt-8 flex flex-col gap-6">
             <LanguageSwitcher locale={locale} />
-            <ButtonLink href={localizedPath(locale, "book")} size="lg" className="w-full">
+            <ButtonLink
+              href={localizedPath(locale, "book")}
+              size="lg"
+              className="h-auto min-h-12 w-full whitespace-normal px-6 py-3 text-center leading-snug"
+            >
               {cta}
             </ButtonLink>
           </div>

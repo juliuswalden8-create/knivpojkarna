@@ -22,20 +22,11 @@ export function Hero({
           <p className="kicker">{dict.hero.location}</p>
           <h1 className="display mt-5 text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">{dict.hero.headline}</h1>
           <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-stone sm:text-lg">{dict.hero.sub}</p>
-          <ol className="mt-10 grid gap-6 border-y border-line py-6 sm:grid-cols-3">
-            {dict.how.steps.map((step) => (
-              <li key={step.num}>
-                <p className="font-serif text-sm text-stone">{step.num}</p>
-                <p className="mt-2 font-medium">{step.title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-stone">{step.text}</p>
-              </li>
-            ))}
-          </ol>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <ButtonLink href={localizedPath(locale, "book")} size="lg">
+            <ButtonLink href={localizedPath(locale, "book")} size="lg" className="h-auto min-h-12 whitespace-normal px-6 py-3 text-center leading-snug">
               {cta}
             </ButtonLink>
-            <ButtonLink href="#pricing" variant="secondary" size="lg">
+            <ButtonLink href="#pricing" variant="secondary" size="lg" className="h-auto min-h-12 whitespace-normal px-6 py-3 text-center leading-snug">
               {dict.nav.prices}
             </ButtonLink>
           </div>

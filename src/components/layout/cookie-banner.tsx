@@ -53,7 +53,7 @@ export function CookieBanner({ locale, dict }: { locale: Locale; dict: Dictionar
   if (!open) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6">
+    <div className="max-h-[45dvh] shrink-0 overflow-y-auto border-t border-line bg-ivory p-4 sm:p-5">
       <div className="mx-auto max-w-2xl border border-line bg-soft p-5 sm:p-6">
         <p className="kicker">{dict.cookie.title}</p>
         <p className="mt-3 text-sm leading-relaxed text-stone">{dict.cookie.text}</p>

@@ -31,26 +31,26 @@ export default async function LocaleLayout({
   const waMessage = customerFacingCopy(storedWa).trim() || dict.whatsapp.message;
 
   return (
-    <>
+    <div className="flex h-dvh flex-col">
       <Header
         locale={locale}
         dict={dict}
         bookLabel={settings.businessStatus === "PRELAUNCH" ? dict.mode.registerCta : dict.nav.book}
       />
       <SiteNotice status={settings.businessStatus} dict={dict} />
-      <main id="main" className="flex-1">
-        {children}
-      </main>
-      <Footer
-        locale={locale}
-        dict={dict}
-        whatsappNumber={settings.whatsappNumber}
-        contactEmail={settings.contactEmail}
-        instagramUrl={settings.instagramUrl}
-        businessStatus={settings.businessStatus}
-      />
-      <WhatsAppButton number={settings.whatsappNumber} message={waMessage} label={dict.whatsapp.label} aria={dict.whatsapp.aria} />
+      <div data-scroll-root="" className="min-h-0 flex-1 overflow-y-auto scroll-smooth">
+        <main id="main">{children}</main>
+        <Footer
+          locale={locale}
+          dict={dict}
+          whatsappNumber={settings.whatsappNumber}
+          contactEmail={settings.contactEmail}
+          instagramUrl={settings.instagramUrl}
+          businessStatus={settings.businessStatus}
+        />
+      </div>
       <CookieBanner locale={locale} dict={dict} />
-    </>
+      <WhatsAppButton number={settings.whatsappNumber} message={waMessage} label={dict.whatsapp.label} aria={dict.whatsapp.aria} />
+    </div>
   );
 }

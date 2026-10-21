@@ -15,14 +15,18 @@ export function WhatsAppButton({
   if (!href) return null;
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={aria}
-      className="fixed bottom-5 right-5 z-40 border border-line bg-soft px-4 py-2.5 text-[13px] text-ink shadow-sm hover:border-ink"
-    >
-      {label}
-    </a>
+    <div className="shrink-0 border-t border-line bg-ivory">
+      <div className="container-x flex justify-end py-3">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={aria}
+          className="inline-flex min-h-11 max-w-full items-center justify-center border border-line bg-soft px-4 py-2 text-center text-[13px] leading-snug text-ink hover:border-ink"
+        >
+          {label}
+        </a>
+      </div>
+    </div>
   );
 }

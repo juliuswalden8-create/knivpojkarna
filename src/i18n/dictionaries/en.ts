@@ -87,8 +87,8 @@ export const en = {
     secondary: "Explore our service",
     trust: "Precision, transparent prices, local service.",
     location: "Marbella · Fuengirola",
-    imageAlt: "A chef using a kitchen knife at a wooden board",
-    photoCredit: "Temporary photography — replace with BladeBud workshop images.",
+    imageAlt: "Reference photograph of a knife blade on a dark stone",
+    photoCredit: "Reference photograph. Not BladeBud’s workshop and not a customer’s knives.",
     scroll: "Scroll",
     stats: [
       { value: "€7", label: "from per knife" },

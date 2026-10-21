@@ -23,7 +23,7 @@ export function EditorialPhoto({
       <div className={cn("relative overflow-hidden bg-offwhite-200", className)}>
         <Image src={src} alt={alt} fill className={cn("object-cover", imageClassName)} sizes={sizes} priority={priority} />
       </div>
-      {caption && <figcaption className="mt-3 text-[11px] leading-relaxed tracking-[0.04em] text-stone">{caption}</figcaption>}
+      {caption && <figcaption className="mt-3 max-w-md text-[13px] leading-relaxed text-stone">{caption}</figcaption>}
     </figure>
   );
 }

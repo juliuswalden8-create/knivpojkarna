@@ -87,8 +87,8 @@ export const es: Dictionary = {
     secondary: "Conocer el servicio",
     trust: "Precisión, precios claros, servicio local.",
     location: "Marbella · Fuengirola",
-    imageAlt: "Un chef usando un cuchillo de cocina sobre una tabla de madera",
-    photoCredit: "Fotografía temporal — sustituir por imágenes del taller de BladeBud.",
+    imageAlt: "Fotografía de referencia de una hoja de cuchillo sobre una piedra oscura",
+    photoCredit: "Fotografía de referencia. No es el taller de BladeBud ni los cuchillos de un cliente.",
     scroll: "Desliza",
     stats: [
       { value: "7 €", label: "desde, por cuchillo" },

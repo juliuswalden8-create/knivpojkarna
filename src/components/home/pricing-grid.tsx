@@ -47,35 +47,50 @@ export function PricingGrid({
               <article
                 key={pkg.id}
                 className={cn(
-                  "flex min-h-full flex-col border p-6 sm:p-7",
+                  "flex h-full min-h-full flex-col border p-6 sm:p-7",
                   featured ? "border-forest bg-forest text-soft" : "border-line bg-soft text-ink",
                 )}
               >
                 <p className={cn("text-[11px] uppercase tracking-[0.16em]", featured ? "text-sage" : "text-stone")}>
                   {featured ? dict.pricing.mostPopular : dict.pricing.kicker}
                 </p>
-                <h3 className="mt-4 font-serif text-[1.7rem] leading-none">{pkg.name}</h3>
-                <p className="mt-6 font-serif text-4xl tracking-[-0.03em]">{formatPrice(pkg.priceCents, locale)}</p>
-                <p className={cn("mt-2 text-sm", featured ? "text-soft/75" : "text-stone")}>
+                <h3 className="mt-4 min-h-[2.4em] font-serif text-[1.65rem] leading-tight">{pkg.name}</h3>
+                <p className="mt-5 font-serif text-4xl tracking-[-0.03em]">{formatPrice(pkg.priceCents, locale)}</p>
+                <p className={cn("mt-2 text-sm leading-relaxed", featured ? "text-soft/75" : "text-stone")}>
                   {pkg.knifeCount === 1 ? dict.pricing.knifeOne : interpolate(dict.pricing.knifeMany, { n: pkg.knifeCount })}
                 </p>
-                <p className={cn("mt-4 text-sm", featured ? "text-soft/75" : "text-stone")}>
+                <p className={cn("mt-4 text-sm leading-relaxed", featured ? "text-soft/75" : "text-stone")}>
                   {formatPrice(per, locale)} {dict.pricing.perKnife}
-                  {save > 0 ? ` · ${dict.pricing.save} ${formatPrice(save, locale)}` : ""}
                 </p>
-                <ul className={cn("mt-6 flex-1 space-y-2 text-sm", featured ? "text-soft/80" : "text-stone")}>
-                  {pkg.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-                <ButtonLink
-                  href={`${localizedPath(locale, "book")}?package=${pkg.slug}`}
-                  size="sm"
-                  variant={featured ? "light" : "primary"}
-                  className="mt-8 w-full"
-                >
-                  {bookLabel}
-                </ButtonLink>
+                <div className="mt-3 min-h-7">
+                  {save > 0 ? (
+                    <span
+                      className={cn(
+                        "inline-flex whitespace-nowrap border px-2.5 py-1 text-[12px] leading-none",
+                        featured ? "border-soft/30 text-soft" : "border-line text-ink",
+                      )}
+                    >
+                      {dict.pricing.save} {formatPrice(save, locale)}
+                    </span>
+                  ) : null}
+                </div>
+                {pkg.features.length > 0 ? (
+                  <ul className={cn("mt-5 space-y-2 text-sm leading-relaxed", featured ? "text-soft/80" : "text-stone")}>
+                    {pkg.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                <div className="mt-auto pt-8">
+                  <ButtonLink
+                    href={`${localizedPath(locale, "book")}?package=${pkg.slug}`}
+                    size="sm"
+                    variant={featured ? "light" : "primary"}
+                    className="h-auto min-h-11 w-full whitespace-normal px-3 py-2.5 text-center leading-snug"
+                  >
+                    {bookLabel}
+                  </ButtonLink>
+                </div>
               </article>
             );
           })}

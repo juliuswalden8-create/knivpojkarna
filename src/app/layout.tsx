@@ -31,6 +31,15 @@ export const metadata: Metadata = {
   description:
     "Professional knife sharpening in Marbella and Costa del Sol. We collect your knives, sharpen them and deliver them back to your door. Sharpening from €7.",
   applicationName: "BladeBud",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   verification: {
     google: [
       "iNj3IBhH3Cu6_zCxLl7Ij43Yk7Z2ugpr6Fl1Ypt8D2Y",

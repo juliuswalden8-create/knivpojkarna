@@ -5,7 +5,6 @@ import { AboutTeaser } from "@/components/home/about-teaser";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { PricingGrid } from "@/components/home/pricing-grid";
 import { Why } from "@/components/home/why";
-import { BeforeAfter } from "@/components/home/before-after";
 import { AreasMap } from "@/components/home/areas-map";
 import { CtaBand } from "@/components/home/cta-band";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -19,7 +18,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <JsonLd locale={locale} description={dict.meta.home.description} />
       <Hero locale={locale} dict={dict} businessStatus={settings.businessStatus} />
-      <AboutTeaser locale={locale} dict={dict} businessStatus={settings.businessStatus} />
       <HowItWorks dict={dict} />
       <PricingGrid
         locale={locale}
@@ -27,10 +25,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         packages={packages}
         singlePriceCents={single}
         businessStatus={settings.businessStatus}
+        zone1FeeCents={settings.deliveryZone1FeeCents}
+        freeDeliveryThresholdCents={settings.freeDeliveryThresholdCents}
       />
       <Why dict={dict} />
-      <BeforeAfter dict={dict} />
       <AreasMap locale={locale} dict={dict} businessStatus={settings.businessStatus} showMailIn={false} />
+      <AboutTeaser locale={locale} dict={dict} businessStatus={settings.businessStatus} variant="home" />
       <CtaBand
         locale={locale}
         dict={dict}

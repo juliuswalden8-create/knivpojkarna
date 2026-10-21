@@ -14,29 +14,47 @@ export function Hero({
   dict: Dictionary;
   businessStatus: BusinessStatus;
 }) {
-  const cta = businessStatus === "PRELAUNCH" ? dict.mode.registerCta : dict.hero.primary;
+  const prelaunch = businessStatus === "PRELAUNCH";
+  const cta = prelaunch ? dict.mode.registerCta : dict.hero.primary;
   return (
     <section className="bg-ivory">
-      <div className="container-x grid items-end gap-12 py-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:py-24">
-        <div className="max-w-2xl">
+      <div className="container-x grid items-center gap-5 py-6 sm:gap-8 sm:py-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:gap-12 lg:py-10">
+        <div className="max-w-xl">
           <p className="kicker">{dict.hero.location}</p>
-          <h1 className="display mt-5 text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">{dict.hero.headline}</h1>
-          <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-stone sm:text-lg">{dict.hero.sub}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <ButtonLink href={localizedPath(locale, "book")} size="lg" className="h-auto min-h-12 whitespace-normal px-6 py-3 text-center leading-snug">
+          <h1 className="display mt-2 text-balance text-[2.45rem] leading-[1.02] sm:mt-3 sm:text-5xl sm:leading-[1.05] lg:text-[3.75rem] lg:leading-[1.04]">
+            {dict.hero.headline}
+          </h1>
+          <p className="mt-3 max-w-md text-[16px] leading-snug text-stone sm:text-[17px] sm:leading-relaxed">{dict.hero.sub}</p>
+          {prelaunch ? (
+            <p className="mt-2 max-w-md font-serif text-[1.25rem] leading-snug text-ink sm:text-[1.4rem]">{dict.mode.ctaTitle}</p>
+          ) : null}
+          <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:items-center">
+            <ButtonLink
+              href={localizedPath(locale, "book")}
+              size="lg"
+              className="h-auto min-h-12 w-full whitespace-normal px-6 py-3 text-center leading-snug sm:w-auto"
+            >
               {cta}
             </ButtonLink>
-            <ButtonLink href="#pricing" variant="secondary" size="lg" className="h-auto min-h-12 whitespace-normal px-6 py-3 text-center leading-snug">
-              {dict.nav.prices}
+            <ButtonLink
+              href="#pricing"
+              variant="secondary"
+              size="lg"
+              className="h-auto min-h-12 w-full whitespace-normal px-6 py-3 text-center leading-snug sm:w-auto"
+            >
+              {dict.hero.viewPrices}
             </ButtonLink>
           </div>
-          <p className="mt-6 text-sm text-stone">{dict.hero.trust}</p>
+          <p className="mt-3 max-w-md text-[13px] leading-relaxed text-stone">
+            {prelaunch ? dict.mode.ctaSub : dict.hero.trust}
+          </p>
         </div>
         <EditorialPhoto
           src="/images/hero-sharpening.jpg"
           alt={dict.hero.imageAlt}
           caption={dict.hero.photoCredit}
-          className="aspect-[4/5] w-full"
+          className="aspect-[12/5] w-full sm:aspect-[2/1] lg:aspect-[3/2]"
+          imageClassName="origin-[82%_58%] scale-[1.55] object-[82%_58%] lg:scale-110"
           priority
           sizes="(min-width: 1024px) 42vw, 100vw"
         />

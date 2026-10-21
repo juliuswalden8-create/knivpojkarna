@@ -16,17 +16,21 @@ export function PricingGrid({
   packages,
   singlePriceCents,
   businessStatus,
+  zone1FeeCents,
+  freeDeliveryThresholdCents,
 }: {
   locale: Locale;
   dict: Dictionary;
   packages: PublicPackage[];
   singlePriceCents: number;
   businessStatus: BusinessStatus;
+  zone1FeeCents: number;
+  freeDeliveryThresholdCents: number;
 }) {
   const bookLabel = businessStatus === "PRELAUNCH" ? dict.mode.registerCta : dict.pricing.book;
   return (
     <section id="pricing" className="border-t border-line bg-ivory">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 lg:py-28">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
             <p className="kicker">{dict.pricing.kicker}</p>
@@ -38,7 +42,7 @@ export function PricingGrid({
           </Link>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-12 xl:grid-cols-4">
           {packages.map((pkg) => {
             const save = savingsCents(pkg, singlePriceCents);
             const per = perKnifeCents(pkg);
@@ -47,7 +51,7 @@ export function PricingGrid({
               <article
                 key={pkg.id}
                 className={cn(
-                  "flex h-full min-h-full flex-col border p-6 sm:p-7",
+                  "flex h-full min-h-full flex-col border p-5 sm:p-7",
                   featured ? "border-forest bg-forest text-soft" : "border-line bg-soft text-ink",
                 )}
               >
@@ -86,7 +90,7 @@ export function PricingGrid({
                     href={`${localizedPath(locale, "book")}?package=${pkg.slug}`}
                     size="sm"
                     variant={featured ? "light" : "primary"}
-                    className="h-auto min-h-11 w-full whitespace-normal px-3 py-2.5 text-center leading-snug"
+                    className="h-auto min-h-12 w-full whitespace-normal px-3 py-2.5 text-center text-[13px] leading-snug sm:text-[14px]"
                   >
                     {bookLabel}
                   </ButtonLink>
@@ -95,7 +99,34 @@ export function PricingGrid({
             );
           })}
         </div>
-        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-stone">{dict.pricing.note}</p>
+        <div className="mt-8 border-t border-line pt-6">
+          <p className="kicker">{dict.pricing.zoneExamplesTitle}</p>
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-stone">
+            {interpolate(dict.pricing.zoneExamplesNote, {
+              fee: formatPrice(zone1FeeCents, locale),
+              free: formatPrice(freeDeliveryThresholdCents, locale),
+            })}
+          </p>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            {[...packages]
+              .sort((a, b) => a.knifeCount - b.knifeCount)
+              .map((pkg) => {
+                const included = pkg.priceCents >= freeDeliveryThresholdCents;
+                const total = pkg.priceCents + (included ? 0 : zone1FeeCents);
+                const noun = pkg.knifeCount === 1 ? dict.pricing.nounOne : dict.pricing.nounMany;
+                const label = interpolate(included ? dict.pricing.zoneExampleFree : dict.pricing.zoneExamplePaid, {
+                  n: `${pkg.knifeCount} ${noun}`,
+                });
+                return (
+                  <li key={pkg.id} className="border border-line bg-soft px-4 py-3">
+                    <p className="font-serif text-[1.65rem] leading-none tracking-[-0.03em]">{formatPrice(total, locale)}</p>
+                    <p className="mt-2 text-sm leading-snug text-stone">{label}</p>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-stone">{dict.pricing.note}</p>
       </div>
     </section>
   );

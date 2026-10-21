@@ -20,17 +20,27 @@ export function CtaBand({
   const prelaunch = businessStatus === "PRELAUNCH";
   return (
     <section className="border-t border-line bg-forest text-soft">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 lg:py-28">
         <h2 className="max-w-2xl font-serif text-[2.4rem] leading-[1.12] tracking-[-0.025em] sm:text-5xl">
           {prelaunch ? dict.mode.ctaTitle : dict.cta.title}
         </h2>
         <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-soft/75">{prelaunch ? dict.mode.ctaSub : dict.cta.sub}</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <ButtonLink href={localizedPath(locale, "book")} size="lg" variant="light">
+          <ButtonLink
+            href={localizedPath(locale, "book")}
+            size="lg"
+            variant="light"
+            className="h-auto min-h-12 whitespace-normal px-6 py-3 text-center leading-snug"
+          >
             {prelaunch ? dict.mode.registerCta : dict.cta.button}
           </ButtonLink>
           {wa && (
-            <ButtonLink href={wa} variant="secondary" size="lg" className="border-soft/30 text-soft hover:border-soft">
+            <ButtonLink
+              href={wa}
+              variant="secondary"
+              size="lg"
+              className="h-auto min-h-12 whitespace-normal border-soft/30 px-6 py-3 text-center leading-snug text-soft hover:border-soft"
+            >
               {dict.cta.secondary}
             </ButtonLink>
           )}

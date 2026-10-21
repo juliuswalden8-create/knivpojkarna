@@ -22,14 +22,14 @@ export function AreasMap({
 
   return (
     <section id="areas" className="border-t border-line bg-ivory">
-      <div className="container-x py-16 lg:py-28">
+      <div className="container-x py-14 lg:py-28">
         <Reveal className="max-w-3xl">
           <p className="kicker">{dict.areas.kicker}</p>
           <Heading className="display mt-4 text-[2.15rem] sm:text-4xl lg:text-[2.9rem]">{dict.areas.title}</Heading>
           <p className="mt-6 max-w-2xl text-[16px] leading-relaxed text-stone sm:text-[17px]">{dict.areas.intro}</p>
         </Reveal>
 
-        <div className="mt-14 grid gap-12 border-y border-line py-12 lg:grid-cols-2 lg:gap-20">
+        <div className="mt-8 grid gap-8 border-y border-line py-8 lg:mt-14 lg:grid-cols-2 lg:gap-20 lg:py-12">
           {dict.areas.methods.map((method) => (
             <div key={method.title}>
               <p className="kicker">{method.kicker}</p>
@@ -39,7 +39,7 @@ export function AreasMap({
           ))}
         </div>
 
-        <div className="mt-14">
+        <div className="mt-8 lg:mt-14">
           <p className="kicker">{dict.areas.examplesLabel}</p>
           <p className="mt-5 max-w-4xl font-serif text-[1.35rem] leading-snug text-ink sm:text-[1.55rem]">
             {dict.areas.examples.join("  ·  ")}

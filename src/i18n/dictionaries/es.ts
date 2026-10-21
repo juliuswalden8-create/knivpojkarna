@@ -61,9 +61,9 @@ export const es: Dictionary = {
       "Estamos preparando el lanzamiento en Marbella. Registra tu interés ahora — no es una cita confirmada y no se cobra ningún pago.",
     pausedBanner:
       "Las solicitudes nuevas están pausadas por el momento. Los registros existentes se conservan. Vuelve a consultarnos pronto.",
-    ctaTitle: "Sé de las primeras cocinas que afilamos.",
+    ctaTitle: "Sé de los primeros en tener cuchillos más afilados.",
     ctaSub:
-      "Estamos preparando el equipo de afilado. Déjanos tus datos y te contactaremos cuando abramos las reservas. Ahora no se cobra ningún pago.",
+      "Déjanos tus datos y te contactaremos cuando abramos las recogidas en tu zona. No es una cita confirmada y no se cobra ningún pago.",
     bookingKicker: "Interés previo al lanzamiento",
     bookingTitle: "Registra tu interés.",
     bookingIntro:
@@ -83,6 +83,7 @@ export const es: Dictionary = {
     kicker: "Afilado de cuchillos de Marbella a Fuengirola",
     headline: "Cuchillos afilados. Sin complicaciones.",
     sub: "Afilado profesional de cuchillos con recogida y entrega a domicilio.",
+    viewPrices: "Ver precios",
     primary: "Reservar un afilado",
     secondary: "Conocer el servicio",
     trust: "Precisión, precios claros, servicio local.",
@@ -101,9 +102,9 @@ export const es: Dictionary = {
     kicker: "El servicio",
     title: "Cómo funciona el servicio.",
     steps: [
-      { num: "01", title: "Solicitud", text: "Elige un paquete y dinos dónde recoger tus cuchillos." },
-      { num: "02", title: "Afilado", text: "Afilamos tus cuchillos con cuidado usando equipo profesional." },
-      { num: "03", title: "Devolución", text: "Te los devolvemos en tu dirección — listos para cocinar." },
+      { num: "01", title: "Recogemos", text: "Elige un paquete y dinos dónde recoger tus cuchillos." },
+      { num: "02", title: "Afilamos", text: "Los afilamos con cuidado y con equipo profesional." },
+      { num: "03", title: "Devolvemos", text: "Te los devolvemos en tu dirección, listos para cocinar." },
     ],
     options: {
       title: "Cómo recibimos tus cuchillos",
@@ -130,6 +131,13 @@ export const es: Dictionary = {
     knifeMany: "{n} cuchillos de cocina estándar",
     note: "Precios de lanzamiento. Los cuchillos especiales (p. ej. japoneses de un solo bisel, serrados, cerámicos) y las hojas dañadas pueden tener un coste adicional. Recogida y devolución es una tarifa de ida y vuelta por zona, y es gratis cuando el subtotal de afilado es de 49 € o más. Siempre confirmamos cualquier coste extra contigo antes de empezar.",
     viewAll: "Ver todos los precios",
+    zoneExamplesTitle: "Ejemplos de la zona 1",
+    zoneExamplesNote:
+      "Marbella, San Pedro, Puerto Banús y Nueva Andalucía. Cada total suma la tarifa de ida y vuelta de {fee}. La entrega está incluida a partir de {free} de afilado.",
+    zoneExamplePaid: "{n} + entrega zona 1",
+    zoneExampleFree: "{n}, entrega zona 1 incluida",
+    nounOne: "cuchillo",
+    nounMany: "cuchillos",
     faqTitle: "Bueno saberlo",
     faq: [
       {
@@ -153,14 +161,23 @@ export const es: Dictionary = {
 
   why: {
     kicker: "Por qué BladeBud",
-    title: "Precisión y servicio personal.",
+    title: "Recogida, afilado y un precio claro.",
     items: [
-      { title: "Precisión", text: "Nos centramos en recuperar un filo limpio y uniforme." },
-      { title: "Comodidad", text: "Reserva sencilla, con recogida y devolución a domicilio de Marbella a Fuengirola." },
-      { title: "Calidad asequible", text: "Afilado profesional con precios por paquete transparentes." },
       {
-        title: "Servicio personal",
-        text: "Un negocio local creado por dos jóvenes emprendedores que se preocupan por ofrecer grandes resultados.",
+        title: "Recogida y devolución",
+        text: "Recogemos tus cuchillos en tu dirección y te los devolvemos. Un solo viaje de ida y vuelta, de Marbella a Fuengirola.",
+      },
+      {
+        title: "Afilado profesional",
+        text: "Cada cuchillo se afila con equipo profesional y después se revisa el filo.",
+      },
+      {
+        title: "Precios claros",
+        text: "El precio del paquete es el afilado. La entrega es una tarifa por zona, visible antes de registrarte.",
+      },
+      {
+        title: "Servicio local",
+        text: "Con base en Marbella. Tratas con las personas que recogen y afilan.",
       },
     ],
   },
@@ -247,6 +264,10 @@ export const es: Dictionary = {
     photoCaption: "John Julius Erik Walden, CEO",
     founderName: "John Julius Erik Walden",
     founderRole: "CEO",
+    meetTitle: "Los fundadores.",
+    oliverName: "Oliver Landen",
+    oliverRole: "Cofundador",
+    oliverNote: "Todavía no tenemos un retrato de Oliver para publicar.",
     valuesTitle: "Nuestros valores",
     values: [
       { title: "Sencillez escandinava", text: "Precios claros, comunicación clara y una reserva que lleva minutos." },

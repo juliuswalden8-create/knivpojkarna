@@ -62,9 +62,9 @@ export const en = {
     prelaunchBanner:
       "We are preparing to launch in Marbella. Register your interest now — this is not a confirmed appointment, and no payment is taken.",
     pausedBanner: "New requests are paused for the moment. Existing customer records remain with us. Please check back soon.",
-    ctaTitle: "Be among the first kitchens we sharpen.",
+    ctaTitle: "Be first in line for sharper knives.",
     ctaSub:
-      "Sharpening equipment is being prepared. Leave your details and we will contact you when bookings open. No payment is taken now.",
+      "Leave your details and we'll contact you when pickups open in your area. This is not a confirmed appointment, and no payment is taken.",
     bookingKicker: "Pre-launch interest",
     bookingTitle: "Register your interest.",
     bookingIntro:
@@ -83,6 +83,7 @@ export const en = {
     kicker: "Knife sharpening from Marbella to Fuengirola",
     headline: "Sharp knives. Zero hassle.",
     sub: "Professional knife sharpening, picked up and delivered to your door.",
+    viewPrices: "View prices",
     primary: "Book a sharpening",
     secondary: "Explore our service",
     trust: "Precision, transparent prices, local service.",
@@ -101,9 +102,9 @@ export const en = {
     kicker: "The service",
     title: "How the service works.",
     steps: [
-      { num: "01", title: "Request", text: "Choose a package and tell us where to collect your knives." },
-      { num: "02", title: "Sharpen", text: "We carefully sharpen your knives using professional equipment." },
-      { num: "03", title: "Return", text: "We bring them back to your address — ready for cooking." },
+      { num: "01", title: "We collect", text: "Choose a package and tell us where to pick up your knives." },
+      { num: "02", title: "We sharpen", text: "We sharpen them carefully with professional equipment." },
+      { num: "03", title: "We return", text: "We bring them back to your address, ready to cook." },
     ],
     options: {
       title: "How we receive your knives",
@@ -130,6 +131,13 @@ export const en = {
     knifeMany: "{n} standard kitchen knives",
     note: "Introductory prices. Specialty knives (e.g. Japanese single-bevel, serrated, ceramic) and damaged blades may carry additional charges. Pickup and return is a roundtrip fee by zone, and is free when the sharpening subtotal is €49 or more. We always confirm any extra cost with you before starting.",
     viewAll: "See full pricing",
+    zoneExamplesTitle: "Zone 1 examples",
+    zoneExamplesNote:
+      "Marbella, San Pedro, Puerto Banús and Nueva Andalucía. Each total adds the {fee} roundtrip to the package. Delivery is included from {free} of sharpening.",
+    zoneExamplePaid: "{n} + Zone 1 delivery",
+    zoneExampleFree: "{n}, Zone 1 delivery included",
+    nounOne: "knife",
+    nounMany: "knives",
     faqTitle: "Good to know",
     faq: [
       {
@@ -153,14 +161,23 @@ export const en = {
 
   why: {
     kicker: "Why BladeBud",
-    title: "Built on precision and personal service.",
+    title: "Pickup, sharpening, and a clear price.",
     items: [
-      { title: "Precision", text: "We focus on restoring a clean, consistent cutting edge." },
-      { title: "Convenience", text: "Simple booking, with pickup and return delivery from Marbella to Fuengirola." },
-      { title: "Affordable quality", text: "Professional sharpening at transparent package prices." },
       {
-        title: "Personal service",
-        text: "A local business built by two young entrepreneurs who care about delivering great results.",
+        title: "Pickup and return",
+        text: "We collect your knives at your address and bring them back. One roundtrip, from Marbella to Fuengirola.",
+      },
+      {
+        title: "Professional sharpening",
+        text: "Each knife is sharpened with professional equipment, then the edge is checked.",
+      },
+      {
+        title: "Clear pricing",
+        text: "Package prices are for sharpening. Delivery is a separate zone fee, shown before you register.",
+      },
+      {
+        title: "Local service",
+        text: "Based in Marbella. You deal with the people who collect and sharpen.",
       },
     ],
   },
@@ -247,6 +264,10 @@ export const en = {
     photoCaption: "John Julius Erik Walden, CEO",
     founderName: "John Julius Erik Walden",
     founderRole: "CEO",
+    meetTitle: "Meet the founders.",
+    oliverName: "Oliver Landen",
+    oliverRole: "Co-founder",
+    oliverNote: "We do not have a portrait of Oliver to publish yet.",
     valuesTitle: "What we stand for",
     values: [
       { title: "Scandinavian simplicity", text: "Clear prices, clear communication and a booking that takes minutes." },

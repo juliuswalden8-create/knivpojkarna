@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { legacyHostRedirectRules } from "./src/lib/legacy-host-redirect";
 
 const nextConfig: NextConfig = {
   // The site is content-managed from the admin dashboard and every public page
@@ -17,6 +18,9 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  async redirects() {
+    return legacyHostRedirectRules();
   },
   async headers() {
     return [

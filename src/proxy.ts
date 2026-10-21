@@ -2,8 +2,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { defaultLocale, isEnabledLocale, LOCALE_COOKIE } from "@/i18n/config";
 import { routeKeyForSlug, routeSlugs } from "@/i18n/routes";
+import { legacyHostRedirect } from "@/lib/legacy-host-redirect";
 
 export function proxy(request: NextRequest) {
+  const moved = legacyHostRedirect(request.headers.get("host"), request.nextUrl.pathname, request.nextUrl.search);
+  if (moved) return NextResponse.redirect(moved, 308);
+
   const { pathname } = request.nextUrl;
 
   if (

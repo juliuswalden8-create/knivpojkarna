@@ -15,19 +15,15 @@ export function WhatsAppButton({
   if (!href) return null;
 
   return (
-    <div className="shrink-0 border-t border-line bg-ivory pb-[env(safe-area-inset-bottom)]">
-      <div className="container-x flex justify-end py-1.5 lg:py-3">
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={aria}
-          className="inline-flex min-h-9 max-w-full items-center justify-center border border-line bg-soft px-3 py-1 text-center text-[12px] leading-snug text-ink hover:border-ink lg:min-h-11 lg:px-4 lg:py-2 lg:text-[13px]"
-        >
-          <span className="lg:hidden">WhatsApp</span>
-          <span className="hidden lg:inline">{label}</span>
-        </a>
-      </div>
-    </div>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={aria}
+      className="fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 inline-flex max-w-[16rem] items-center justify-center border border-line bg-ivory px-3 py-2 text-center text-[12px] leading-snug text-ink shadow-[0_8px_24px_rgba(23,42,36,0.14)] hover:border-ink lg:max-w-xs lg:px-4 lg:py-2.5 lg:text-[13px]"
+    >
+      <span className="lg:hidden">WhatsApp</span>
+      <span className="hidden lg:inline">{label}</span>
+    </a>
   );
 }

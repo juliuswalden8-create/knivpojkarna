@@ -22,8 +22,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-ivory text-ink">
       <aside className="fixed inset-y-0 left-0 hidden w-56 border-r border-line bg-soft p-6 lg:flex lg:flex-col">
-        <Link href="/admin">
-          <Logo />
+        <Link href="/admin" className="inline-flex">
+          <Logo variant="full" className="w-36" />
         </Link>
         <nav className="mt-10 flex flex-1 flex-col gap-1">
           {nav.map((item) => (

@@ -1,10 +1,15 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const wordmark = await readFile(join(process.cwd(), "public/brand/bladebud-logo.png"));
+  const wordmarkSrc = `data:image/png;base64,${wordmark.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -19,22 +24,8 @@ export default function OpenGraphImage() {
           color: "#1D1D1B",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <svg width="92" height="22" viewBox="0 0 200 48">
-            <path fill="#1D1D1B" d="M84 16.5h74c8.2.3 15.6 3.4 23.2 9.5-7.8 6.6-15.4 9.8-24 10.2H84z" />
-            <rect x="71.5" y="14.2" width="13.2" height="21.6" rx="1.2" fill="#1D1D1B" />
-            <path
-              d="M71.5 17.4H26.5c-8.4 0-13.2 3.4-13.2 8.6s4.8 8.6 13.2 8.6h45"
-              fill="none"
-              stroke="#1D1D1B"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <circle cx="33.5" cy="26" r="2.05" fill="#1D1D1B" />
-            <circle cx="52.5" cy="26" r="2.05" fill="#1D1D1B" />
-          </svg>
-          <div style={{ display: "flex", fontSize: 22, letterSpacing: 3 }}>BladeBud</div>
+        <div style={{ display: "flex" }}>
+          <img src={wordmarkSrc} width={220} height={189} alt="" />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 64, lineHeight: 1.05 }}>Sharp knives.</div>

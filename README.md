@@ -1,8 +1,8 @@
-# KNIVPOJKARNA
+# BladeBud
 
 Premium knife sharpening website for a Marbella-based service founded by two Swedish entrepreneurs.
 
-**KNIVPOJKARNA — We Bring Back the Edge.**
+**BladeBud — Sharp knives. Zero hassle.**
 
 ## Stack
 
@@ -48,4 +48,4 @@ See `LAUNCH_AUDIT.md` for launch blockers, credentials and remaining work.
 
 ## Production notes
 
-See `PRODUCTION_SETUP.md`. In short: Neon Postgres, `prisma migrate deploy` (never `db push`), unique `AUTH_SECRET`, temporary `https://….vercel.app` URL in `NEXT_PUBLIC_SITE_URL`, contact details in Admin → Settings, keep **PRELAUNCH** until equipment is ready.
+See `PRODUCTION_SETUP.md`. In short: Neon Postgres, `prisma migrate deploy` (never `db push`), unique `AUTH_SECRET`, `NEXT_PUBLIC_SITE_URL=https://www.bladebud.com` (not a `*.vercel.app` host), contact details in Admin → Settings, keep **PRELAUNCH** until equipment is ready.

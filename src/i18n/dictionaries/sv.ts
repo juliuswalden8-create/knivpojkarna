@@ -12,7 +12,7 @@ export const sv: Dictionary = {
   meta: {
     ...en.meta,
     home: {
-      title: "Knivslipning Marbella | KNIVPOJKARNA – We Bring Back the Edge",
+      title: "Knivslipning Marbella | BladeBud – We Bring Back the Edge",
       description:
         "Professionell knivslipning i Marbella och på Costa del Sol. Tydliga paketpriser från 7 €, inlämning eller upphämtning på förfrågan. Boka online på några minuter.",
     },

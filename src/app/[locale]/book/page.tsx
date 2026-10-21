@@ -3,16 +3,11 @@ import { resolveLocale } from "@/i18n/locale";
 import { getAreas, getAvailability, getPackages, getSettings } from "@/lib/site";
 import { LAUNCH_SERVICE_AREAS } from "@/lib/launch-areas";
 import { BookingFlow } from "@/components/booking/booking-flow";
-import { localizedPath } from "@/i18n/routes";
-import { siteUrl } from "@/lib/site";
+import { publicPageMeta } from "@/lib/page-meta";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, dict } = await resolveLocale(params);
-  return {
-    title: dict.meta.book.title,
-    description: dict.meta.book.description,
-    alternates: { canonical: `${siteUrl()}${localizedPath(locale, "book")}` },
-  };
+  return publicPageMeta(locale, "book", dict.meta.book.title, dict.meta.book.description);
 }
 
 export default async function BookPage({

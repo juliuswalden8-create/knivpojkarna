@@ -1,21 +1,38 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { shouldBootstrapAdmin } from "../src/lib/admin-bootstrap";
 import { LAUNCH_SERVICE_AREAS } from "../src/lib/launch-areas";
 
 const prisma = new PrismaClient();
 
+async function finishBootstrap() {
+  await prisma.adminGuard.upsert({
+    where: { id: 1 },
+    update: { bootstrapCompleted: true },
+    create: { id: 1, bootstrapCompleted: true },
+  });
+}
+
 async function main() {
   // --- Admin user -----------------------------------------------------------
+  // The environment password can create the first account only. After that,
+  // deleting the account must not recreate it on the next deploy.
   const email = process.env.ADMIN_EMAIL;
   const password = process.env.ADMIN_PASSWORD;
-  if (email && password) {
-    const existing = await prisma.adminUser.findUnique({ where: { email } });
-    if (!existing) {
-      await prisma.adminUser.create({
-        data: { email, passwordHash: await bcrypt.hash(password, 12) },
-      });
-      console.log(`Created admin user ${email}`);
-    }
+  const adminCount = await prisma.adminUser.count();
+  const guard = await prisma.adminGuard.findUnique({ where: { id: 1 } });
+  const bootstrapCompleted = guard?.bootstrapCompleted ?? false;
+
+  if (adminCount > 0) {
+    if (!bootstrapCompleted) await finishBootstrap();
+  } else if (email && password && shouldBootstrapAdmin(adminCount, bootstrapCompleted)) {
+    await prisma.adminUser.create({
+      data: { email, passwordHash: await bcrypt.hash(password, 12) },
+    });
+    await finishBootstrap();
+    console.log(`Created admin user ${email}`);
+  } else if (bootstrapCompleted) {
+    console.warn("Admin account is missing and will not be recreated from the environment password.");
   } else {
     console.warn("ADMIN_EMAIL / ADMIN_PASSWORD not set – skipping admin user.");
   }

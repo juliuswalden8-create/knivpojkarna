@@ -5,7 +5,7 @@ import { InquiryFilters } from "@/components/admin/inquiry-filters";
 import { parseInquiryFilters, inquiryWhere } from "@/lib/admin-query";
 import { INQUIRY_STATUSES, INQUIRY_STATUS_LABELS } from "@/lib/inquiry-status";
 
-export const metadata = { title: "Business inquiries | KNIVPOJKARNA", robots: { index: false } };
+export const metadata = { title: "Business inquiries | BladeBud", robots: { index: false } };
 
 export default async function InquiriesPage({
   searchParams,

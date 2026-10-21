@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import { resolveLocale } from "@/i18n/locale";
-import { localizedPath } from "@/i18n/routes";
-import { getSettings, siteUrl } from "@/lib/site";
+import { publicPageMeta } from "@/lib/page-meta";
+import { getSettings } from "@/lib/site";
 import { AboutTeaser } from "@/components/home/about-teaser";
 import { CtaBand } from "@/components/home/cta-band";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, dict } = await resolveLocale(params);
-  return {
-    title: dict.meta.about.title,
-    description: dict.meta.about.description,
-    alternates: { canonical: `${siteUrl()}${localizedPath(locale, "about")}` },
-  };
+  return publicPageMeta(locale, "about", dict.meta.about.title, dict.meta.about.description);
 }
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {

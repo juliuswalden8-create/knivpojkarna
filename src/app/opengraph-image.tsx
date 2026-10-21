@@ -34,17 +34,17 @@ export default function OpenGraphImage() {
             <circle cx="33.5" cy="26" r="2.05" fill="#1D1D1B" />
             <circle cx="52.5" cy="26" r="2.05" fill="#1D1D1B" />
           </svg>
-          <div style={{ display: "flex", fontSize: 22, letterSpacing: 3 }}>KNIVPOJKARNA</div>
+          <div style={{ display: "flex", fontSize: 22, letterSpacing: 3 }}>BladeBud</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 64, lineHeight: 1.05 }}>Sharp knives.</div>
-          <div style={{ display: "flex", fontSize: 64, lineHeight: 1.05 }}>Better cooking.</div>
-          <div style={{ display: "flex", marginTop: 24, fontSize: 24, color: "#77746E" }}>
-            Professional knife sharpening in Marbella.
+          <div style={{ display: "flex", fontSize: 64, lineHeight: 1.05 }}>Zero hassle.</div>
+          <div style={{ display: "flex", marginTop: 24, fontSize: 24, color: "#5C675F" }}>
+            Picked up and delivered in Marbella.
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 18, color: "#77746E" }}>
-          <div style={{ display: "flex" }}>We Bring Back the Edge.</div>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 18, color: "#5C675F" }}>
+          <div style={{ display: "flex" }}>BladeBud</div>
           <div style={{ display: "flex" }}>Marbella · Fuengirola</div>
         </div>
       </div>

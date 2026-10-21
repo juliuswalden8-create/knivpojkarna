@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import { resolveLocale } from "@/i18n/locale";
-import { localizedPath } from "@/i18n/routes";
-import { siteUrl } from "@/lib/site";
+import { publicPageMeta } from "@/lib/page-meta";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, dict } = await resolveLocale(params);
-  return {
-    title: dict.meta.privacy.title,
-    description: dict.meta.privacy.description,
-    alternates: { canonical: `${siteUrl()}${localizedPath(locale, "privacy")}` },
-  };
+  return publicPageMeta(locale, "privacy", dict.meta.privacy.title, dict.meta.privacy.description);
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {

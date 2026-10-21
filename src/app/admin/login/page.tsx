@@ -3,7 +3,7 @@ import { getSession } from "@/lib/auth";
 import { LoginForm } from "./login-form";
 import { Logo } from "@/components/brand/logo";
 
-export const metadata = { title: "Admin login | KNIVPOJKARNA", robots: { index: false, follow: false } };
+export const metadata = { title: "Admin login | BladeBud", robots: { index: false, follow: false } };
 
 export default async function AdminLoginPage() {
   const session = await getSession();

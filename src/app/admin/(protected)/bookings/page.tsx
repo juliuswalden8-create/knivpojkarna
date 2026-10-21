@@ -7,7 +7,7 @@ import { InquiryFilters } from "@/components/admin/inquiry-filters";
 import { parseInquiryFilters, bookingWhere, bookingOrderBy } from "@/lib/admin-query";
 import { BOOKING_STATUSES, BOOKING_STATUS_LABELS, normalizeBookingStatus } from "@/lib/inquiry-status";
 
-export const metadata = { title: "Household inquiries | KNIVPOJKARNA", robots: { index: false } };
+export const metadata = { title: "Household inquiries | BladeBud", robots: { index: false } };
 
 export default async function BookingsPage({
   searchParams,

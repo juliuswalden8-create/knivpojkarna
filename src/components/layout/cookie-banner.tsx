@@ -25,16 +25,21 @@ export function CookieBanner({ locale, dict }: { locale: Locale; dict: Dictionar
   const [analytics, setAnalytics] = useState(false);
 
   useEffect(() => {
-    const existing = readConsent();
-    if (!existing) setOpen(true);
-    else setAnalytics(existing.analytics);
     const reopen = () => {
       const current = readConsent();
       setAnalytics(current?.analytics ?? false);
       setOpen(true);
     };
+    const timer = window.setTimeout(() => {
+      const existing = readConsent();
+      if (!existing) setOpen(true);
+      else setAnalytics(existing.analytics);
+    }, 0);
     window.addEventListener("kp:cookies", reopen);
-    return () => window.removeEventListener("kp:cookies", reopen);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("kp:cookies", reopen);
+    };
   }, []);
 
   function save(next: boolean) {

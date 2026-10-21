@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import { resolveLocale } from "@/i18n/locale";
-import { localizedPath } from "@/i18n/routes";
-import { getSettings, siteUrl } from "@/lib/site";
+import { publicPageMeta } from "@/lib/page-meta";
+import { getSettings } from "@/lib/site";
 import { AreasMap } from "@/components/home/areas-map";
 import { CtaBand } from "@/components/home/cta-band";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, dict } = await resolveLocale(params);
   return {
-    title: dict.meta.areas.title,
-    description: dict.meta.areas.description,
+    ...publicPageMeta(locale, "areas", dict.meta.areas.title, dict.meta.areas.description),
     keywords:
       locale === "es"
         ? [
@@ -27,7 +26,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             "knife sharpening Mijas Costa",
             "professional knife sharpening Marbella",
           ],
-    alternates: { canonical: `${siteUrl()}${localizedPath(locale, "areas")}` },
   };
 }
 

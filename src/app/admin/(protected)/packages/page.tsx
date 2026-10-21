@@ -4,7 +4,7 @@ import { parseJsonArray } from "@/lib/utils";
 import { savePackage } from "@/lib/actions/admin";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Packages | KNIVPOJKARNA", robots: { index: false } };
+export const metadata = { title: "Packages | BladeBud", robots: { index: false } };
 
 export default async function PackagesPage() {
   const packages = await prisma.package.findMany({ orderBy: { sortOrder: "asc" } });

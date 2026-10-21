@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { enabledLocales, localeNames, LOCALE_COOKIE, type Locale } from "@/i18n/config";
+import { enabledLocales, localeNames, type Locale } from "@/i18n/config";
+import { writeLocaleCookie } from "@/i18n/locale-cookie";
 import { switchLocalePath } from "@/i18n/routes";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +11,7 @@ export function LanguageSwitcher({ locale, className }: { locale: Locale; classN
   const router = useRouter();
 
   function switchTo(next: Locale) {
-    document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
+    writeLocaleCookie(next);
     router.push(switchLocalePath(pathname, locale, next));
   }
 

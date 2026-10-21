@@ -2,12 +2,12 @@ import type { Dictionary } from "./en";
 
 export const es: Dictionary = {
   meta: {
-    siteName: "KNIVPOJKARNA",
-    tagline: "We Bring Back the Edge.",
+    siteName: "BladeBud",
+    tagline: "Cuchillos afilados. Sin complicaciones.",
     home: {
-      title: "Afilado de Cuchillos Marbella | KNIVPOJKARNA – We Bring Back the Edge",
+      title: "Afilado de cuchillos en Marbella | Recogida y entrega – BladeBud",
       description:
-        "Afilado profesional de cuchillos de Marbella a Fuengirola. Recogida y devolución a domicilio en Marbella, San Pedro, Nueva Andalucía, Puerto Banús y Mijas Costa. Precios por paquete desde 7 €.",
+        "Afilado profesional de cuchillos en Marbella y la Costa del Sol. Recogemos tus cuchillos, los afilamos y te los devolvemos en casa. Afilado desde 7 €.",
     },
     prices: {
       title: "Precios de Afilado de Cuchillos Marbella | Desde 7 € por Cuchillo",
@@ -15,9 +15,9 @@ export const es: Dictionary = {
         "Precios claros de lanzamiento para afilar cuchillos en Marbella: 1 cuchillo 7 €, 3 cuchillos 18 €, 5 cuchillos 27 €, 10 cuchillos 49 €. Afilado profesional para hogares y chefs.",
     },
     book: {
-      title: "Reservar Afilado de Cuchillos en Marbella | KNIVPOJKARNA",
+      title: "Reservar Afilado de Cuchillos en Marbella | BladeBud",
       description:
-        "Registra tu interés en el afilado profesional de cuchillos entre Marbella y Fuengirola. Recogemos y devolvemos tus cuchillos en tu dirección. Confirmamos los detalles contigo — no es una cita confirmada.",
+        "Apúntate a la lista de espera para el afilado profesional de cuchillos entre Marbella y Fuengirola. Recogemos y devolvemos tus cuchillos en tu dirección. Confirmamos los detalles contigo — no es una cita confirmada.",
     },
     business: {
       title: "Afilado de Cuchillos para Restaurantes Marbella | Servicio para Empresas",
@@ -30,15 +30,15 @@ export const es: Dictionary = {
         "Afilado de cuchillos de Marbella a Fuengirola, incluyendo San Pedro, Nueva Andalucía, Puerto Banús y Mijas Costa. Recogida y devolución a domicilio, siempre confirmadas antes de recoger.",
     },
     about: {
-      title: "Sobre KNIVPOJKARNA | John Julius Erik Walden, CEO",
+      title: "Sobre BladeBud | John Julius Erik Walden, CEO",
       description:
-        "Knivpojkarna es un estudio de afilado en Marbella dirigido por el CEO John Julius Erik Walden. Afilado profesional, fácil, accesible y asequible.",
+        "BladeBud es un estudio de afilado en Marbella dirigido por el CEO John Julius Erik Walden. Afilado profesional, fácil, accesible y asequible.",
     },
     privacy: {
-      title: "Privacidad y Cookies | KNIVPOJKARNA",
-      description: "Cómo trata Knivpojkarna tus datos personales y las cookies.",
+      title: "Privacidad y Cookies | BladeBud",
+      description: "Cómo trata BladeBud tus datos personales y las cookies.",
     },
-    notFound: { title: "Página no encontrada | KNIVPOJKARNA" },
+    notFound: { title: "Página no encontrada | BladeBud" },
   },
 
   nav: {
@@ -56,7 +56,7 @@ export const es: Dictionary = {
   },
 
   mode: {
-    registerCta: "Registrar interés",
+    registerCta: "Apúntate a la lista de espera",
     prelaunchBanner:
       "Estamos preparando el lanzamiento en Marbella. Registra tu interés ahora — no es una cita confirmada y no se cobra ningún pago.",
     pausedBanner:
@@ -68,27 +68,27 @@ export const es: Dictionary = {
     bookingTitle: "Registra tu interés.",
     bookingIntro:
       "Indica el paquete, la dirección y la localidad. Guardamos tu interés y te contactamos cuando abramos las recogidas. Es una manifestación de interés, no un pedido confirmado, y no se cobra ningún pago.",
-    bookingSubmit: "Registrar interés",
+    bookingSubmit: "Apúntate a la lista de espera",
     successTitle: "Gracias por tu interés.",
-    successText: "¡Gracias por tu interés! Te contactaremos cuando KNIVPOJKARNA abra las reservas.",
+    successText: "¡Gracias por tu interés! Te contactaremos cuando BladeBud abra las reservas.",
     successKeep: "Guarda esta referencia si nos escribes sobre tu interés.",
     pausedTitle: "Las solicitudes están pausadas.",
     pausedText:
       "Ahora mismo no aceptamos solicitudes nuevas de particulares ni empresas. Los registros existentes se conservan.",
     consent:
-      "Acepto que KNIVPOJKARNA UF guarde mis datos para registrar este interés, según la",
+      "Acepto que BladeBud guarde mis datos para registrar este interés, según la",
   },
 
   hero: {
     kicker: "Afilado de cuchillos de Marbella a Fuengirola",
-    headline: "Cuchillos afilados. Mejor cocina.",
-    sub: "Afilado profesional de cuchillos con base en Marbella, de Marbella a Fuengirola — incluyendo San Pedro, Nueva Andalucía, Puerto Banús y Mijas Costa.",
+    headline: "Cuchillos afilados. Sin complicaciones.",
+    sub: "Afilado profesional de cuchillos con recogida y entrega a domicilio.",
     primary: "Reservar un afilado",
     secondary: "Conocer el servicio",
     trust: "Precisión, precios claros, servicio local.",
     location: "Marbella · Fuengirola",
     imageAlt: "Un chef usando un cuchillo de cocina sobre una tabla de madera",
-    photoCredit: "Fotografía temporal — sustituir por imágenes del taller de Knivpojkarna.",
+    photoCredit: "Fotografía temporal — sustituir por imágenes del taller de BladeBud.",
     scroll: "Desliza",
     stats: [
       { value: "7 €", label: "desde, por cuchillo" },
@@ -152,7 +152,7 @@ export const es: Dictionary = {
   },
 
   why: {
-    kicker: "Por qué Knivpojkarna",
+    kicker: "Por qué BladeBud",
     title: "Precisión y servicio personal.",
     items: [
       { title: "Precisión", text: "Nos centramos en recuperar un filo limpio y uniforme." },
@@ -166,11 +166,13 @@ export const es: Dictionary = {
   },
 
   beforeAfter: {
-    kicker: "Resultados",
+    kicker: "El filo",
     title: "La diferencia de un filo de verdad.",
     before: "Sin filo",
     after: "Afilado",
-    illustrative: "Aquí aparecerán fotografías reales de clientes, con su permiso. No mostramos resultados fabricados.",
+    beforeAlt: "Fotografía ilustrativa de un cuchillo sin filo aplastando un tomate",
+    afterAlt: "Fotografía ilustrativa de un cuchillo afilado cortando un tomate",
+    illustrative: "Fotografías ilustrativas. No son cuchillos afilados por BladeBud, ni resultados de clientes.",
     dragHint: "Arrastra para comparar",
     placeholderTitle: "Fotografía pendiente",
     placeholderText:
@@ -239,9 +241,9 @@ export const es: Dictionary = {
   about: {
     kicker: "Sobre nosotros",
     title: "Dos emprendedores suecos. Una idea afilada.",
-    body: "Knivpojkarna nació de dos jóvenes emprendedores suecos en Marbella con una idea sencilla: hacer que el afilado profesional de cuchillos sea fácil, accesible y asequible. La empresa la dirige el CEO John Julius Erik Walden. Creemos que toda cocina merece cuchillos afilados y un gran servicio.",
+    body: "BladeBud nació de dos jóvenes emprendedores suecos en Marbella con una idea sencilla: hacer que el afilado profesional de cuchillos sea fácil, accesible y asequible. La empresa la dirige el CEO John Julius Erik Walden. Creemos que toda cocina merece cuchillos afilados y un gran servicio.",
     photoPlaceholder: "Foto de los fundadores próximamente",
-    photoAlt: "Retrato de John Julius Erik Walden, CEO de Knivpojkarna",
+    photoAlt: "Retrato de John Julius Erik Walden, CEO de BladeBud",
     photoCaption: "John Julius Erik Walden, CEO",
     founderName: "John Julius Erik Walden",
     founderRole: "CEO",
@@ -262,7 +264,7 @@ export const es: Dictionary = {
   },
 
   footer: {
-    tagline: "We Bring Back the Edge.",
+    tagline: "Cuchillos afilados. Sin complicaciones.",
     servicesTitle: "Servicios",
     companyTitle: "Empresa",
     legalTitle: "Legal",
@@ -277,9 +279,9 @@ export const es: Dictionary = {
   },
 
   whatsapp: {
-    label: "¿Preguntas? Chatea con Knivpojkarna.",
-    aria: "Chatear con Knivpojkarna por WhatsApp",
-    message: "¡Hola Knivpojkarna! Me gustaría reservar un servicio de afilado de cuchillos en Marbella.",
+    label: "¿Preguntas? Chatea con BladeBud.",
+    aria: "Chatear con BladeBud por WhatsApp",
+    message: "¡Hola BladeBud! Me gustaría reservar un servicio de afilado de cuchillos en Marbella.",
     notConfigured: "WhatsApp aún no está configurado",
   },
 
@@ -404,7 +406,7 @@ export const es: Dictionary = {
       phone: "Teléfono (preferiblemente WhatsApp)",
       comments: "Comentarios",
       commentsPlaceholder: "¿Algo que debamos saber sobre tus cuchillos o la recogida?",
-      consent: "Acepto que Knivpojkarna guarde mis datos para gestionar esta solicitud de reserva, según la",
+      consent: "Acepto que BladeBud guarde mis datos para gestionar esta solicitud de reserva, según la",
       consentLink: "política de privacidad",
       consentRequired: "Acepta la política de privacidad para continuar.",
     },
@@ -539,7 +541,7 @@ export const es: Dictionary = {
 
   areasPage: {
     intro:
-      "Knivpojkarna tiene base en Marbella y afila cuchillos para cocinas de Marbella a Fuengirola, incluyendo San Pedro, Nueva Andalucía, Puerto Banús y Mijas Costa.",
+      "BladeBud tiene base en Marbella y afila cuchillos para cocinas de Marbella a Fuengirola, incluyendo San Pedro, Nueva Andalucía, Puerto Banús y Mijas Costa.",
     howTitle: "Cómo funciona el servicio",
     how: [
       { title: "Recogida y devolución a domicilio", text: "Recogemos tus cuchillos en tu dirección y te los devolvemos después del afilado." },
@@ -548,7 +550,7 @@ export const es: Dictionary = {
     ],
     seoTitle: "Afilado de cuchillos de Marbella a Fuengirola",
     seoText:
-      "¿Buscas afilar cuchillos en Marbella, San Pedro de Alcántara, Nueva Andalucía, Puerto Banús, Mijas Costa o Fuengirola? Knivpojkarna ofrece afilado profesional con recogida y devolución a domicilio.",
+      "¿Buscas afilar cuchillos en Marbella, San Pedro de Alcántara, Nueva Andalucía, Puerto Banús, Mijas Costa o Fuengirola? BladeBud ofrece afilado profesional con recogida y devolución a domicilio.",
   },
 
   privacy: {
@@ -558,7 +560,7 @@ export const es: Dictionary = {
       {
         title: "Quiénes somos",
         body: [
-          "KNIVPOJKARNA UF es un servicio de afilado de cuchillos con base en Marbella, España. Somos el responsable del tratamiento de los datos personales recogidos a través de este sitio web. Puedes contactarnos mediante los datos que aparecen en el pie de página.",
+          "BladeBud es un servicio de afilado de cuchillos con base en Marbella, España. Somos el responsable del tratamiento de los datos personales recogidos a través de este sitio web. Puedes contactarnos mediante los datos que aparecen en el pie de página.",
         ],
       },
       {

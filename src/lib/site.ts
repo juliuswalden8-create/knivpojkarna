@@ -55,21 +55,43 @@ export async function getAvailability() {
   };
 }
 
-/** Public production origin. Deployment URLs on *.vercel.app are not this host. */
-const PUBLIC_SITE_URL = "https://knivpojkarna.vercel.app";
+/**
+ * Canonical production origin. NEXT_PUBLIC_SITE_URL can override this for a real custom host.
+ * vercel.app hosts, including the previous deployment URL, are not the public canonical.
+ * This does not redirect old hosts. bladebud.com is already the public origin.
+ */
+export const CANONICAL_SITE_URL = "https://www.bladebud.com";
+
+function isLocalOrigin(url: string) {
+  return /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(url);
+}
 
 export function siteUrl() {
   const configured = (process.env.NEXT_PUBLIC_SITE_URL || "").trim().replace(/\/$/, "");
-  if (!configured || /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(configured)) {
-    return process.env.NODE_ENV === "production" ? PUBLIC_SITE_URL : configured || "http://localhost:3000";
+  if (!configured || isLocalOrigin(configured)) {
+    return process.env.NODE_ENV === "production" ? CANONICAL_SITE_URL : configured || "http://localhost:3000";
   }
   try {
-    const host = new URL(configured).hostname;
-    if (host.endsWith(".vercel.app") && configured !== PUBLIC_SITE_URL) return PUBLIC_SITE_URL;
+    const host = new URL(configured).hostname.toLowerCase();
+    if (host === "bladebud.com" || host === "www.bladebud.com" || host === "knifepost.com" || host === "www.knifepost.com") {
+      return CANONICAL_SITE_URL;
+    }
+    if (host.endsWith(".vercel.app")) return CANONICAL_SITE_URL;
+    return configured;
   } catch {
-    return process.env.NODE_ENV === "production" ? PUBLIC_SITE_URL : "http://localhost:3000";
+    return process.env.NODE_ENV === "production" ? CANONICAL_SITE_URL : "http://localhost:3000";
   }
-  return configured;
+}
+
+/** Show the new brand when a stored setting still contains the previous name. Does not write to the database. */
+export function customerFacingCopy(value: string) {
+  return value
+    .replaceAll("KNIVPOJKARNA UF", "BladeBud")
+    .replaceAll("KNIVPOJKARNA", "BladeBud")
+    .replaceAll("Knivpojkarna", "BladeBud")
+    .replaceAll("KNIFEPOST", "BladeBud")
+    .replaceAll("KnifePost", "BladeBud")
+    .replaceAll("Knife Post", "BladeBud");
 }
 
 export function whatsappLink(number: string, message: string) {

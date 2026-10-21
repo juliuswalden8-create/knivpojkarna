@@ -24,14 +24,17 @@ const sans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   title: {
-    default: "KNIVPOJKARNA — We Bring Back the Edge",
-    template: "%s | KNIVPOJKARNA",
+    default: "Knife Sharpening Marbella | Pickup & Delivery – BladeBud",
+    template: "%s | BladeBud",
   },
-  description: "Professional knife sharpening from Marbella to Fuengirola.",
-  applicationName: "KNIVPOJKARNA",
-  icons: { icon: "/favicon.svg" },
+  description:
+    "Professional knife sharpening in Marbella and Costa del Sol. We collect your knives, sharpen them and deliver them back to your door. Sharpening from €7.",
+  applicationName: "BladeBud",
   verification: {
-    google: "iNj3IBhH3Cu6_zCxLl7Ij43Yk7Z2ugpr6Fl1Ypt8D2Y",
+    google: [
+      "iNj3IBhH3Cu6_zCxLl7Ij43Yk7Z2ugpr6Fl1Ypt8D2Y",
+      "TVdQAHAR5DYhRQs5XJnJITZXrfVkMyhRTkjLPK8s6Qs",
+    ],
   },
 };
 

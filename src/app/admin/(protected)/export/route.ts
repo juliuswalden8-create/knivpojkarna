@@ -52,7 +52,7 @@ export async function GET(request: Request) {
         row.createdAt.toISOString(),
       ]),
     );
-    return csvResponse(csv, "knivpojkarna-inquiries.csv");
+    return csvResponse(csv, "bladebud-inquiries.csv");
   }
 
   const bookings = await prisma.booking.findMany({ orderBy: { createdAt: "desc" } });
@@ -83,6 +83,13 @@ export async function GET(request: Request) {
       "adminNotes",
       "estimateEUR",
       "createdAt",
+      "scheduledTimeSlot",
+      "scheduledReturnDate",
+      "scheduledReturnTimeSlot",
+      "knivesCollected",
+      "collectionNotes",
+      "collectedBy",
+      "collectedAt",
     ],
     bookings.map((b) => [
       b.reference,
@@ -110,9 +117,16 @@ export async function GET(request: Request) {
       b.adminNotes ?? "",
       (b.estimatedTotalCents / 100).toFixed(2),
       b.createdAt.toISOString(),
+      b.scheduledTimeSlot ?? "",
+      b.scheduledReturnDate ? utcToISODate(b.scheduledReturnDate) : "",
+      b.scheduledReturnTimeSlot ?? "",
+      b.knivesCollected ?? "",
+      b.collectionNotes ?? "",
+      b.collectedBy ?? "",
+      b.collectedAt ? b.collectedAt.toISOString() : "",
     ]),
   );
-  return csvResponse(csv, "knivpojkarna-bookings.csv");
+  return csvResponse(csv, "bladebud-bookings.csv");
 }
 
 function csvResponse(body: string, filename: string) {

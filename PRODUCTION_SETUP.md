@@ -1,4 +1,4 @@
-# KNIVPOJKARNA UF — production setup (Neon + Vercel)
+# BladeBud — production setup (Neon + Vercel)
 
 The Prisma schema targets **PostgreSQL**. The local SQLite file `prisma/dev.db` is **not deleted** and must not be deleted.
 
@@ -62,9 +62,9 @@ Vercel will also run `migrate deploy` + seed on every production build (`vercel.
 
 Production refuses an `AUTH_SECRET` that still contains `change-me`.
 
-## 4. Vercel (temporary `*.vercel.app` URL)
+## 4. Vercel
 
-No custom domain.
+The public site is `https://www.bladebud.com`. A `*.vercel.app` host is only a deployment URL.
 
 1. Put this project on GitHub (private repo is fine). Do **not** commit `.env`.
 2. Import the repo at [https://vercel.com/new](https://vercel.com/new).
@@ -80,13 +80,13 @@ No custom domain.
 | `AUTH_SECRET` | No | Yes (unique) |
 | `ADMIN_EMAIL` | No | Yes |
 | `ADMIN_PASSWORD` | No | Yes (first admin) |
-| `NEXT_PUBLIC_SITE_URL` | Yes | Yes — use `https://<assigned>.vercel.app` |
+| `NEXT_PUBLIC_SITE_URL` | Yes | Yes — `https://www.bladebud.com` |
 | `WHATSAPP_NUMBER` | No | Optional |
 | `CONTACT_EMAIL` | No | Optional |
 | `RESEND_API_KEY` / `EMAIL_FROM` | No | Leave empty for now |
 
 6. Deploy.
-7. If Vercel assigned `knivpojkarna-xxx.vercel.app` instead of `knivpojkarna.vercel.app`, update `NEXT_PUBLIC_SITE_URL` to that exact https origin and redeploy.
+7. Confirm Production `NEXT_PUBLIC_SITE_URL` is `https://www.bladebud.com`. Do not use `https://knivpojkarna.vercel.app` or any other `*.vercel.app` host.
 8. After deploy: open `/en`, log in at `/admin/login`, confirm Overview shows **PRELAUNCH**, submit a test interest on `/en/book`, confirm the row in Household.
 
 ## 5. Optional: import local SQLite records

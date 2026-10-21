@@ -12,11 +12,63 @@ import { fromISODate } from "@/lib/dates";
 import { slugify } from "@/lib/utils";
 import { parseBusinessStatus } from "@/lib/business-status";
 import { getSettings } from "@/lib/site";
-import { canSetBookingStatus, canSetInquiryStatus, emailTemplateForStatus, normalizeBookingStatus } from "@/lib/inquiry-status";
+import { canSetBookingStatus, canSetInquiryStatus, emailTemplateForStatus, normalizeBookingStatus, statusChangeEmail } from "@/lib/inquiry-status";
+import { confirmationDetailsChanged, shouldAttemptCustomerEmail } from "@/lib/email-delivery";
+import { confirmationDetailsComplete } from "@/lib/email/templates";
+import { shouldBootstrapAdmin } from "@/lib/admin-bootstrap";
+import { scheduleFields } from "@/lib/booking-schedule";
+import { collectionFields } from "@/lib/knife-collection";
+import { parseCorrectionReason, parsePaymentDraft, paymentOwnedByBooking, paymentWritesAllowed } from "@/lib/payments";
 import { sendBookingEmail } from "@/lib/email/send";
 
 async function requireAdmin() {
   return requireAdminSession();
+}
+
+async function customerEmailToSend(input: {
+  bookingId: string;
+  previousStatus: string;
+  nextStatus: string;
+  existing: {
+    scheduledDate: Date | null;
+    scheduledTimeSlot: string | null;
+    scheduledReturnDate: Date | null;
+    scheduledReturnTimeSlot: string | null;
+  };
+  schedule: {
+    scheduledDate: Date | null;
+    scheduledTimeSlot: string | null;
+    scheduledReturnDate: Date | null;
+    scheduledReturnTimeSlot: string | null;
+  };
+  facts: {
+    name: string;
+    reference: string;
+    packageName: string | null;
+    knifeCount: number | null;
+    totalCents: number | null;
+    pickupDate: Date | null;
+    pickupWindow: string | null;
+    returnDate: Date | null;
+    returnWindow: string | null;
+  };
+}) {
+  const candidate = emailTemplateForStatus(input.nextStatus);
+  if (candidate !== "pickup_confirmed" && candidate !== "return_arranged") {
+    return statusChangeEmail(input.previousStatus, input.nextStatus);
+  }
+  const logs = await prisma.emailLog.findMany({
+    where: { bookingId: input.bookingId, template: candidate },
+    orderBy: [{ createdAt: "asc" }, { id: "asc" }],
+    select: { template: true, status: true, errorName: true },
+  });
+  return shouldAttemptCustomerEmail({
+    previousStatus: input.previousStatus,
+    nextStatus: input.nextStatus,
+    factsComplete: confirmationDetailsComplete(candidate, input.facts),
+    relevantDetailsChanged: confirmationDetailsChanged(candidate, input.existing, input.schedule),
+    logs,
+  });
 }
 
 function revalidateAdmin() {
@@ -40,10 +92,22 @@ export async function loginAction(formData: FormData) {
   if (!user) {
     const bootstrapEmail = process.env.ADMIN_EMAIL;
     const bootstrapPassword = process.env.ADMIN_PASSWORD;
-    const count = await prisma.adminUser.count();
-    if (count === 0 && bootstrapEmail && bootstrapPassword && parsed.data.email === bootstrapEmail && parsed.data.password === bootstrapPassword) {
+    const adminCount = await prisma.adminUser.count();
+    const guard = await prisma.adminGuard.findUnique({ where: { id: 1 }, select: { bootstrapCompleted: true } });
+    if (
+      shouldBootstrapAdmin(adminCount, guard?.bootstrapCompleted ?? false) &&
+      bootstrapEmail &&
+      bootstrapPassword &&
+      parsed.data.email === bootstrapEmail &&
+      parsed.data.password === bootstrapPassword
+    ) {
       user = await prisma.adminUser.create({
         data: { email: bootstrapEmail, passwordHash: await bcrypt.hash(bootstrapPassword, 12) },
+      });
+      await prisma.adminGuard.upsert({
+        where: { id: 1 },
+        update: { bootstrapCompleted: true },
+        create: { id: 1, bootstrapCompleted: true },
       });
     }
   }
@@ -68,24 +132,66 @@ export async function updateBookingStatus(formData: FormData) {
   if (!id) return;
   const settings = await getSettings();
   if (!canSetBookingStatus(settings.businessStatus, status)) return;
-  const scheduledDate = String(formData.get("scheduledDate") || "");
-  const scheduledTimeSlot = String(formData.get("scheduledTimeSlot") || "");
   const adminNotes = String(formData.get("adminNotes") || "");
   const prelaunch = settings.businessStatus === "PRELAUNCH";
   const existing = await prisma.booking.findUnique({ where: { id } });
   if (!existing) return;
+  const schedule = scheduleFields({
+    prelaunch,
+    pickupDate: String(formData.get("scheduledDate") || ""),
+    pickupWindow: String(formData.get("scheduledTimeSlot") || ""),
+    returnDate: String(formData.get("scheduledReturnDate") || ""),
+    returnWindow: String(formData.get("scheduledReturnTimeSlot") || ""),
+    existing: {
+      scheduledDate: existing.scheduledDate,
+      scheduledTimeSlot: existing.scheduledTimeSlot,
+      scheduledReturnDate: existing.scheduledReturnDate,
+      scheduledReturnTimeSlot: existing.scheduledReturnTimeSlot,
+    },
+  });
+  const collection = collectionFields({
+    prelaunch,
+    knivesCollected: String(formData.get("knivesCollected") ?? ""),
+    collectionNotes: String(formData.get("collectionNotes") ?? ""),
+    collectedBy: String(formData.get("collectedBy") ?? ""),
+    existing: {
+      knivesCollected: existing.knivesCollected,
+      collectionNotes: existing.collectionNotes,
+      collectedBy: existing.collectedBy,
+      collectedAt: existing.collectedAt,
+    },
+    now: new Date(),
+  });
+  if (!collection.ok) return;
   const previous = normalizeBookingStatus(existing.status);
   await prisma.booking.update({
     where: { id },
     data: {
       status,
-      scheduledDate: prelaunch ? null : scheduledDate ? fromISODate(scheduledDate) : null,
-      scheduledTimeSlot: prelaunch ? null : scheduledTimeSlot || null,
+      ...schedule,
+      ...collection.fields,
       adminNotes: adminNotes || null,
     },
   });
-  const template = emailTemplateForStatus(status);
-  if (template && previous !== status) {
+  const template = await customerEmailToSend({
+    bookingId: existing.id,
+    previousStatus: previous,
+    nextStatus: status,
+    existing,
+    schedule,
+    facts: {
+      name: existing.customerName,
+      reference: existing.reference,
+      packageName: existing.packageName,
+      knifeCount: existing.knifeCount,
+      totalCents: existing.estimatedTotalCents,
+      pickupDate: schedule.scheduledDate,
+      pickupWindow: schedule.scheduledTimeSlot,
+      returnDate: schedule.scheduledReturnDate,
+      returnWindow: schedule.scheduledReturnTimeSlot,
+    },
+  });
+  if (template) {
     await sendBookingEmail({
       template,
       locale: existing.locale,
@@ -93,10 +199,101 @@ export async function updateBookingStatus(formData: FormData) {
       name: existing.customerName,
       reference: existing.reference,
       bookingId: existing.id,
+      packageName: existing.packageName,
+      knifeCount: existing.knifeCount,
+      totalCents: existing.estimatedTotalCents,
+      pickupDate: schedule.scheduledDate,
+      pickupWindow: schedule.scheduledTimeSlot,
+      returnDate: schedule.scheduledReturnDate,
+      returnWindow: schedule.scheduledReturnTimeSlot,
     });
   }
   revalidatePath("/admin");
   revalidatePath(`/admin/bookings/${id}`);
+}
+
+function paymentDraftFromForm(formData: FormData) {
+  return parsePaymentDraft(
+    {
+      method: String(formData.get("method") ?? ""),
+      currency: String(formData.get("currency") ?? ""),
+      amount: String(formData.get("amount") ?? ""),
+      exchangeRate: String(formData.get("exchangeRate") ?? ""),
+      paidAt: String(formData.get("paidAt") ?? ""),
+      note: String(formData.get("note") ?? ""),
+      idempotencyKey: String(formData.get("idempotencyKey") ?? ""),
+    },
+    new Date(),
+  );
+}
+
+function paymentData(bookingId: string, draft: Extract<ReturnType<typeof parsePaymentDraft>, { ok: true }>["draft"], replacesPaymentId?: string) {
+  return {
+    bookingId,
+    method: draft.method,
+    currency: draft.currency,
+    amountMinor: draft.amountMinor,
+    exchangeRateE4: draft.exchangeRateE4,
+    eurCents: draft.eurCents,
+    paidAt: draft.paidAt,
+    note: draft.note,
+    idempotencyKey: draft.idempotencyKey,
+    replacesPaymentId: replacesPaymentId ?? null,
+  };
+}
+
+function isUniqueViolation(error: unknown) {
+  return typeof error === "object" && error !== null && "code" in error && error.code === "P2002";
+}
+
+export async function recordBookingPayment(formData: FormData) {
+  await requireAdmin();
+  const settings = await getSettings();
+  if (!paymentWritesAllowed(settings.businessStatus)) return;
+  const bookingId = String(formData.get("bookingId") || "");
+  if (!bookingId) return;
+  const booking = await prisma.booking.findUnique({ where: { id: bookingId }, select: { id: true } });
+  if (!booking) return;
+  const parsed = paymentDraftFromForm(formData);
+  if (!parsed.ok) return;
+  try {
+    await prisma.bookingPayment.create({ data: paymentData(booking.id, parsed.draft) });
+  } catch (error) {
+    if (!isUniqueViolation(error)) throw error;
+  }
+  revalidatePath(`/admin/bookings/${booking.id}`);
+}
+
+export async function correctBookingPayment(formData: FormData) {
+  await requireAdmin();
+  const settings = await getSettings();
+  if (!paymentWritesAllowed(settings.businessStatus)) return;
+  const bookingId = String(formData.get("bookingId") || "");
+  const paymentId = String(formData.get("paymentId") || "");
+  const reason = parseCorrectionReason(String(formData.get("voidReason") ?? ""));
+  if (!bookingId || !paymentId || !reason) return;
+  const booking = await prisma.booking.findUnique({ where: { id: bookingId }, select: { id: true } });
+  if (!booking) return;
+  const original = await prisma.bookingPayment.findUnique({
+    where: { id: paymentId },
+    select: { id: true, bookingId: true, voidedAt: true },
+  });
+  if (!original || original.voidedAt || !paymentOwnedByBooking(original.bookingId, booking.id)) return;
+  const parsed = paymentDraftFromForm(formData);
+  if (!parsed.ok) return;
+  try {
+    await prisma.$transaction(async (tx) => {
+      const voided = await tx.bookingPayment.updateMany({
+        where: { id: original.id, bookingId: booking.id, voidedAt: null },
+        data: { voidedAt: new Date(), voidReason: reason },
+      });
+      if (voided.count !== 1) return;
+      await tx.bookingPayment.create({ data: paymentData(booking.id, parsed.draft, original.id) });
+    });
+  } catch (error) {
+    if (!isUniqueViolation(error)) throw error;
+  }
+  revalidatePath(`/admin/bookings/${booking.id}`);
 }
 
 export async function updateInquiryStatus(formData: FormData) {

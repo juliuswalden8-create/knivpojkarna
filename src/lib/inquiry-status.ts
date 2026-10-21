@@ -96,6 +96,13 @@ export function emailTemplateForStatus(status: string): string | null {
   }
 }
 
+/** Template for a status change. Pickup and return retries are decided in email-delivery.ts. */
+export function statusChangeEmail(previous: string, next: string) {
+  const template = emailTemplateForStatus(next);
+  if (!template || previous === next) return null;
+  return template;
+}
+
 export function bookingStatusWhere(status: string) {
   const mapped = normalizeBookingStatus(status);
   if (mapped === "PICKUP_CONFIRMED") return { in: ["PICKUP_CONFIRMED", "CONFIRMED"] };

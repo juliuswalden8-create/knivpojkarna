@@ -34,7 +34,6 @@ export function Hero({
         <EditorialPhoto
           src="/images/stone.jpg"
           alt={dict.hero.imageAlt}
-          caption={dict.hero.photoCredit}
           className="aspect-[4/5] w-full lg:aspect-[4/5]"
           priority
         />

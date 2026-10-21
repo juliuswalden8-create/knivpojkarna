@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
 import { resolveLocale } from "@/i18n/locale";
-import { getPackages, getSettings, siteUrl } from "@/lib/site";
-import { localizedPath } from "@/i18n/routes";
+import { getPackages, getSettings } from "@/lib/site";
+import { publicPageMeta } from "@/lib/page-meta";
 import { PricingGrid } from "@/components/home/pricing-grid";
 import { CtaBand } from "@/components/home/cta-band";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, dict } = await resolveLocale(params);
   return {
-    title: dict.meta.prices.title,
-    description: dict.meta.prices.description,
+    ...publicPageMeta(locale, "prices", dict.meta.prices.title, dict.meta.prices.description),
     keywords:
       locale === "es"
         ? ["precios afilado de cuchillos Marbella", "afilar cuchillos Marbella"]
         : ["knife sharpening prices Marbella", "knife sharpening Costa del Sol"],
-    alternates: { canonical: `${siteUrl()}${localizedPath(locale, "prices")}` },
   };
 }
 

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BUSINESS_STATUSES } from "@/lib/business-status";
 import { emailConfigured } from "@/lib/email/send";
 
-export const metadata = { title: "Settings | KNIVPOJKARNA", robots: { index: false } };
+export const metadata = { title: "Settings | BladeBud", robots: { index: false } };
 
 const statusHelp: Record<(typeof BUSINESS_STATUSES)[number], string> = {
   PRELAUNCH: "Customers can register interest. No confirmed appointments, no payment.",
@@ -63,7 +63,7 @@ export default async function SettingsPage() {
         <label>
           <span className="kicker">Public contact email</span>
           <input name="contactEmail" type="email" defaultValue={settings.contactEmail} className="field mt-2" />
-          <span className="mt-1 block text-xs text-stone">Shown in the footer and privacy page only when set. Prefer info@knivpojkarna.com once the domain exists.</span>
+          <span className="mt-1 block text-xs text-stone">Shown in the footer and privacy page only when set. Add the mailbox after it exists. Do not invent an address.</span>
         </label>
         <label>
           <span className="kicker">Instagram URL</span>

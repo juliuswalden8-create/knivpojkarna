@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import { resolveLocale } from "@/i18n/locale";
-import { localizedPath } from "@/i18n/routes";
-import { getSettings, siteUrl } from "@/lib/site";
+import { publicPageMeta } from "@/lib/page-meta";
+import { getSettings } from "@/lib/site";
 import { QuoteForm } from "@/components/business/quote-form";
 import { EditorialPhoto } from "@/components/media/editorial-photo";
 import { ButtonLink } from "@/components/ui/button";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, dict } = await resolveLocale(params);
-  return {
-    title: dict.meta.business.title,
-    description: dict.meta.business.description,
-    alternates: { canonical: `${siteUrl()}${localizedPath(locale, "business")}` },
-  };
+  return publicPageMeta(locale, "business", dict.meta.business.title, dict.meta.business.description);
 }
 
 export default async function BusinessPage({ params }: { params: Promise<{ locale: string }> }) {

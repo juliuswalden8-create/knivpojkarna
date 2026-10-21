@@ -22,12 +22,9 @@ export function Header({
   bookLabel?: string;
 }) {
   const cta = bookLabel ?? dict.nav.book;
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  const [menuPath, setMenuPath] = useState<string | null>(null);
+  const open = menuPath === pathname;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -53,7 +50,7 @@ export function Header({
         {dict.nav.skip}
       </a>
       <div className="container-x flex h-16 items-center justify-between gap-4 sm:h-[4.5rem]">
-        <Link href={localizedPath(locale, "home")} className="relative z-10 shrink-0" aria-label="KNIVPOJKARNA">
+        <Link href={localizedPath(locale, "home")} className="relative z-10 shrink-0" aria-label="BladeBud">
           <Logo variant="header" />
         </Link>
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
@@ -78,7 +75,7 @@ export function Header({
           className="relative z-10 inline-flex h-10 w-10 items-center justify-center text-ink lg:hidden"
           aria-expanded={open}
           aria-label={open ? dict.nav.close : dict.nav.menu}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setMenuPath(open ? null : pathname)}
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>

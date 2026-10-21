@@ -6,7 +6,8 @@ import { Footer } from "@/components/layout/footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { CookieBanner } from "@/components/layout/cookie-banner";
 import { SiteNotice } from "@/components/layout/site-notice";
-import { getSettings, siteUrl } from "@/lib/site";
+import { publicPageMeta } from "@/lib/page-meta";
+import { customerFacingCopy, getSettings } from "@/lib/site";
 
 export function generateStaticParams() {
   return enabledLocales.map((locale) => ({ locale }));
@@ -14,21 +15,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, dict } = await resolveLocale(params);
-  return {
-    title: dict.meta.home.title,
-    description: dict.meta.home.description,
-    alternates: {
-      canonical: `${siteUrl()}/${locale}`,
-      languages: Object.fromEntries(enabledLocales.map((l) => [l, `${siteUrl()}/${l}`])),
-    },
-    openGraph: {
-      title: dict.meta.home.title,
-      description: dict.meta.home.description,
-      locale: locale === "es" ? "es_ES" : "en_GB",
-      type: "website",
-      siteName: "KNIVPOJKARNA",
-    },
-  };
+  return publicPageMeta(locale, "home", dict.meta.home.title, dict.meta.home.description);
 }
 
 export default async function LocaleLayout({
@@ -40,7 +27,8 @@ export default async function LocaleLayout({
 }) {
   const { locale, dict } = await resolveLocale(params);
   const settings = await getSettings();
-  const waMessage = locale === "es" ? settings.whatsappMessageEs : settings.whatsappMessageEn;
+  const storedWa = locale === "es" ? settings.whatsappMessageEs : settings.whatsappMessageEn;
+  const waMessage = customerFacingCopy(storedWa).trim() || dict.whatsapp.message;
 
   return (
     <>

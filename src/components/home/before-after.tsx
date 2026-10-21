@@ -1,6 +1,34 @@
+import Image from "next/image";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { PhotoWell } from "@/components/media/editorial-photo";
 import { Reveal } from "@/components/ui/reveal";
+import { cn } from "@/lib/utils";
+
+function ComparisonPhoto({
+  src,
+  alt,
+  label,
+  className,
+}: {
+  src: string;
+  alt: string;
+  label: string;
+  className?: string;
+}) {
+  return (
+    <div className={cn("relative aspect-[4/3] bg-offwhite-200", className)}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover"
+        sizes="(min-width: 1024px) 36vw, 100vw"
+      />
+      <span className="absolute left-3 top-3 bg-ink px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-ivory">
+        {label}
+      </span>
+    </div>
+  );
+}
 
 export function BeforeAfter({ dict }: { dict: Dictionary }) {
   return (
@@ -25,10 +53,24 @@ export function BeforeAfter({ dict }: { dict: Dictionary }) {
           </ul>
         </Reveal>
         <Reveal delay={0.06}>
-          <PhotoWell
-            label={`${dict.beforeAfter.placeholderTitle}. ${dict.beforeAfter.placeholderText}`}
-            className="min-h-[380px] lg:min-h-[520px]"
-          />
+          <figure>
+            <div className="border border-line">
+              <ComparisonPhoto
+                src="/images/before-dull.jpg"
+                alt={dict.beforeAfter.beforeAlt}
+                label={dict.beforeAfter.before}
+              />
+              <ComparisonPhoto
+                src="/images/after-sharp.jpg"
+                alt={dict.beforeAfter.afterAlt}
+                label={dict.beforeAfter.after}
+                className="border-t border-line"
+              />
+            </div>
+            <figcaption className="mt-3 text-[11px] leading-relaxed tracking-[0.04em] text-stone">
+              {dict.beforeAfter.illustrative}
+            </figcaption>
+          </figure>
         </Reveal>
       </div>
     </section>

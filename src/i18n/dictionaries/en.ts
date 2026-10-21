@@ -4,12 +4,12 @@
  */
 export const en = {
   meta: {
-    siteName: "KNIVPOJKARNA",
-    tagline: "We Bring Back the Edge.",
+    siteName: "BladeBud",
+    tagline: "Sharp knives. Zero hassle.",
     home: {
-      title: "Knife Sharpening Marbella | KNIVPOJKARNA – We Bring Back the Edge",
+      title: "Knife Sharpening Marbella | Pickup & Delivery – BladeBud",
       description:
-        "Professional knife sharpening from Marbella to Fuengirola. Pickup and return delivery in Marbella, San Pedro, Nueva Andalucía, Puerto Banús and Mijas Costa. Transparent package prices from €7.",
+        "Professional knife sharpening in Marbella and Costa del Sol. We collect your knives, sharpen them and deliver them back to your door. Sharpening from €7.",
     },
     prices: {
       title: "Knife Sharpening Prices Marbella | From €7 per Knife",
@@ -17,9 +17,9 @@ export const en = {
         "Clear, introductory knife sharpening prices in Marbella: 1 knife €7, 3 knives €18, 5 knives €27, 10 knives €49. Professional sharpening for households and chefs.",
     },
     book: {
-      title: "Book Knife Sharpening in Marbella | KNIVPOJKARNA",
+      title: "Book Knife Sharpening in Marbella | BladeBud",
       description:
-        "Register interest in professional knife sharpening between Marbella and Fuengirola. We collect and return your knives at your address. We confirm the details with you — this is not a confirmed appointment.",
+        "Join the waitlist for professional knife sharpening between Marbella and Fuengirola. We collect and return your knives at your address. We confirm the details with you — this is not a confirmed appointment.",
     },
     business: {
       title: "Restaurant Knife Sharpening Marbella | Business Services",
@@ -32,15 +32,15 @@ export const en = {
         "Knife sharpening from Marbella to Fuengirola, including San Pedro, Nueva Andalucía, Puerto Banús and Mijas Costa. Pickup and return delivery, always confirmed before we collect.",
     },
     about: {
-      title: "About KNIVPOJKARNA | John Julius Erik Walden, CEO",
+      title: "About BladeBud | John Julius Erik Walden, CEO",
       description:
-        "Knivpojkarna is a knife sharpening studio in Marbella led by CEO John Julius Erik Walden. Professional sharpening, made easy, accessible and affordable.",
+        "BladeBud is a knife sharpening studio in Marbella led by CEO John Julius Erik Walden. Professional sharpening, made easy, accessible and affordable.",
     },
     privacy: {
-      title: "Privacy & Cookies | KNIVPOJKARNA",
-      description: "How Knivpojkarna handles your personal data and cookies.",
+      title: "Privacy & Cookies | BladeBud",
+      description: "How BladeBud handles your personal data and cookies.",
     },
-    notFound: { title: "Page not found | KNIVPOJKARNA" },
+    notFound: { title: "Page not found | BladeBud" },
   },
 
   nav: {
@@ -58,7 +58,7 @@ export const en = {
   },
 
   mode: {
-    registerCta: "Register interest",
+    registerCta: "Join the waitlist",
     prelaunchBanner:
       "We are preparing to launch in Marbella. Register your interest now — this is not a confirmed appointment, and no payment is taken.",
     pausedBanner: "New requests are paused for the moment. Existing customer records remain with us. Please check back soon.",
@@ -69,26 +69,26 @@ export const en = {
     bookingTitle: "Register your interest.",
     bookingIntro:
       "Tell us your package, address and town. We store your interest and contact you when pickup bookings open. This is an expression of interest, not a confirmed order, and no payment is taken.",
-    bookingSubmit: "Register interest",
+    bookingSubmit: "Join the waitlist",
     successTitle: "Thank you for your interest.",
-    successText: "Thank you for your interest! We'll contact you when KNIVPOJKARNA opens for bookings.",
+    successText: "Thank you for your interest! We'll contact you when BladeBud opens for bookings.",
     successKeep: "Keep this reference if you write to us about your interest.",
     pausedTitle: "Requests are paused.",
     pausedText: "We are not accepting new household or business requests right now. Existing records remain with us.",
     consent:
-      "I agree that KNIVPOJKARNA UF stores my details to register this interest, as described in the",
+      "I agree that BladeBud stores my details to register this interest, as described in the",
   },
 
   hero: {
     kicker: "Knife sharpening from Marbella to Fuengirola",
-    headline: "Sharp knives. Better cooking.",
-    sub: "Professional knife sharpening based in Marbella, serving Marbella to Fuengirola — including San Pedro, Nueva Andalucía, Puerto Banús and Mijas Costa.",
+    headline: "Sharp knives. Zero hassle.",
+    sub: "Professional knife sharpening, picked up and delivered to your door.",
     primary: "Book a sharpening",
     secondary: "Explore our service",
     trust: "Precision, transparent prices, local service.",
     location: "Marbella · Fuengirola",
     imageAlt: "A chef using a kitchen knife at a wooden board",
-    photoCredit: "Temporary photography — replace with Knivpojkarna workshop images.",
+    photoCredit: "Temporary photography — replace with BladeBud workshop images.",
     scroll: "Scroll",
     stats: [
       { value: "€7", label: "from per knife" },
@@ -152,7 +152,7 @@ export const en = {
   },
 
   why: {
-    kicker: "Why Knivpojkarna",
+    kicker: "Why BladeBud",
     title: "Built on precision and personal service.",
     items: [
       { title: "Precision", text: "We focus on restoring a clean, consistent cutting edge." },
@@ -166,11 +166,13 @@ export const en = {
   },
 
   beforeAfter: {
-    kicker: "Results",
+    kicker: "The edge",
     title: "The difference a true edge makes.",
     before: "Dull",
     after: "Sharpened",
-    illustrative: "Real customer photographs will appear here, with permission. We do not show fabricated results.",
+    beforeAlt: "Illustrative photograph of a dull knife crushing a tomato",
+    afterAlt: "Illustrative photograph of a sharpened knife slicing a tomato",
+    illustrative: "Illustrative photographs. Not knives sharpened by BladeBud, and not customer results.",
     dragHint: "Drag to compare",
     placeholderTitle: "Photography to be supplied",
     placeholderText:
@@ -239,9 +241,9 @@ export const en = {
   about: {
     kicker: "About us",
     title: "Two Swedish entrepreneurs. One sharp idea.",
-    body: "Knivpojkarna was started by two young Swedish entrepreneurs in Marbella with a simple idea: make professional knife sharpening easy, accessible and affordable. The company is led by CEO John Julius Erik Walden. We believe every kitchen deserves sharp knives and great service.",
+    body: "BladeBud was started by two young Swedish entrepreneurs in Marbella with a simple idea: make professional knife sharpening easy, accessible and affordable. The company is led by CEO John Julius Erik Walden. We believe every kitchen deserves sharp knives and great service.",
     photoPlaceholder: "Founders photo coming soon",
-    photoAlt: "Portrait of John Julius Erik Walden, CEO of Knivpojkarna",
+    photoAlt: "Portrait of John Julius Erik Walden, CEO of BladeBud",
     photoCaption: "John Julius Erik Walden, CEO",
     founderName: "John Julius Erik Walden",
     founderRole: "CEO",
@@ -262,7 +264,7 @@ export const en = {
   },
 
   footer: {
-    tagline: "We Bring Back the Edge.",
+    tagline: "Sharp knives. Zero hassle.",
     servicesTitle: "Services",
     companyTitle: "Company",
     legalTitle: "Legal",
@@ -277,9 +279,9 @@ export const en = {
   },
 
   whatsapp: {
-    label: "Questions? Chat with Knivpojkarna.",
-    aria: "Chat with Knivpojkarna on WhatsApp",
-    message: "Hi Knivpojkarna! I would like to book a knife sharpening service in Marbella.",
+    label: "Questions? Chat with BladeBud.",
+    aria: "Chat with BladeBud on WhatsApp",
+    message: "Hi BladeBud! I would like to book a knife sharpening service in Marbella.",
     notConfigured: "WhatsApp is not set up yet",
   },
 
@@ -404,7 +406,7 @@ export const en = {
       phone: "Phone (ideally WhatsApp)",
       comments: "Comments",
       commentsPlaceholder: "Anything we should know about your knives or the pickup?",
-      consent: "I agree that Knivpojkarna stores my details to process this booking request, as described in the",
+      consent: "I agree that BladeBud stores my details to process this booking request, as described in the",
       consentLink: "privacy policy",
       consentRequired: "Please accept the privacy policy to continue.",
     },
@@ -539,7 +541,7 @@ export const en = {
 
   areasPage: {
     intro:
-      "Knivpojkarna is based in Marbella and sharpens knives for kitchens from Marbella to Fuengirola, including San Pedro, Nueva Andalucía, Puerto Banús and Mijas Costa.",
+      "BladeBud is based in Marbella and sharpens knives for kitchens from Marbella to Fuengirola, including San Pedro, Nueva Andalucía, Puerto Banús and Mijas Costa.",
     howTitle: "How service works",
     how: [
       { title: "Pickup & return delivery", text: "We collect your knives at your address and bring them back after sharpening." },
@@ -548,7 +550,7 @@ export const en = {
     ],
     seoTitle: "Knife sharpening from Marbella to Fuengirola",
     seoText:
-      "Looking for knife sharpening in Marbella, San Pedro de Alcántara, Nueva Andalucía, Puerto Banús, Mijas Costa or Fuengirola? Knivpojkarna offers professional sharpening with pickup and return delivery at your address.",
+      "Looking for knife sharpening in Marbella, San Pedro de Alcántara, Nueva Andalucía, Puerto Banús, Mijas Costa or Fuengirola? BladeBud offers professional sharpening with pickup and return delivery at your address.",
   },
 
   privacy: {
@@ -558,7 +560,7 @@ export const en = {
       {
         title: "Who we are",
         body: [
-          "KNIVPOJKARNA UF is a knife sharpening service based in Marbella, Spain. We are the data controller for personal data collected through this website. You can reach us via the contact details shown in the footer.",
+          "BladeBud is a knife sharpening service based in Marbella, Spain. We are the data controller for personal data collected through this website. You can reach us via the contact details shown in the footer.",
         ],
       },
       {

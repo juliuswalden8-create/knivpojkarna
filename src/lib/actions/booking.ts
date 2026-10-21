@@ -9,9 +9,12 @@ import { isDateAvailable, parseTimeSlots, parseWeekdays, fromISODate } from "@/l
 import { clientKey, rateLimitPersistent } from "@/lib/rate-limit";
 import { acceptsPublicRequests } from "@/lib/inquiry-status";
 import { logError } from "@/lib/safe-log";
-import { duplicateWindowMs, resolveServiceArea } from "@/lib/service-area";
+import { bookingLockKey, decideBookingWrite, duplicateBookingWhere, shouldSendAdminNotice } from "@/lib/booking-duplicate";
+import { resolveServiceArea } from "@/lib/service-area";
 import { calculateDeliveryQuote, deliveryFeesFromSettings } from "@/lib/delivery-zones";
 import { sendBookingEmail } from "@/lib/email/send";
+import { siteUrl } from "@/lib/site";
+import { notifyAdmin } from "@/lib/telegram";
 
 export type BookingResult =
   | { ok: true; reference: string }
@@ -73,19 +76,6 @@ export async function submitBooking(input: unknown): Promise<BookingResult> {
       preferredTimeSlot = data.preferredTimeSlot;
     }
 
-    const since = new Date(Date.now() - duplicateWindowMs());
-    const duplicate = await prisma.booking.findFirst({
-      where: {
-        email: data.email,
-        packageId: pkg.id,
-        addressLine: data.addressLine,
-        createdAt: { gte: since },
-      },
-      orderBy: { createdAt: "desc" },
-      select: { reference: true },
-    });
-    if (duplicate?.reference) return { ok: true, reference: duplicate.reference };
-
     const packageName = data.locale === "es" ? pkg.nameEs : data.locale === "sv" && pkg.nameSv ? pkg.nameSv : pkg.nameEn;
     const knifeTypes = JSON.stringify({
       standard: pkg.knifeCount,
@@ -94,65 +84,102 @@ export async function submitBooking(input: unknown): Promise<BookingResult> {
       damaged: false,
     });
 
-    let reference = generateReference("KP");
-    for (let i = 0; i < 4; i++) {
-      const clash = await prisma.booking.findUnique({ where: { reference } });
-      if (!clash) break;
-      reference = generateReference("KP");
+    const saved = await prisma.$transaction(async (tx) => {
+      const lockKey = bookingLockKey(data.email, pkg.id, data.addressLine);
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${lockKey})::bigint)`;
+      const duplicate = await tx.booking.findFirst({
+        where: duplicateBookingWhere(data.email, pkg.id, data.addressLine, new Date()),
+        orderBy: { createdAt: "desc" },
+        select: { id: true, reference: true },
+      });
+      if (decideBookingWrite(duplicate) === "reuse" && duplicate?.reference) {
+        return { created: false as const, id: duplicate.id, reference: duplicate.reference };
+      }
+
+      let reference = generateReference("KP");
+      for (let i = 0; i < 4; i++) {
+        const clash = await tx.booking.findUnique({ where: { reference } });
+        if (!clash) break;
+        reference = generateReference("KP");
+      }
+
+      const created = await tx.booking.create({
+        data: {
+          reference,
+          status: "NEW",
+          packageId: pkg.id,
+          packageName,
+          knifeCount: pkg.knifeCount,
+          knifeTypes,
+          serviceType: "PICKUP",
+          addressLine: data.addressLine,
+          postalCode: data.postalCode,
+          areaName: area.areaName,
+          preferredDate,
+          preferredTimeSlot,
+          customerName: data.customerName,
+          email: data.email,
+          phone: data.phone,
+          comments: data.comments,
+          pickupNotes: data.pickupNotes,
+          inServiceArea: quote.inServiceArea,
+          sharpeningSubtotalCents: quote.sharpeningSubtotalCents,
+          deliveryFeeCents: quote.deliveryFeeCents,
+          deliveryZone: quote.deliveryZone,
+          deliveryNeedsReview: quote.deliveryNeedsReview,
+          deliveryFeeWaived: quote.deliveryFeeWaived,
+          estimatedTotalCents: quote.estimatedTotalCents,
+          locale: data.locale,
+          consentAt: new Date(),
+        },
+        select: { id: true, reference: true, status: true, customerName: true, email: true, locale: true },
+      });
+      if (!created.id || created.status !== "NEW" || !created.reference) return null;
+      return {
+        created: true as const,
+        id: created.id,
+        reference: created.reference,
+        customerName: created.customerName,
+        email: created.email,
+        locale: created.locale,
+      };
+    });
+
+    if (!saved?.reference) return { ok: false, error: "save" };
+
+    if (saved.created && shouldSendAdminNotice(saved.created)) {
+      const verified = await prisma.booking.findUnique({
+        where: { id: saved.id },
+        select: { id: true, reference: true },
+      });
+      if (!verified?.reference) return { ok: false, error: "save" };
+
+      await sendBookingEmail({
+        template: prelaunch ? "interest_received" : "booking_request_received",
+        locale: saved.locale,
+        to: saved.email,
+        name: saved.customerName,
+        reference: verified.reference,
+        bookingId: verified.id,
+      });
+
+      await notifyAdmin(
+        {
+          kind: "booking",
+          reference: verified.reference,
+          name: saved.customerName,
+          packageName,
+          knifeCount: pkg.knifeCount,
+          area: area.areaName,
+          deliveryZone: quote.deliveryZone,
+          estimatedTotalCents: quote.estimatedTotalCents,
+          adminPath: `/admin/bookings/${verified.id}`,
+        },
+        siteUrl(),
+      );
     }
 
-    const created = await prisma.booking.create({
-      data: {
-        reference,
-        status: "NEW",
-        packageId: pkg.id,
-        packageName,
-        knifeCount: pkg.knifeCount,
-        knifeTypes,
-        serviceType: "PICKUP",
-        addressLine: data.addressLine,
-        postalCode: data.postalCode,
-        areaName: area.areaName,
-        preferredDate,
-        preferredTimeSlot,
-        customerName: data.customerName,
-        email: data.email,
-        phone: data.phone,
-        comments: data.comments,
-        pickupNotes: data.pickupNotes,
-        inServiceArea: quote.inServiceArea,
-        sharpeningSubtotalCents: quote.sharpeningSubtotalCents,
-        deliveryFeeCents: quote.deliveryFeeCents,
-        deliveryZone: quote.deliveryZone,
-        deliveryNeedsReview: quote.deliveryNeedsReview,
-        deliveryFeeWaived: quote.deliveryFeeWaived,
-        estimatedTotalCents: quote.estimatedTotalCents,
-        locale: data.locale,
-        consentAt: new Date(),
-      },
-      select: { id: true, reference: true, status: true, customerName: true, email: true, locale: true },
-    });
-
-    if (!created.id || created.status !== "NEW") {
-      return { ok: false, error: "save" };
-    }
-
-    const verified = await prisma.booking.findUnique({
-      where: { id: created.id },
-      select: { id: true, reference: true },
-    });
-    if (!verified?.reference) return { ok: false, error: "save" };
-
-    await sendBookingEmail({
-      template: prelaunch ? "interest_received" : "booking_request_received",
-      locale: created.locale,
-      to: created.email,
-      name: created.customerName,
-      reference: verified.reference,
-      bookingId: verified.id,
-    });
-
-    return { ok: true, reference: verified.reference };
+    return { ok: true, reference: saved.reference };
   } catch (err) {
     logError("submitBooking", err);
     return { ok: false, error: "save" };

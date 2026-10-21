@@ -1,40 +1,25 @@
 import { cn } from "@/lib/utils";
 
-/** Original KNIVPOJKARNA mark: horizontal chef’s knife, handle left, two rivets. */
-export function KnifeMark({ className }: { className?: string }) {
+/** A short blade edge and a quiet B. Not a weapon. */
+export function BladeMark({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 200 48"
-      className={cn("block", className)}
-      aria-hidden="true"
-      focusable="false"
-    >
-      {/* Blade */}
+    <svg viewBox="0 0 32 32" className={cn("block", className)} aria-hidden="true" focusable="false">
+      <rect x="1" y="1" width="30" height="30" rx="8" fill="currentColor" fillOpacity="0.08" />
       <path
-        fill="currentColor"
-        d="M84 16.5h74c8.2.3 15.6 3.4 23.2 9.5-7.8 6.6-15.4 9.8-24 10.2H84z"
-      />
-      {/* Bolster */}
-      <rect x="71.5" y="14.2" width="13.2" height="21.6" rx="1.2" fill="currentColor" />
-      {/* Handle outline */}
-      <path
-        d="M71.5 17.4H26.5c-8.4 0-13.2 3.4-13.2 8.6s4.8 8.6 13.2 8.6h45"
+        d="M9 22.5 20.5 8.5"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14.2 16.2c1.5-2.2 3.4-3.2 5.3-3.2 2.3 0 3.7 1.2 3.7 3.1 0 1.7-1.2 2.8-3.2 2.8H16.8c2.2.2 3.6 1.3 3.6 3.1 0 2-1.5 3.2-3.9 3.2-2 0-3.8-1-5.1-3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
-        d="M71.5 17.4v15.2"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-      />
-      {/* Rivets */}
-      <circle cx="33.5" cy="26" r="2.05" fill="currentColor" />
-      <circle cx="52.5" cy="26" r="2.05" fill="currentColor" />
     </svg>
   );
 }
@@ -54,35 +39,33 @@ export function Logo({
   const tone = invert ? "text-soft" : "text-ink";
 
   if (resolved === "mark") {
-    return <KnifeMark className={cn("h-5 w-auto", tone, className)} />;
+    return <BladeMark className={cn("h-8 w-8", tone, className)} />;
   }
 
   if (resolved === "full") {
     return (
       <span className={cn("inline-flex flex-col items-start", tone, className)}>
-        <KnifeMark className="h-7 w-auto sm:h-8" />
-        <span className="mt-2.5 font-serif text-[1.2rem] leading-none tracking-[0.08em] sm:text-[1.3rem]">
-          KNIVPOJKARNA
+        <span className="inline-flex items-center gap-2.5">
+          <BladeMark className="h-9 w-9" />
+          <span className="font-serif text-[1.65rem] leading-none tracking-[-0.03em]">BladeBud</span>
         </span>
         <span
           className={cn(
-            "mt-2 flex items-center gap-2.5 font-sans text-[9px] font-medium uppercase tracking-[0.28em]",
+            "mt-3 font-sans text-[10px] font-medium uppercase tracking-[0.22em]",
             invert ? "text-soft/70" : "text-stone",
           )}
         >
-          <span className="h-px w-7 bg-current opacity-55" aria-hidden />
-          Knivslipning
-          <span className="h-px w-7 bg-current opacity-55" aria-hidden />
+          Sharp knives. Zero hassle.
         </span>
       </span>
     );
   }
 
   return (
-    <span className={cn("inline-flex items-center gap-2.5 sm:gap-3", tone, className)}>
-      <KnifeMark className="h-[15px] w-auto shrink-0 sm:h-[17px]" />
-      <span className="whitespace-nowrap font-serif text-[1.05rem] leading-none tracking-[0.06em] sm:text-[1.15rem]">
-        KNIVPOJKARNA
+    <span className={cn("inline-flex items-center gap-2", tone, className)}>
+      <BladeMark className="h-7 w-7 shrink-0" />
+      <span className="whitespace-nowrap font-serif text-[1.2rem] leading-none tracking-[-0.03em] sm:text-[1.35rem]">
+        BladeBud
       </span>
     </span>
   );

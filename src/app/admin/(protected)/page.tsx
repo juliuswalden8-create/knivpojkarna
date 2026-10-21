@@ -4,7 +4,7 @@ import { formatPrice, formatDateTime } from "@/lib/utils";
 import { getSettings } from "@/lib/site";
 import { ACTIVE_JOB_STATUSES, BOOKING_STATUS_LABELS, normalizeBookingStatus } from "@/lib/inquiry-status";
 
-export const metadata = { title: "Dashboard | KNIVPOJKARNA", robots: { index: false } };
+export const metadata = { title: "Dashboard | BladeBud", robots: { index: false } };
 
 export default async function AdminHome() {
   const now = new Date();

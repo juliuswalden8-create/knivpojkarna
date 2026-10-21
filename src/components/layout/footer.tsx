@@ -29,7 +29,7 @@ export function Footer({
     <footer className="border-t border-line bg-soft">
       <div className="container-x grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2 lg:col-span-1">
-          <Link href={localizedPath(locale, "home")} aria-label="KNIVPOJKARNA" className="inline-flex">
+          <Link href={localizedPath(locale, "home")} aria-label="BladeBud" className="inline-flex">
             <WordmarkLockup />
           </Link>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-stone">
@@ -115,9 +115,11 @@ export function Footer({
       </div>
       <div className="container-x flex flex-col gap-2 border-t border-line py-6 text-xs text-stone sm:flex-row sm:items-center sm:justify-between">
         <p>
-          © {year} KNIVPOJKARNA UF. {dict.footer.rights}
+          © {year} BladeBud. {dict.footer.rights}
         </p>
-        <p>KNIVPOJKARNA UF — We Bring Back the Edge.</p>
+        <p>
+          {dict.meta.siteName} — {dict.footer.tagline}
+        </p>
       </div>
     </footer>
   );

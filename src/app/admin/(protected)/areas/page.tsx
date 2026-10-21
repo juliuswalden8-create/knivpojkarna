@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { saveArea } from "@/lib/actions/admin";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Service areas | KNIVPOJKARNA", robots: { index: false } };
+export const metadata = { title: "Service areas | BladeBud", robots: { index: false } };
 
 export default async function AreasAdminPage() {
   const areas = await prisma.serviceArea.findMany({ orderBy: { sortOrder: "asc" } });

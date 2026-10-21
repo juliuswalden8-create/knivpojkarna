@@ -1,4 +1,4 @@
-# KNIVPOJKARNA UF — Launch audit
+# BladeBud — Launch audit
 
 Date: 2026-10-12 (updated after pickup & delivery booking sprint)
 
@@ -22,7 +22,7 @@ P0 = required before a public URL. P1 = important, not launch-blocking for pre-l
 | Env / secrets | `.env.example` documents Postgres URLs. `.env*` gitignored except example. No `NEXT_PUBLIC_` secrets. | Partial | P0 | Fill production env. | Host dashboard (do not paste secrets). |
 | Hosting | `vercel.json` runs generate + `migrate deploy` + seed + `next build`. No Git remote and no Vercel project yet. | Missing | P0 | Push to GitHub, import on Vercel, set env, deploy. | Open the `*.vercel.app` URL; submit interest; row remains after reload. |
 | Privacy | UF legal name, consent, cookies. Contact email shows only when configured. | Partial | P0 | Save a public email in Settings. | Footer mailto only after save. |
-| SEO | Canonicals, sitemap, robots, JSON-LD for launch towns. Needs live `NEXT_PUBLIC_SITE_URL`. | Partial | P0 | Set live URL. | View source after deploy. |
+| SEO | Canonicals, sitemap, robots, JSON-LD for launch towns. Public origin is `https://www.bladebud.com`. | Partial | P0 | Set Production `NEXT_PUBLIC_SITE_URL` to that origin. Do not use `knivpojkarna.vercel.app`. | View source after deploy. |
 | Rate limit | In-memory + `RateLimit` table for serverless. Honeypot field on forms. | Working | P1 | Confirm after Neon is live. | Burst submits return rate error. |
 | Payments | None. | Working (absent) | P2 | Do not add for launch. | `package.json` has no Stripe. |
 | Tests | Node tests for schemas, PRELAUNCH/PAUSED, statuses, service area, email copy, CSV, filters, persistence. | Working | P1 | Run `npm test`. Neon migrate still unverified here. | `npm test` |
@@ -39,8 +39,8 @@ P0 = required before a public URL. P1 = important, not launch-blocking for pre-l
 ## Still required from the owners
 
 1. Neon credentials; run `prisma migrate deploy` (includes `20261012180000_pickup_ops`).
-2. Temporary Vercel URL in `NEXT_PUBLIC_SITE_URL` (no custom domain yet).
-3. Create professional mailbox, preferably `info@knivpojkarna.com`, and save it in Admin → Settings.
+2. Production `NEXT_PUBLIC_SITE_URL=https://www.bladebud.com`. Do not use the `knivpojkarna.vercel.app` deployment host.
+3. Create professional mailbox, preferably `the mailbox on bladebud.com once it exists`, and save it in Admin → Settings.
 4. Production `AUTH_SECRET`.
 5. WhatsApp number.
 6. Keep PRELAUNCH until equipment is ready. Do not switch to ACTIVE yet.

@@ -16,7 +16,16 @@ model AdminUser {
   id           String   @id @default(cuid())
   email        String   @unique
   passwordHash String
+  /// Incremented when the password changes. Sessions carry this value and stop matching.
+  sessionVersion Int    @default(0)
   createdAt    DateTime @default(now())
+}
+
+/// Singleton. Records that the first admin account was created.
+/// Deleting AdminUser must not recreate it from ADMIN_PASSWORD.
+model AdminGuard {
+  id                 Int     @id @default(1)
+  bootstrapCompleted Boolean @default(false)
 }
 
 /// Singleton row (id = 1) with editable site-wide settings.
@@ -92,8 +101,20 @@ model Booking {
   areaName            String?
   preferredDate       DateTime?
   preferredTimeSlot   String?
+  /// Confirmed pickup. Independent of the return schedule.
   scheduledDate       DateTime?
   scheduledTimeSlot   String?
+  /// Confirmed return. Nullable so existing bookings stay unchanged.
+  scheduledReturnDate     DateTime?
+  scheduledReturnTimeSlot String?
+  /// Physically collected knives. Null until an admin records it.
+  /// Never copied from knifeCount, and never used to change the price.
+  knivesCollected     Int?
+  collectionNotes     String?
+  /// Julius Walden | Oliver Landen. The stored value is the full name. Null until recorded.
+  collectedBy         String?
+  /// Set once, the first time a collected quantity is saved. Later corrections keep this time.
+  collectedAt         DateTime?
   customerName        String
   email               String
   phone               String
@@ -113,6 +134,8 @@ model Booking {
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
   emails              EmailLog[]
+  /// Manual payment records. The booking total is never derived from these rows.
+  payments            BookingPayment[]
 
   @@index([status])
   @@index([createdAt])
@@ -190,4 +213,35 @@ model EmailLog {
 
   @@index([bookingId])
   @@index([createdAt])
+}
+
+/// Manual record of money received. Amounts are minor units (cents or öre).
+/// Rows are not deleted. A correction voids the original and adds a new row.
+model BookingPayment {
+  id                String    @id @default(cuid())
+  bookingId         String
+  booking           Booking   @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  /// SWISH | BIZUM | CASH
+  method            String
+  /// EUR | SEK
+  currency          String
+  /// Cents for EUR, öre for SEK.
+  amountMinor       Int
+  /// SEK for 1 EUR, multiplied by 10_000. Null when currency is EUR.
+  exchangeRateE4    Int?
+  /// EUR cents credited toward the booking. Calculated, never typed as a float.
+  eurCents          Int
+  paidAt            DateTime
+  note              String?
+  idempotencyKey    String
+  /// Set when this row replaces a voided payment. The original row is kept.
+  replacesPaymentId String?   @unique
+  replaces          BookingPayment?  @relation("PaymentCorrection", fields: [replacesPaymentId], references: [id], onDelete: Restrict)
+  replacedBy        BookingPayment?  @relation("PaymentCorrection")
+  voidedAt          DateTime?
+  voidReason        String?
+  createdAt         DateTime  @default(now())
+
+  @@unique([bookingId, idempotencyKey])
+  @@index([bookingId])
 }

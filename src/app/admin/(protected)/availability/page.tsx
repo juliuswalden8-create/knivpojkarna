@@ -14,7 +14,7 @@ const days = [
   { n: "0", l: "Sun" },
 ];
 
-export const metadata = { title: "Availability | KNIVPOJKARNA", robots: { index: false } };
+export const metadata = { title: "Availability | BladeBud", robots: { index: false } };
 
 export default async function AvailabilityPage() {
   const [settings, blocked] = await Promise.all([getSettings(), prisma.blockedDate.findMany({ orderBy: { date: "asc" } })]);

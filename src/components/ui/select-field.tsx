@@ -105,12 +105,13 @@ export function SelectField({
         ref={buttonRef}
         type="button"
         className="form-input mt-2 flex w-full items-center justify-between gap-3 text-left font-sans"
+        role="combobox"
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-labelledby={id}
         aria-controls={listId}
-        aria-required={required}
-        aria-invalid={Boolean(error)}
+        aria-required={required || undefined}
+        aria-invalid={error ? true : undefined}
         onClick={() => {
           const idx = Math.max(0, options.findIndex((o) => o.value === value));
           setActive(idx);

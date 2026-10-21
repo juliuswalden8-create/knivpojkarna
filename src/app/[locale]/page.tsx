@@ -30,7 +30,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       />
       <Why dict={dict} />
       <BeforeAfter dict={dict} />
-      <AreasMap locale={locale} dict={dict} businessStatus={settings.businessStatus} />
+      <AreasMap locale={locale} dict={dict} businessStatus={settings.businessStatus} showMailIn={false} />
       <CtaBand
         locale={locale}
         dict={dict}

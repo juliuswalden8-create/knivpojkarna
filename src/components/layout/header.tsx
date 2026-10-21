@@ -81,16 +81,21 @@ export function Header({
         </button>
       </div>
 
-      <div className={cn("lg:hidden border-t border-line bg-ivory", open ? "block" : "hidden")}>
-        <nav className="container-x flex flex-col py-6" aria-label="Mobile">
+      <div className={cn("fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ivory lg:hidden", open ? "block" : "hidden")}>
+        <nav className="container-x flex min-h-full flex-col py-8" aria-label="Mobile">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="py-3 text-base text-ink">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="border-b border-line py-4 font-serif text-3xl text-ink"
+              aria-current={pathname === link.href ? "page" : undefined}
+            >
               {link.label}
             </Link>
           ))}
-          <div className="mt-5 flex items-center justify-between gap-3">
+          <div className="mt-8 flex flex-col gap-6">
             <LanguageSwitcher locale={locale} />
-            <ButtonLink href={localizedPath(locale, "book")} size="sm">
+            <ButtonLink href={localizedPath(locale, "book")} size="lg" className="w-full">
               {cta}
             </ButtonLink>
           </div>

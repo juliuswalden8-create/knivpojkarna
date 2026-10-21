@@ -19,16 +19,18 @@ export function CtaBand({
   const wa = whatsappLink(whatsappNumber, dict.whatsapp.message);
   const prelaunch = businessStatus === "PRELAUNCH";
   return (
-    <section className="border-t border-line bg-ivory">
+    <section className="border-t border-line bg-forest text-soft">
       <div className="container-x py-20 lg:py-28">
-        <h2 className="display max-w-2xl text-[2.4rem] sm:text-5xl">{prelaunch ? dict.mode.ctaTitle : dict.cta.title}</h2>
-        <p className="mt-5 max-w-xl text-[16px] text-stone">{prelaunch ? dict.mode.ctaSub : dict.cta.sub}</p>
+        <h2 className="max-w-2xl font-serif text-[2.4rem] leading-[1.12] tracking-[-0.025em] sm:text-5xl">
+          {prelaunch ? dict.mode.ctaTitle : dict.cta.title}
+        </h2>
+        <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-soft/75">{prelaunch ? dict.mode.ctaSub : dict.cta.sub}</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <ButtonLink href={localizedPath(locale, "book")} size="lg">
+          <ButtonLink href={localizedPath(locale, "book")} size="lg" variant="light">
             {prelaunch ? dict.mode.registerCta : dict.cta.button}
           </ButtonLink>
           {wa && (
-            <ButtonLink href={wa} variant="secondary" size="lg">
+            <ButtonLink href={wa} variant="secondary" size="lg" className="border-soft/30 text-soft hover:border-soft">
               {dict.cta.secondary}
             </ButtonLink>
           )}

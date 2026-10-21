@@ -23,7 +23,10 @@ export function LanguageSwitcher({ locale, className }: { locale: Locale; classN
           <button
             type="button"
             onClick={() => switchTo(code)}
-            className={cn("uppercase tracking-[0.12em]", code === locale ? "text-ink" : "text-stone hover:text-ink")}
+            className={cn(
+              "inline-flex min-h-11 min-w-11 items-center justify-center uppercase tracking-[0.12em]",
+              code === locale ? "text-ink" : "text-stone hover:text-ink",
+            )}
             aria-pressed={code === locale}
           >
             {code}

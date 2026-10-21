@@ -10,11 +10,13 @@ export function AreasMap({
   dict,
   headingAs = "h2",
   businessStatus,
+  showMailIn = true,
 }: {
   locale: Locale;
   dict: Dictionary;
   headingAs?: "h1" | "h2";
   businessStatus: BusinessStatus;
+  showMailIn?: boolean;
 }) {
   const Heading = headingAs;
 
@@ -45,7 +47,7 @@ export function AreasMap({
           <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-stone">{dict.areas.examplesNote}</p>
         </div>
 
-        <div className="mt-16 border-t border-line pt-14 lg:mt-20">
+        {showMailIn && <div className="mt-16 border-t border-line pt-14 lg:mt-20">
           <p className="kicker">{dict.areas.mailInKicker}</p>
           <h3 className="display mt-3 max-w-2xl text-[1.85rem] sm:text-3xl">{dict.areas.mailInTitle}</h3>
           <ol className="mt-10 divide-y divide-line border-y border-line">
@@ -61,7 +63,7 @@ export function AreasMap({
           <ButtonLink href={localizedPath(locale, "book")} className="mt-10">
             {businessStatus === "PRELAUNCH" ? dict.mode.registerCta : dict.areas.cta}
           </ButtonLink>
-        </div>
+        </div>}
       </div>
     </section>
   );

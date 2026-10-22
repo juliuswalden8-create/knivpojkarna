@@ -15,7 +15,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const settings = await getSettings();
   return (
     <>
-      <AboutTeaser locale={locale} dict={dict} businessStatus={settings.businessStatus} />
+      <AboutTeaser locale={locale} dict={dict} businessStatus={settings.businessStatus} headingAs="h1" />
       <CtaBand
         locale={locale}
         dict={dict}

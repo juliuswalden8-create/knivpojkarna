@@ -31,6 +31,7 @@ export default async function PricesPage({ params }: { params: Promise<{ locale:
         businessStatus={settings.businessStatus}
         zone1FeeCents={settings.deliveryZone1FeeCents}
         freeDeliveryThresholdCents={settings.freeDeliveryThresholdCents}
+        headingAs="h1"
       />
       <section className="border-t border-line bg-soft pb-24">
         <div className="container-x pt-16">

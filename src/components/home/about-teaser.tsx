@@ -11,19 +11,22 @@ export function AboutTeaser({
   dict,
   businessStatus,
   variant = "full",
+  headingAs = "h2",
 }: {
   locale: Locale;
   dict: Dictionary;
   businessStatus: BusinessStatus;
   variant?: "home" | "full";
+  headingAs?: "h1" | "h2";
 }) {
   const home = variant === "home";
+  const Heading = headingAs;
   return (
     <section id="about" className="border-t border-line bg-soft">
       <div className="container-x py-14 lg:py-28">
         <Reveal className="max-w-2xl">
           <p className="kicker">{dict.about.kicker}</p>
-          <h2 className="display mt-3 text-[2rem] sm:text-4xl lg:text-[2.8rem]">{home ? dict.about.meetTitle : dict.about.title}</h2>
+          <Heading className="display mt-3 text-[2rem] sm:text-4xl lg:text-[2.8rem]">{home ? dict.about.meetTitle : dict.about.title}</Heading>
           <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-stone sm:text-[17px]">{dict.about.body}</p>
         </Reveal>
 

@@ -44,7 +44,7 @@ export function Header({
   ];
 
   return (
-    <header className="relative z-50 shrink-0">
+    <header className={cn("relative shrink-0", open ? "z-[60]" : "z-50")}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-forest focus:px-3 focus:py-2 focus:text-soft"

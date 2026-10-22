@@ -28,6 +28,26 @@ export function internalPath(locale: Locale, key: RouteKey, suffix: string = "")
   return `/${locale}${slug ? `/${slug}` : ""}${suffix}`;
 }
 
+/**
+ * English slugs under /es are duplicates of the Spanish pages. Return the
+ * canonical Spanish pathname, keeping any trailing segments, or null when the
+ * path is already canonical. The result never points at an English slug, so
+ * applying it twice cannot redirect again.
+ */
+export function spanishCanonicalRedirect(pathname: string): string | null {
+  const segments = pathname.split("/").filter(Boolean);
+  if (segments[0] !== "es") return null;
+  const [slug, ...tail] = segments.slice(1);
+  if (!slug) return null;
+  const key = routeKeyForSlug(defaultLocale, slug);
+  if (!key) return null;
+  const canonical = routeSlugs[key].es;
+  if (!canonical || canonical === slug) return null;
+  const suffix = tail.length ? `/${tail.join("/")}` : "";
+  const target = localizedPath("es", key, suffix);
+  return target === pathname ? null : target;
+}
+
 /** Find the route key whose slug matches `slug` in the given locale. */
 export function routeKeyForSlug(locale: Locale, slug: string): RouteKey | null {
   for (const key of Object.keys(routeSlugs) as RouteKey[]) {

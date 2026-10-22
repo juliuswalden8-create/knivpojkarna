@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { defaultLocale, isEnabledLocale, LOCALE_COOKIE } from "@/i18n/config";
-import { routeKeyForSlug, routeSlugs } from "@/i18n/routes";
+import { routeKeyForSlug, routeSlugs, spanishCanonicalRedirect } from "@/i18n/routes";
 import { legacyHostRedirect } from "@/lib/legacy-host-redirect";
 
 export function proxy(request: NextRequest) {
@@ -20,6 +20,13 @@ export function proxy(request: NextRequest) {
     /\.[a-zA-Z0-9]+$/.test(pathname)
   ) {
     return NextResponse.next();
+  }
+
+  const canonicalPath = spanishCanonicalRedirect(pathname);
+  if (canonicalPath) {
+    const url = request.nextUrl.clone();
+    url.pathname = canonicalPath;
+    return NextResponse.redirect(url, 308);
   }
 
   const segments = pathname.split("/").filter(Boolean);

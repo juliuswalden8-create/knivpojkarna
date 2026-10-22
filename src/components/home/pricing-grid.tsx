@@ -18,6 +18,7 @@ export function PricingGrid({
   businessStatus,
   zone1FeeCents,
   freeDeliveryThresholdCents,
+  headingAs = "h2",
 }: {
   locale: Locale;
   dict: Dictionary;
@@ -26,7 +27,9 @@ export function PricingGrid({
   businessStatus: BusinessStatus;
   zone1FeeCents: number;
   freeDeliveryThresholdCents: number;
+  headingAs?: "h1" | "h2";
 }) {
+  const Heading = headingAs;
   const bookLabel = businessStatus === "PRELAUNCH" ? dict.mode.registerCta : dict.pricing.book;
   return (
     <section id="pricing" className="border-t border-line bg-ivory">
@@ -34,7 +37,7 @@ export function PricingGrid({
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
             <p className="kicker">{dict.pricing.kicker}</p>
-            <h2 className="display mt-3 text-[2rem] sm:text-4xl">{dict.pricing.title}</h2>
+            <Heading className="display mt-3 text-[2rem] sm:text-4xl">{dict.pricing.title}</Heading>
             <p className="mt-4 text-[16px] leading-relaxed text-stone">{dict.pricing.intro}</p>
           </div>
           <Link href={localizedPath(locale, "prices")} className="text-sm text-ink underline-offset-4 hover:underline">

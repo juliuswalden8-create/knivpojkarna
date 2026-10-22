@@ -33,14 +33,14 @@ export const metadata: Metadata = {
   applicationName: "BladeBud",
   icons: {
     icon: [
-      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icon-16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
-      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon-v4.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icons/v4/icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/v4/icon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/v4/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icons/v4/icon-192.png", sizes: "192x192", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: [{ url: "/favicon-v4.ico", type: "image/x-icon" }],
+    apple: [{ url: "/icons/v4/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   verification: {
     google: [

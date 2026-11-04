@@ -1,6 +1,11 @@
 import Image from "next/image";
 import type { Dictionary } from "@/i18n/dictionaries";
 
+/**
+ * Brand marks for identification only (see on-page disclaimer).
+ * Prefer Wikimedia Commons trademark SVGs where available; otherwise
+ * brand-colored wordmarks / lockups that match the public brand identity.
+ */
 const BRANDS = [
   { name: "Global", src: "/brands/global.svg" },
   { name: "Wüsthof", src: "/brands/wusthof.svg" },
@@ -12,17 +17,29 @@ const BRANDS = [
   { name: "Shun", src: "/brands/shun.svg" },
   { name: "Miyabi", src: "/brands/miyabi.svg" },
   { name: "MAC Knives", src: "/brands/mac.svg" },
+  { name: "Kai", src: "/brands/kai.svg" },
+  { name: "Henckels", src: "/brands/henckels.svg" },
+  { name: "Opinel", src: "/brands/opinel.svg" },
+  { name: "Arcos", src: "/brands/arcos.svg" },
+  { name: "Tojiro", src: "/brands/tojiro.svg" },
+  { name: "Sabatier", src: "/brands/sabatier.svg" },
+  { name: "WMF", src: "/brands/wmf.svg" },
+  { name: "Mercer", src: "/brands/mercer.svg" },
+  { name: "Messermeister", src: "/brands/messermeister.svg" },
+  { name: "Chroma", src: "/brands/chroma.svg" },
+  { name: "Kasumi", src: "/brands/kasumi.svg" },
+  { name: "Dalstrong", src: "/brands/dalstrong.svg" },
 ] as const;
 
 function BrandLogo({ name, src }: { name: string; src: string }) {
   return (
-    <li className="flex h-16 w-[10.5rem] shrink-0 items-center justify-center px-3 sm:h-[4.5rem] sm:w-[12.5rem] lg:w-[13.5rem]">
+    <li className="flex h-[4.25rem] w-[11rem] shrink-0 items-center justify-center px-4 sm:h-[4.75rem] sm:w-[13rem] lg:w-[14rem]">
       <Image
         src={src}
         alt=""
-        width={180}
-        height={40}
-        className="h-8 w-auto max-w-full object-contain sm:h-9"
+        width={220}
+        height={64}
+        className="h-9 w-auto max-h-10 max-w-[11.5rem] object-contain sm:h-10 sm:max-h-11"
         unoptimized
       />
       <span className="sr-only">{name}</span>
@@ -33,7 +50,7 @@ function BrandLogo({ name, src }: { name: string; src: string }) {
 function BrandSequence({ ariaHidden }: { ariaHidden?: boolean }) {
   return (
     <ul
-      className="brand-marquee-group flex shrink-0 items-center gap-1 sm:gap-3"
+      className="brand-marquee-group flex shrink-0 items-center gap-2 sm:gap-4"
       aria-hidden={ariaHidden ? true : undefined}
     >
       {BRANDS.map((brand) => (

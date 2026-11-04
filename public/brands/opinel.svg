@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" role="img" aria-label="Opinel">
+  <g transform="translate(8,10)" fill="#C4A35A">
+    <path d="M22 2c-2 6-2 10 0 16 2-6 2-10 0-16z"/>
+    <circle cx="22" cy="22" r="12" fill="none" stroke="#C4A35A" stroke-width="3"/>
+    <circle cx="22" cy="22" r="5" fill="#C4A35A"/>
+  </g>
+  <text x="56" y="42" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#1a1a1a" letter-spacing="0.08em">OPINEL</text>
+</svg>

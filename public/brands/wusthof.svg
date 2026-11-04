@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 36" role="img" aria-label="Wüsthof"><text x="90" y="24" text-anchor="middle" font-family="Georgia, Times, serif" font-size="20" font-weight="700" fill="#B5121B">WÜSTHOF</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" role="img" aria-label="Wüsthof">
+  <g fill="#C8102E">
+    <path d="M28 8l3.2 10.2H42l-8.4 6.2 3.2 10.2L28 28.4l-8.8 6.2 3.2-10.2L14 18.2h10.8L28 8z"/>
+    <path d="M28 14l1.8 5.6H36l-4.6 3.4 1.8 5.6L28 25.2l-5.2 3.4 1.8-5.6-4.6-3.4h6.2L28 14z" fill="#fff"/>
+  </g>
+  <text x="56" y="40" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="700" fill="#C8102E" letter-spacing="0.04em">WÜSTHOF</text>
+</svg>

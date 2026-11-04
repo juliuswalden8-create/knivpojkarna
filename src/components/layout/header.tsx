@@ -36,7 +36,7 @@ export function Header({
   }, [open]);
 
   const links = [
-    { href: `${localizedPath(locale, "home")}#how`, label: dict.nav.howItWorks },
+    { href: localizedPath(locale, "how"), label: dict.nav.howItWorks },
     { href: localizedPath(locale, "prices"), label: dict.nav.prices },
     { href: localizedPath(locale, "areas"), label: dict.nav.areas },
     { href: `${localizedPath(locale, "home")}#faq`, label: dict.nav.faq },

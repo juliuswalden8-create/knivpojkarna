@@ -4,7 +4,7 @@ import { localizedPath, type RouteKey } from "@/i18n/routes";
 import { publicLanguageAlternates } from "@/lib/page-meta";
 import { siteUrl } from "@/lib/site";
 
-const keys: RouteKey[] = ["home", "book", "prices", "business", "areas", "about", "privacy"];
+const keys: RouteKey[] = ["home", "book", "how", "prices", "business", "areas", "about", "privacy"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteUrl();

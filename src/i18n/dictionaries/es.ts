@@ -34,6 +34,11 @@ export const es: Dictionary = {
       description:
         "BladeBud es un estudio de afilado en Marbella dirigido por el CEO John Julius Erik Walden. Afilado profesional, fácil, accesible y asequible.",
     },
+    how: {
+      title: "Cómo funciona el afilado de cuchillos | BladeBud Marbella",
+      description:
+        "Descubre cómo BladeBud recoge, afila y devuelve tus cuchillos de cocina en Marbella, San Pedro, Nueva Andalucía y Puerto Banús.",
+    },
     privacy: {
       title: "Privacidad y Cookies | BladeBud",
       description: "Cómo trata BladeBud tus datos personales y las cookies.",
@@ -81,16 +86,17 @@ export const es: Dictionary = {
   },
 
   hero: {
-    kicker: "Afilado de cuchillos de Marbella a Fuengirola",
+    kicker: "Afilado de cuchillos · Marbella",
     headline: "Cuchillos afilados. Sin complicaciones.",
+    headlineLines: ["Cuchillos afilados.", "Sin complicaciones."],
     sub: "Recogemos tus cuchillos de cocina, los afilamos con cuidado y te los devolvemos en casa.",
     viewPrices: "Ver precios",
     primary: "Reservar afilado de cuchillos",
     secondary: "Cómo funciona",
     trust: "Precios transparentes. Recogida y devolución local. Sin promesas inventadas.",
     location: "Marbella · San Pedro · Nueva Andalucía · Puerto Banús",
-    imageAlt: "Fotografía de referencia de una hoja de cuchillo sobre una piedra oscura",
-    photoCredit: "Fotografía de referencia. No es el taller de BladeBud ni los cuchillos de un cliente.",
+    imageAlt: "Mapa decorativo de la zona de servicio en la Costa del Sol",
+    photoCredit: "",
     scroll: "Desliza",
     stats: [
       { value: "7 €", label: "desde, por cuchillo" },
@@ -118,6 +124,50 @@ export const es: Dictionary = {
         text: "Zona 1: Marbella, San Pedro, Puerto Banús, Nueva Andalucía. Zona 2: Elviria, Cabopino, Calahonda. Zona 3: Mijas Costa, Fuengirola. Los barrios cercanos también pueden registrar interés.",
       },
     },
+  },
+
+  howPage: {
+    kicker: "Cómo funciona",
+    title: "Tres pasos sencillos. De puerta a puerta.",
+    intro:
+      "BladeBud se prepara para lanzar en Marbella. Registra tu interés ahora y, cuando abramos las reservas, recogemos, afilamos y devolvemos tus cuchillos con cuidado.",
+    steps: [
+      {
+        num: "01",
+        title: "Recogemos",
+        text: "Registras tu interés y, cuando abramos las reservas, organizamos la recogida de tus cuchillos en casa o en la oficina.",
+      },
+      {
+        num: "02",
+        title: "Afilamos",
+        text: "Tus cuchillos se afilan con cuidado para recuperar su capacidad de corte.",
+      },
+      {
+        num: "03",
+        title: "Entregamos",
+        text: "Tus cuchillos afilados vuelven a tu puerta, listos para usar.",
+      },
+    ],
+    features: [
+      {
+        title: "Reserva fácil",
+        text: "Regístrate en minutos. Confirmamos los detalles contigo antes de organizar nada.",
+      },
+      {
+        title: "Manejo cuidadoso",
+        text: "Recogemos y devolvemos tus cuchillos con cuidado en tu dirección.",
+      },
+      {
+        title: "Afilado de precisión",
+        text: "Equipo profesional adecuado para cuchillos de cocina cotidianos y de chef.",
+      },
+      {
+        title: "Entrega conveniente",
+        text: "Recogida y devolución en una sola ida y vuelta clara — sin ir a un taller.",
+      },
+    ],
+    cta: "Reservar afilado",
+    ctaNote: "Próximo lanzamiento en Marbella. Apuntarse a la lista es gratis y no confirma una cita.",
   },
 
   brands: {

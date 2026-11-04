@@ -7,6 +7,7 @@ import { proxy } from "../proxy";
 
 const duplicates = [
   ["/es/book", "/es/reservar"],
+  ["/es/how-it-works", "/es/como-funciona"],
   ["/es/prices", "/es/precios"],
   ["/es/business", "/es/empresas"],
   ["/es/about", "/es/sobre-nosotros"],
@@ -52,7 +53,7 @@ test("sitemap stays on the canonical localized URLs", () => {
   for (const [key, value] of Object.entries(values)) process.env[key] = value;
   try {
     const urls = sitemap().map((entry) => entry.url);
-    assert.equal(urls.length, 14);
+    assert.equal(urls.length, 16);
     for (const [, to] of duplicates) {
       assert.equal(urls.includes(`https://www.bladebud.com${to}`), true);
     }

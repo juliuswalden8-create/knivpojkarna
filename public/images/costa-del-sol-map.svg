@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="seaFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C95A32" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#C95A32" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Soft sea wash -->
+  <path d="M40 250C180 220 260 210 360 230C480 255 560 280 680 270C820 255 940 210 1160 190L1160 700L40 700Z" fill="url(#seaFade)"/>
+
+  <!-- Cartographic grid -->
+  <g stroke="#C95A32" stroke-opacity="0.12" stroke-width="1">
+    <path d="M80 80H1120"/>
+    <path d="M80 160H1120"/>
+    <path d="M80 240H1120"/>
+    <path d="M80 320H1120"/>
+    <path d="M80 400H1120"/>
+    <path d="M80 480H1120"/>
+    <path d="M80 560H1120"/>
+    <path d="M160 60V640"/>
+    <path d="M320 60V640"/>
+    <path d="M480 60V640"/>
+    <path d="M640 60V640"/>
+    <path d="M800 60V640"/>
+    <path d="M960 60V640"/>
+  </g>
+
+  <!-- Inland contour lines -->
+  <g stroke="#C95A32" stroke-opacity="0.22" stroke-width="1.2" stroke-linecap="round">
+    <path d="M90 170C210 140 330 130 450 150C590 175 720 165 860 140C980 120 1080 110 1140 105"/>
+    <path d="M70 210C200 185 340 180 470 205C620 235 760 220 900 190C1000 170 1090 155 1150 150"/>
+    <path d="M60 255C190 235 330 245 470 275C610 305 760 285 910 245C1010 220 1100 200 1160 195"/>
+  </g>
+
+  <!-- Main coastline -->
+  <path
+    d="M50 290C140 265 210 250 280 255C350 260 400 275 455 295C510 315 555 325 610 318C670 310 720 290 780 275C850 258 920 245 990 235C1050 226 1105 215 1160 205"
+    stroke="#C95A32"
+    stroke-width="2.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Secondary shoreline detail -->
+  <path
+    d="M70 305C155 285 230 275 300 282C365 288 415 305 468 322C525 340 575 348 628 340C690 330 740 308 800 292C870 274 940 260 1015 250"
+    stroke="#C95A32"
+    stroke-opacity="0.35"
+    stroke-width="1.2"
+    stroke-linecap="round"
+  />
+
+  <!-- Delicate road network -->
+  <g stroke="#C95A32" stroke-opacity="0.28" stroke-width="1" stroke-linecap="round">
+    <path d="M300 255C340 230 390 210 450 200C520 188 590 195 650 210"/>
+    <path d="M455 295C470 250 500 210 545 180"/>
+    <path d="M610 318C640 280 690 250 760 230"/>
+    <path d="M280 255C260 220 250 185 255 150"/>
+    <path d="M780 275C810 240 860 215 920 200"/>
+  </g>
+
+  <!-- Place markers -->
+  <g fill="#C95A32">
+    <!-- San Pedro -->
+    <circle cx="300" cy="258" r="4.5" fill-opacity="0.9"/>
+    <circle cx="300" cy="258" r="10" fill="none" stroke="#C95A32" stroke-opacity="0.35" stroke-width="1"/>
+    <!-- Nueva Andalucía -->
+    <circle cx="455" cy="220" r="4" fill-opacity="0.85"/>
+    <circle cx="455" cy="220" r="9" fill="none" stroke="#C95A32" stroke-opacity="0.3" stroke-width="1"/>
+    <!-- Puerto Banús -->
+    <circle cx="470" cy="305" r="4.5" fill-opacity="0.9"/>
+    <circle cx="470" cy="305" r="10" fill="none" stroke="#C95A32" stroke-opacity="0.35" stroke-width="1"/>
+    <!-- Marbella -->
+    <circle cx="640" cy="300" r="5" fill-opacity="0.95"/>
+    <circle cx="640" cy="300" r="12" fill="none" stroke="#C95A32" stroke-opacity="0.4" stroke-width="1.2"/>
+  </g>
+
+  <!-- Labels -->
+  <g fill="#C95A32" fill-opacity="0.72" font-family="Inter, Helvetica, Arial, sans-serif" font-size="14" letter-spacing="0.08em">
+    <text x="300" y="236" text-anchor="middle">SAN PEDRO</text>
+    <text x="455" y="200" text-anchor="middle">NUEVA ANDALUCÍA</text>
+    <text x="470" y="336" text-anchor="middle">PUERTO BANÚS</text>
+    <text x="640" y="278" text-anchor="middle">MARBELLA</text>
+  </g>
+
+  <!-- Compass rose (minimal) -->
+  <g transform="translate(1040,520)" stroke="#C95A32" stroke-opacity="0.4" fill="none">
+    <circle cx="0" cy="0" r="28" stroke-width="1"/>
+    <path d="M0 -28V28M-28 0H28" stroke-width="1"/>
+    <path d="M0 -18L5 -4H-5Z" fill="#C95A32" fill-opacity="0.45" stroke="none"/>
+  </g>
+</svg>

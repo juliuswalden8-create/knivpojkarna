@@ -20,7 +20,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <JsonLd locale={locale} description={dict.meta.home.description} />
       <Hero locale={locale} dict={dict} businessStatus={settings.businessStatus} />
-      <HowItWorks dict={dict} />
+      <HowItWorks locale={locale} dict={dict} />
       <KnifeBrandsMarquee dict={dict} />
       <PricingGrid
         locale={locale}

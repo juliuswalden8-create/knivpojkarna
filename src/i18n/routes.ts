@@ -7,6 +7,7 @@ import { defaultLocale, type Locale } from "./config";
 export const routeSlugs = {
   home: { en: "", es: "", sv: "" },
   book: { en: "book", es: "reservar", sv: "boka" },
+  how: { en: "how-it-works", es: "como-funciona", sv: "sa-funkar-det" },
   prices: { en: "prices", es: "precios", sv: "priser" },
   business: { en: "business", es: "empresas", sv: "foretag" },
   areas: { en: "service-areas", es: "zonas-de-servicio", sv: "serviceomraden" },

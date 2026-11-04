@@ -36,6 +36,11 @@ export const en = {
       description:
         "BladeBud is a knife sharpening studio in Marbella led by CEO John Julius Erik Walden. Professional sharpening, made easy, accessible and affordable.",
     },
+    how: {
+      title: "How Knife Sharpening Works | BladeBud Marbella",
+      description:
+        "See how BladeBud collects, sharpens and returns your kitchen knives across Marbella, San Pedro, Nueva Andalucía and Puerto Banús.",
+    },
     privacy: {
       title: "Privacy & Cookies | BladeBud",
       description: "How BladeBud handles your personal data and cookies.",
@@ -81,16 +86,17 @@ export const en = {
   },
 
   hero: {
-    kicker: "Knife sharpening from Marbella to Fuengirola",
+    kicker: "Knife sharpening · Marbella",
     headline: "Sharp knives. Without the hassle.",
+    headlineLines: ["Sharp knives.", "Without the hassle."],
     sub: "We collect your dull kitchen knives, sharpen them with care, and deliver them back to your door.",
     viewPrices: "View prices",
     primary: "Book knife sharpening",
     secondary: "How it works",
     trust: "Transparent prices. Local pickup and return. No invented promises.",
     location: "Marbella · San Pedro · Nueva Andalucía · Puerto Banús",
-    imageAlt: "Reference photograph of a knife blade on a dark stone",
-    photoCredit: "Reference photograph. Not BladeBud’s workshop and not a customer’s knives.",
+    imageAlt: "Decorative Costa del Sol service map",
+    photoCredit: "",
     scroll: "Scroll",
     stats: [
       { value: "€7", label: "from per knife" },
@@ -130,6 +136,50 @@ export const en = {
         text: "Zone 1: Marbella, San Pedro, Puerto Banús, Nueva Andalucía. Zone 2: Elviria, Cabopino, Calahonda. Zone 3: Mijas Costa, Fuengirola. Nearby neighbourhoods can still register interest.",
       },
     },
+  },
+
+  howPage: {
+    kicker: "How it works",
+    title: "Three calm steps. From door to door.",
+    intro:
+      "BladeBud is preparing to launch in Marbella. Register your interest now, and once bookings open we collect, sharpen and return your knives with care.",
+    steps: [
+      {
+        num: "01",
+        title: "We collect",
+        text: "You register your interest, and once bookings open, we arrange to collect your knives from your home or office.",
+      },
+      {
+        num: "02",
+        title: "We sharpen",
+        text: "Your knives are carefully sharpened to restore their cutting performance.",
+      },
+      {
+        num: "03",
+        title: "We deliver",
+        text: "Your sharpened knives are safely returned to your door, ready to use.",
+      },
+    ],
+    features: [
+      {
+        title: "Easy booking",
+        text: "Register in minutes. We confirm the details with you before anything is arranged.",
+      },
+      {
+        title: "Careful handling",
+        text: "Your knives are collected and returned with care at your address.",
+      },
+      {
+        title: "Precision sharpening",
+        text: "Professional equipment suited to everyday kitchen knives and chef’s knives.",
+      },
+      {
+        title: "Convenient delivery",
+        text: "Pickup and return in one clear roundtrip — no need to visit a workshop.",
+      },
+    ],
+    cta: "Book sharpening",
+    ctaNote: "Launching soon in Marbella. Joining the waitlist is free and does not confirm an appointment.",
   },
 
   brands: {

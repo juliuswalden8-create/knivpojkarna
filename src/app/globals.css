@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ivory: #f7f5f1;
+  --color-ivory: #f8f6f2;
   --color-soft: #ffffff;
-  --color-ink: #222222;
-  --color-charcoal: #222222;
+  --color-ink: #202020;
+  --color-charcoal: #202020;
   --color-charcoal-800: #2e2e2e;
   --color-charcoal-700: #3a3a3a;
   --color-charcoal-600: #4a4a4a;
   --color-stone: #77736f;
   --color-silver: #77736f;
-  --color-silver-300: #e7e2dc;
+  --color-silver-300: #e5e0d9;
   --color-silver-500: #77736f;
   --color-silver-700: #55524e;
   --color-sage: #a39e97;
-  --color-forest: #222222;
+  --color-forest: #202020;
   --color-forest-700: #111111;
-  --color-ember: #c65b35;
-  --color-orange: #c65b35;
+  --color-ember: #c95a32;
+  --color-orange: #c95a32;
   --color-orange-600: #a84a2a;
   --color-orange-100: #f6e8e1;
-  --color-offwhite: #f7f5f1;
+  --color-offwhite: #f8f6f2;
   --color-offwhite-200: #ece7e0;
-  --color-line: #e7e2dc;
+  --color-line: #e5e0d9;
   --color-ink-0: #111111;
 
   --font-serif: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
@@ -44,11 +44,11 @@
     @apply bg-ivory font-sans text-ink antialiased;
   }
   ::selection {
-    background: #c65b35;
+    background: #c95a32;
     color: #ffffff;
   }
   :focus-visible {
-    outline: 2px solid #c65b35;
+    outline: 2px solid #c95a32;
     outline-offset: 3px;
   }
   a {
@@ -120,8 +120,8 @@
 
 @layer components {
   .form-check:checked {
-    border-color: #c65b35;
-    background-color: #c65b35;
+    border-color: #c95a32;
+    background-color: #c95a32;
   }
   .form-check:checked::after {
     content: "";
@@ -141,6 +141,18 @@
     transition: background-color 9999s ease-out;
   }
 
+}
+
+.costa-map-underlay {
+  mask-image: radial-gradient(ellipse at center, #000 28%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 28%, transparent 78%);
+}
+
+@media (max-width: 640px) {
+  .costa-map-underlay {
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 58%, transparent 88%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 58%, transparent 88%);
+  }
 }
 
 /* Logo marquee — kept outside @layer so Safari keeps the infinite loop. */

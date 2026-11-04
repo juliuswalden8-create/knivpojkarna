@@ -73,10 +73,6 @@
     opacity: 1 !important;
     transform: none !important;
   }
-  .brand-marquee-track {
-    animation: none !important;
-    transform: none !important;
-  }
 }
 
 @utility container-x {
@@ -145,14 +141,29 @@
     transition: background-color 9999s ease-out;
   }
 
-  .brand-marquee {
-    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  }
+}
 
+/* Logo marquee — kept outside @layer so Safari keeps the infinite loop. */
+.brand-marquee {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.brand-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.brand-marquee-group {
+  min-width: max-content;
+}
+
+@media (prefers-reduced-motion: no-preference) {
   .brand-marquee-track {
-    animation: brand-marquee 35s linear infinite;
-    width: max-content;
+    animation: brand-marquee-scroll 35s linear infinite !important;
   }
 
   .brand-marquee:hover .brand-marquee-track {
@@ -160,7 +171,25 @@
   }
 }
 
-@keyframes brand-marquee {
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee-track {
+    animation: none !important;
+    transform: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 56rem;
+    margin-inline: auto;
+    row-gap: 0.75rem;
+  }
+
+  .brand-marquee-track .brand-marquee-group:last-child {
+    display: none;
+  }
+}
+
+/* Moves logos continuously left → right with a seamless duplicated track. */
+@keyframes brand-marquee-scroll {
   from {
     transform: translate3d(-50%, 0, 0);
   }

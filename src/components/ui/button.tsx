@@ -3,9 +3,9 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const variants = {
-  primary: "bg-forest text-soft hover:bg-forest-700",
-  secondary: "border border-ink/20 bg-transparent text-ink hover:border-ink",
-  ghost: "text-ink hover:text-forest",
+  primary: "bg-orange text-soft hover:bg-orange-600",
+  secondary: "border border-line bg-soft text-ink hover:border-ink/40",
+  ghost: "text-ink hover:text-orange",
   dark: "bg-ink text-soft hover:bg-charcoal-800",
   light: "bg-soft text-ink hover:bg-ivory",
 };
@@ -24,7 +24,7 @@ type Common = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-sm font-sans font-medium tracking-[0.01em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium tracking-[0.01em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50";
 
 export function Button({
   variant = "primary",

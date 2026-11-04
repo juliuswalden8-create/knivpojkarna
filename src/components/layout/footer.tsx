@@ -42,22 +42,22 @@ export function Footer({
           <p className="kicker">{dict.footer.servicesTitle}</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link href={localizedPath(locale, "book")} className="hover:text-forest">
+              <Link href={localizedPath(locale, "book")} className="hover:text-orange">
                 {businessStatus === "PRELAUNCH" ? dict.mode.registerCta : dict.nav.book}
               </Link>
             </li>
             <li>
-              <Link href={localizedPath(locale, "prices")} className="hover:text-forest">
+              <Link href={localizedPath(locale, "prices")} className="hover:text-orange">
                 {dict.nav.prices}
               </Link>
             </li>
             <li>
-              <Link href={localizedPath(locale, "business")} className="hover:text-forest">
+              <Link href={localizedPath(locale, "business")} className="hover:text-orange">
                 {dict.nav.business}
               </Link>
             </li>
             <li>
-              <Link href={localizedPath(locale, "areas")} className="hover:text-forest">
+              <Link href={localizedPath(locale, "areas")} className="hover:text-orange">
                 {dict.nav.areas}
               </Link>
             </li>
@@ -67,27 +67,27 @@ export function Footer({
           <p className="kicker">{dict.footer.companyTitle}</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link href={localizedPath(locale, "about")} className="hover:text-forest">
+              <Link href={localizedPath(locale, "about")} className="hover:text-orange">
                 {dict.nav.about}
               </Link>
             </li>
             {wa && (
               <li>
-                <a href={wa} target="_blank" rel="noopener noreferrer" className="hover:text-forest">
+                <a href={wa} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
                   {dict.footer.whatsapp}
                 </a>
               </li>
             )}
             {contactEmail && (
               <li>
-                <a href={`mailto:${contactEmail}`} className="hover:text-forest">
+                <a href={`mailto:${contactEmail}`} className="hover:text-orange">
                   {dict.footer.email}
                 </a>
               </li>
             )}
             {instagramUrl && (
               <li>
-                <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-forest">
+                <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
                   Instagram
                 </a>
               </li>
@@ -98,12 +98,12 @@ export function Footer({
           <p className="kicker">{dict.footer.legalTitle}</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link href={localizedPath(locale, "privacy")} className="hover:text-forest">
+              <Link href={localizedPath(locale, "privacy")} className="hover:text-orange">
                 {dict.footer.privacy}
               </Link>
             </li>
             <li>
-              <CookieSettingsButton label={dict.footer.cookieSettings} className="hover:text-forest" />
+              <CookieSettingsButton label={dict.footer.cookieSettings} className="hover:text-orange" />
             </li>
             <li>
               <Link href="/admin/login" className="text-stone hover:text-ink">

@@ -33,19 +33,19 @@ export function PricingGrid({
   const bookLabel = businessStatus === "PRELAUNCH" ? dict.mode.registerCta : dict.pricing.book;
   return (
     <section id="pricing" className="border-t border-line bg-ivory">
-      <div className="container-x py-14 lg:py-28">
+      <div className="container-x py-14 lg:py-24">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
             <p className="kicker">{dict.pricing.kicker}</p>
             <Heading className="display mt-3 text-[2rem] sm:text-4xl">{dict.pricing.title}</Heading>
             <p className="mt-4 text-[16px] leading-relaxed text-stone">{dict.pricing.intro}</p>
           </div>
-          <Link href={localizedPath(locale, "prices")} className="text-sm text-ink underline-offset-4 hover:underline">
+          <Link href={localizedPath(locale, "prices")} className="text-sm font-medium text-ink underline-offset-4 hover:underline">
             {dict.pricing.viewAll}
           </Link>
         </Reveal>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-12 xl:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-12 xl:grid-cols-4">
           {packages.map((pkg) => {
             const save = savingsCents(pkg, singlePriceCents);
             const per = perKnifeCents(pkg);
@@ -54,27 +54,29 @@ export function PricingGrid({
               <article
                 key={pkg.id}
                 className={cn(
-                  "flex h-full min-h-full flex-col border p-5 sm:p-7",
-                  featured ? "border-forest bg-forest text-soft" : "border-line bg-soft text-ink",
+                  "flex h-full min-h-full flex-col rounded-[1.25rem] border p-5 sm:p-7",
+                  featured ? "border-orange bg-ink text-soft" : "border-line bg-soft text-ink",
                 )}
               >
-                <p className={cn("text-[11px] uppercase tracking-[0.16em]", featured ? "text-sage" : "text-stone")}>
+                <p className={cn("text-[11px] font-medium uppercase tracking-[0.16em]", featured ? "text-orange" : "text-stone")}>
                   {featured ? dict.pricing.mostPopular : dict.pricing.kicker}
                 </p>
-                <h3 className="mt-4 min-h-[2.4em] font-serif text-[1.65rem] leading-tight">{pkg.name}</h3>
-                <p className="mt-5 font-serif text-4xl tracking-[-0.03em]">{formatPrice(pkg.priceCents, locale)}</p>
-                <p className={cn("mt-2 text-sm leading-relaxed", featured ? "text-soft/75" : "text-stone")}>
+                <h3 className="mt-4 min-h-[2.4em] font-display text-[1.45rem] font-semibold leading-tight tracking-[-0.02em]">
+                  {pkg.name}
+                </h3>
+                <p className="mt-5 font-display text-4xl font-semibold tracking-[-0.03em]">{formatPrice(pkg.priceCents, locale)}</p>
+                <p className={cn("mt-2 text-sm leading-relaxed", featured ? "text-soft/70" : "text-stone")}>
                   {pkg.knifeCount === 1 ? dict.pricing.knifeOne : interpolate(dict.pricing.knifeMany, { n: pkg.knifeCount })}
                 </p>
-                <p className={cn("mt-4 text-sm leading-relaxed", featured ? "text-soft/75" : "text-stone")}>
+                <p className={cn("mt-4 text-sm leading-relaxed", featured ? "text-soft/70" : "text-stone")}>
                   {formatPrice(per, locale)} {dict.pricing.perKnife}
                 </p>
                 <div className="mt-3 min-h-7">
                   {save > 0 ? (
                     <span
                       className={cn(
-                        "inline-flex whitespace-nowrap border px-2.5 py-1 text-[12px] leading-none",
-                        featured ? "border-soft/30 text-soft" : "border-line text-ink",
+                        "inline-flex whitespace-nowrap rounded-full border px-2.5 py-1 text-[12px] leading-none",
+                        featured ? "border-soft/25 text-soft" : "border-line text-ink",
                       )}
                     >
                       {dict.pricing.save} {formatPrice(save, locale)}
@@ -82,7 +84,7 @@ export function PricingGrid({
                   ) : null}
                 </div>
                 {pkg.features.length > 0 ? (
-                  <ul className={cn("mt-5 space-y-2 text-sm leading-relaxed", featured ? "text-soft/80" : "text-stone")}>
+                  <ul className={cn("mt-5 space-y-2 text-sm leading-relaxed", featured ? "text-soft/75" : "text-stone")}>
                     {pkg.features.map((feature) => (
                       <li key={feature}>{feature}</li>
                     ))}
@@ -92,8 +94,11 @@ export function PricingGrid({
                   <ButtonLink
                     href={`${localizedPath(locale, "book")}?package=${pkg.slug}`}
                     size="sm"
-                    variant={featured ? "light" : "primary"}
-                    className="h-auto min-h-12 w-full whitespace-normal px-3 py-2.5 text-center text-[13px] leading-snug sm:text-[14px]"
+                    variant={featured ? "primary" : "primary"}
+                    className={cn(
+                      "h-auto min-h-12 w-full whitespace-normal px-3 py-2.5 text-center text-[13px] leading-snug sm:text-[14px]",
+                      featured && "bg-orange text-soft hover:bg-orange-600",
+                    )}
                   >
                     {bookLabel}
                   </ButtonLink>
@@ -102,7 +107,7 @@ export function PricingGrid({
             );
           })}
         </div>
-        <div className="mt-8 border-t border-line pt-6">
+        <div className="mt-10 rounded-[1.25rem] border border-line bg-soft p-5 sm:p-7">
           <p className="kicker">{dict.pricing.zoneExamplesTitle}</p>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-stone">
             {interpolate(dict.pricing.zoneExamplesNote, {
@@ -110,7 +115,7 @@ export function PricingGrid({
               free: formatPrice(freeDeliveryThresholdCents, locale),
             })}
           </p>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {[...packages]
               .sort((a, b) => a.knifeCount - b.knifeCount)
               .map((pkg) => {
@@ -121,8 +126,10 @@ export function PricingGrid({
                   n: `${pkg.knifeCount} ${noun}`,
                 });
                 return (
-                  <li key={pkg.id} className="border border-line bg-soft px-4 py-3">
-                    <p className="font-serif text-[1.65rem] leading-none tracking-[-0.03em]">{formatPrice(total, locale)}</p>
+                  <li key={pkg.id} className="rounded-2xl border border-line bg-ivory px-4 py-4">
+                    <p className="font-display text-[1.55rem] font-semibold leading-none tracking-[-0.03em]">
+                      {formatPrice(total, locale)}
+                    </p>
                     <p className="mt-2 text-sm leading-snug text-stone">{label}</p>
                   </li>
                 );

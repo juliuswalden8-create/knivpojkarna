@@ -49,6 +49,7 @@ export const en = {
     prices: "Prices",
     business: "Business",
     areas: "Service areas",
+    faq: "FAQ",
     about: "About",
     book: "Book sharpening",
     menu: "Open menu",
@@ -81,13 +82,13 @@ export const en = {
 
   hero: {
     kicker: "Knife sharpening from Marbella to Fuengirola",
-    headline: "Sharp knives. Zero hassle.",
-    sub: "Professional knife sharpening, picked up and delivered to your door.",
+    headline: "Sharp knives. Without the hassle.",
+    sub: "We collect your dull kitchen knives, sharpen them with care, and deliver them back to your door.",
     viewPrices: "View prices",
-    primary: "Book a sharpening",
-    secondary: "Explore our service",
-    trust: "Precision, transparent prices, local service.",
-    location: "Marbella · Fuengirola",
+    primary: "Book knife sharpening",
+    secondary: "How it works",
+    trust: "Transparent prices. Local pickup and return. No invented promises.",
+    location: "Marbella · San Pedro · Nueva Andalucía · Puerto Banús",
     imageAlt: "Reference photograph of a knife blade on a dark stone",
     photoCredit: "Reference photograph. Not BladeBud’s workshop and not a customer’s knives.",
     scroll: "Scroll",
@@ -100,11 +101,23 @@ export const en = {
 
   how: {
     kicker: "The service",
-    title: "How the service works.",
+    title: "Professional sharpening. Made simple.",
     steps: [
-      { num: "01", title: "We collect", text: "Choose a package and tell us where to pick up your knives." },
-      { num: "02", title: "We sharpen", text: "We sharpen them carefully with professional equipment." },
-      { num: "03", title: "We return", text: "We bring them back to your address, ready to cook." },
+      {
+        num: "01",
+        title: "Book online",
+        text: "Choose how many knives you want sharpened and tell us where to collect them.",
+      },
+      {
+        num: "02",
+        title: "We collect & sharpen",
+        text: "We collect your knives and sharpen them with professional equipment suited to kitchen knives.",
+      },
+      {
+        num: "03",
+        title: "Delivered back sharp",
+        text: "Your knives are returned to your door, ready to use.",
+      },
     ],
     options: {
       title: "How we receive your knives",
@@ -119,13 +132,20 @@ export const en = {
     },
   },
 
+  brands: {
+    title: "We sharpen most major knife brands",
+    sub: "From everyday kitchen knives to premium chef's knives.",
+    disclaimer:
+      "Brand names and marks are shown for identification only. BladeBud is not affiliated with, endorsed by, or sponsored by these manufacturers.",
+  },
+
   pricing: {
     kicker: "Prices",
-    title: "Clear packages, from a single knife to a full set.",
+    title: "Simple pricing. Seriously sharp results.",
     intro: "Choose the package that fits your kitchen. Every package includes professional sharpening and an edge inspection.",
     perKnife: "per knife",
     save: "Save",
-    mostPopular: "Most popular",
+    mostPopular: "Popular choice",
     book: "Book now",
     knifeOne: "1 standard kitchen knife",
     knifeMany: "{n} standard kitchen knives",
@@ -161,23 +181,58 @@ export const en = {
 
   why: {
     kicker: "Why BladeBud",
-    title: "Pickup, sharpening, and a clear price.",
+    title: "Your knives deserve better.",
     items: [
       {
-        title: "Pickup and return",
-        text: "We collect your knives at your address and bring them back. One roundtrip, from Marbella to Fuengirola.",
+        title: "Convenient collection",
+        text: "We collect and return your knives at your address. One roundtrip fee by zone.",
       },
       {
-        title: "Professional sharpening",
-        text: "Each knife is sharpened with professional equipment, then the edge is checked.",
+        title: "Professional equipment",
+        text: "Careful sharpening with equipment suited to kitchen knives, then an edge check.",
       },
       {
-        title: "Clear pricing",
-        text: "Package prices are for sharpening. Delivery is a separate zone fee, shown before you register.",
+        title: "Transparent pricing",
+        text: "Know the package price and delivery fee before you register.",
       },
       {
         title: "Local service",
-        text: "Based in Marbella. You deal with the people who collect and sharpen.",
+        text: "Based in the Marbella area. You deal with the people who collect and sharpen.",
+      },
+    ],
+  },
+
+  homeFaq: {
+    kicker: "FAQ",
+    title: "Questions, answered clearly.",
+    items: [
+      {
+        q: "How does knife collection work?",
+        a: "You register a package and address. We contact you to confirm collection. Pickup and return is one roundtrip fee by zone — never charged separately.",
+      },
+      {
+        q: "How long does sharpening take?",
+        a: "We confirm timing with you when pickups are open. We do not promise same-day service.",
+      },
+      {
+        q: "What types of knives can you sharpen?",
+        a: "Standard kitchen knives such as chef’s, santoku, utility, paring, bread and carving knives. Serrated, Japanese single-bevel and ceramic blades need different handling — we confirm any extra cost first.",
+      },
+      {
+        q: "Can you sharpen Japanese knives?",
+        a: "Yes, we can look at them. Specialty blades may need a different approach, so we confirm the details with you before starting.",
+      },
+      {
+        q: "How much does delivery cost?",
+        a: "Pickup and return is a single roundtrip fee by zone: €5 / €8 / €12 depending on the area. Delivery is free when the sharpening subtotal is €49 or more.",
+      },
+      {
+        q: "How can I pay?",
+        a: "Payment is arranged directly with us when your knives are returned. Online payment is not required to register interest or book.",
+      },
+      {
+        q: "What happens if my knife is damaged?",
+        a: "Tell us in your request if a blade is chipped or damaged. We inspect first and confirm any repair or extra work with you before we start.",
       },
     ],
   },
@@ -209,7 +264,7 @@ export const en = {
 
   areas: {
     kicker: "Service",
-    title: "Knife sharpening from Marbella to Fuengirola.",
+    title: "Knife sharpening across Marbella.",
     intro:
       "Based in Marbella. We collect and return knives at your address between Marbella and Fuengirola, including San Pedro, Nueva Andalucía, Puerto Banús and Mijas Costa.",
     pickupNote:
@@ -264,7 +319,7 @@ export const en = {
     photoCaption: "John Julius Erik Walden, CEO",
     founderName: "John Julius Erik Walden",
     founderRole: "CEO",
-    meetTitle: "Meet the founders.",
+    meetTitle: "Meet BladeBud.",
     oliverName: "Oliver Landen",
     oliverRole: "Co-founder",
     oliverNote: "We do not have a portrait of Oliver to publish yet.",
@@ -278,9 +333,9 @@ export const en = {
   },
 
   cta: {
-    title: "Ready for a sharper kitchen?",
-    sub: "Send a booking request in a couple of minutes. We confirm the appointment with you personally.",
-    button: "Book your sharpening",
+    title: "Ready to bring your knives back to life?",
+    sub: "Book your sharpening in minutes. We’ll take care of the rest.",
+    button: "Book sharpening",
     secondary: "Chat on WhatsApp",
   },
 

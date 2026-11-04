@@ -31,16 +31,18 @@ export default async function BookPage({
   const paused = settings.businessStatus === "PAUSED";
 
   return (
-    <div className="container-x py-16 sm:py-24">
-      <p className="kicker">{paused ? dict.mode.pausedTitle : prelaunch ? dict.mode.bookingKicker : dict.booking.kicker}</p>
-      <h1 className="display mt-4 max-w-3xl text-[2.4rem] sm:text-5xl">
-        {paused ? dict.mode.pausedTitle : prelaunch ? dict.mode.bookingTitle : dict.booking.title}
-      </h1>
-      <p className="mt-4 max-w-2xl text-stone">
-        {paused ? dict.mode.pausedText : prelaunch ? dict.mode.bookingIntro : dict.booking.intro}
-      </p>
+    <div className="container-x py-14 sm:py-20 lg:py-24">
+      <div className="max-w-3xl">
+        <p className="kicker">{paused ? dict.mode.pausedTitle : prelaunch ? dict.mode.bookingKicker : dict.booking.kicker}</p>
+        <h1 className="display mt-4 text-[2.4rem] sm:text-5xl">
+          {paused ? dict.mode.pausedTitle : prelaunch ? dict.mode.bookingTitle : dict.booking.title}
+        </h1>
+        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-stone">
+          {paused ? dict.mode.pausedText : prelaunch ? dict.mode.bookingIntro : dict.booking.intro}
+        </p>
+      </div>
       {paused ? null : (
-        <div className="mt-10">
+        <div className="mt-10 rounded-[1.5rem] border border-line bg-soft p-5 sm:mt-12 sm:p-8 lg:p-10">
           <BookingFlow
             locale={locale}
             dict={dict}

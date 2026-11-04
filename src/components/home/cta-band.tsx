@@ -19,18 +19,19 @@ export function CtaBand({
   const wa = whatsappLink(whatsappNumber, dict.whatsapp.message);
   const prelaunch = businessStatus === "PRELAUNCH";
   return (
-    <section className="border-t border-line bg-forest text-soft">
-      <div className="container-x py-14 lg:py-28">
-        <h2 className="max-w-2xl font-serif text-[2.4rem] leading-[1.12] tracking-[-0.025em] sm:text-5xl">
+    <section className="border-t border-line bg-ink text-soft">
+      <div className="container-x py-16 text-center lg:py-24">
+        <h2 className="mx-auto max-w-2xl font-display text-[2.2rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-5xl">
           {prelaunch ? dict.mode.ctaTitle : dict.cta.title}
         </h2>
-        <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-soft/75">{prelaunch ? dict.mode.ctaSub : dict.cta.sub}</p>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-soft/70">
+          {prelaunch ? dict.mode.ctaSub : dict.cta.sub}
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <ButtonLink
             href={localizedPath(locale, "book")}
             size="lg"
-            variant="light"
-            className="h-auto min-h-12 whitespace-normal px-6 py-3 text-center leading-snug"
+            className="h-auto min-h-12 whitespace-normal px-7 py-3 text-center leading-snug"
           >
             {prelaunch ? dict.mode.registerCta : dict.cta.button}
           </ButtonLink>
@@ -39,7 +40,7 @@ export function CtaBand({
               href={wa}
               variant="secondary"
               size="lg"
-              className="h-auto min-h-12 whitespace-normal border-soft/30 px-6 py-3 text-center leading-snug text-soft hover:border-soft"
+              className="h-auto min-h-12 whitespace-normal border-soft/20 bg-transparent px-7 py-3 text-center leading-snug text-soft hover:border-soft/50 hover:bg-soft/5"
             >
               {dict.cta.secondary}
             </ButtonLink>

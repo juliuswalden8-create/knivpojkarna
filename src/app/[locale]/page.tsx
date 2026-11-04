@@ -3,9 +3,11 @@ import { getPackages, getSettings } from "@/lib/site";
 import { Hero } from "@/components/home/hero";
 import { AboutTeaser } from "@/components/home/about-teaser";
 import { HowItWorks } from "@/components/home/how-it-works";
+import { KnifeBrandsMarquee } from "@/components/home/knife-brands-marquee";
 import { PricingGrid } from "@/components/home/pricing-grid";
 import { Why } from "@/components/home/why";
 import { AreasMap } from "@/components/home/areas-map";
+import { FaqAccordion } from "@/components/home/faq-accordion";
 import { CtaBand } from "@/components/home/cta-band";
 import { JsonLd } from "@/components/seo/json-ld";
 
@@ -19,6 +21,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <JsonLd locale={locale} description={dict.meta.home.description} />
       <Hero locale={locale} dict={dict} businessStatus={settings.businessStatus} />
       <HowItWorks dict={dict} />
+      <KnifeBrandsMarquee dict={dict} />
       <PricingGrid
         locale={locale}
         dict={dict}
@@ -28,9 +31,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         zone1FeeCents={settings.deliveryZone1FeeCents}
         freeDeliveryThresholdCents={settings.freeDeliveryThresholdCents}
       />
-      <Why dict={dict} />
       <AreasMap locale={locale} dict={dict} businessStatus={settings.businessStatus} showMailIn={false} />
+      <Why dict={dict} />
       <AboutTeaser locale={locale} dict={dict} businessStatus={settings.businessStatus} variant="home" />
+      <FaqAccordion dict={dict} />
       <CtaBand
         locale={locale}
         dict={dict}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Instrument_Serif } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import { headers } from "next/headers";
 import { defaultLocale, localeHtmlLang } from "@/i18n/config";
 import { siteUrl } from "@/lib/site";
@@ -7,17 +7,16 @@ import { VercelAnalytics } from "@/components/layout/analytics";
 import { MotionProvider } from "@/components/ui/motion-provider";
 import "./globals.css";
 
-const serif = Instrument_Serif({
+const display = Manrope({
   subsets: ["latin"],
-  variable: "--font-instrument",
+  variable: "--font-manrope",
   display: "swap",
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["500", "600", "700"],
 });
 
-const sans = DM_Sans({
+const sans = Inter({
   subsets: ["latin"],
-  variable: "--font-dm",
+  variable: "--font-inter",
   display: "swap",
   weight: ["400", "500", "600"],
 });
@@ -55,7 +54,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const lang = localeHtmlLang[localeHeader as keyof typeof localeHtmlLang] ?? "en";
 
   return (
-    <html lang={lang} className={`${serif.variable} ${sans.variable} h-full antialiased`}>
+    <html lang={lang} className={`${display.variable} ${sans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-ivory font-sans text-ink">
         <MotionProvider>{children}</MotionProvider>
         <VercelAnalytics />

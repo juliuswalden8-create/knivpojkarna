@@ -39,12 +39,16 @@ export function AboutTeaser({
               imageClassName="object-[center_18%]"
               sizes="(min-width: 1024px) 24vw, 80vw"
             />
-            <p className="mt-4 font-serif text-[1.15rem] leading-none text-ink">{dict.about.founderName}</p>
+            <p className="mt-4 font-display text-[1.15rem] font-semibold leading-none tracking-[-0.02em] text-ink">
+              {dict.about.founderName}
+            </p>
             <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.18em] text-stone">{dict.about.founderRole}</p>
           </Reveal>
           <Reveal delay={0.08} className="flex flex-col justify-end">
-            <div className="border border-line bg-ivory p-6 sm:p-8">
-              <p className="font-serif text-[1.65rem] leading-none text-ink">{dict.about.oliverName}</p>
+            <div className="rounded-[1.25rem] border border-line bg-ivory p-6 sm:p-8">
+              <p className="font-display text-[1.55rem] font-semibold leading-none tracking-[-0.02em] text-ink">
+                {dict.about.oliverName}
+              </p>
               <p className="mt-3 text-[11px] font-medium uppercase tracking-[0.18em] text-stone">{dict.about.oliverRole}</p>
               <p className="mt-4 max-w-sm text-sm leading-relaxed text-stone">{dict.about.oliverNote}</p>
             </div>

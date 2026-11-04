@@ -38,8 +38,8 @@ export function Header({
   const links = [
     { href: `${localizedPath(locale, "home")}#how`, label: dict.nav.howItWorks },
     { href: localizedPath(locale, "prices"), label: dict.nav.prices },
-    { href: localizedPath(locale, "business"), label: dict.nav.business },
     { href: localizedPath(locale, "areas"), label: dict.nav.areas },
+    { href: `${localizedPath(locale, "home")}#faq`, label: dict.nav.faq },
     { href: localizedPath(locale, "about"), label: dict.nav.about },
   ];
 
@@ -47,22 +47,21 @@ export function Header({
     <header className={cn("relative shrink-0", open ? "z-[60]" : "z-50")}>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-forest focus:px-3 focus:py-2 focus:text-soft"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-full focus:bg-orange focus:px-3 focus:py-2 focus:text-soft"
       >
         {dict.nav.skip}
       </a>
-      {/* backdrop-filter would become the containing block for the fixed menu and collapse it to the bar height. */}
       <div className="border-b border-line bg-ivory/95 backdrop-blur-sm">
         <div className="container-x flex min-h-16 items-center justify-between gap-4 sm:min-h-[4.5rem]">
           <Link href={localizedPath(locale, "home")} className="relative z-10 shrink-0" aria-label="BladeBud">
             <Logo variant="header" />
           </Link>
-          <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-7 xl:flex" aria-label="Primary">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="whitespace-nowrap text-[13px] text-stone transition-colors hover:text-ink"
+                className="whitespace-nowrap text-[13px] font-medium text-stone transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
@@ -73,14 +72,14 @@ export function Header({
             <ButtonLink
               href={localizedPath(locale, "book")}
               size="sm"
-              className="h-auto min-h-10 whitespace-normal px-4 py-2 text-center leading-snug"
+              className="h-auto min-h-10 whitespace-normal px-5 py-2 text-center leading-snug"
             >
               {cta}
             </ButtonLink>
           </div>
           <button
             type="button"
-            className="relative z-10 inline-flex h-11 w-11 items-center justify-center text-ink xl:hidden"
+            className="relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full text-ink xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? dict.nav.close : dict.nav.menu}
@@ -110,7 +109,7 @@ export function Header({
             <Link
               key={link.href}
               href={link.href}
-              className="border-b border-line py-4 font-serif text-3xl text-ink"
+              className="border-b border-line py-4 font-display text-3xl font-semibold tracking-[-0.03em] text-ink"
               aria-current={pathname === link.href ? "page" : undefined}
             >
               {link.label}

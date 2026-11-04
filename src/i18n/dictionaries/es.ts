@@ -47,6 +47,7 @@ export const es: Dictionary = {
     prices: "Precios",
     business: "Empresas",
     areas: "Zonas de servicio",
+    faq: "FAQ",
     about: "Nosotros",
     book: "Reservar afilado",
     menu: "Abrir menú",
@@ -82,12 +83,12 @@ export const es: Dictionary = {
   hero: {
     kicker: "Afilado de cuchillos de Marbella a Fuengirola",
     headline: "Cuchillos afilados. Sin complicaciones.",
-    sub: "Afilado profesional de cuchillos con recogida y entrega a domicilio.",
+    sub: "Recogemos tus cuchillos de cocina, los afilamos con cuidado y te los devolvemos en casa.",
     viewPrices: "Ver precios",
-    primary: "Reservar un afilado",
-    secondary: "Conocer el servicio",
-    trust: "Precisión, precios claros, servicio local.",
-    location: "Marbella · Fuengirola",
+    primary: "Reservar afilado de cuchillos",
+    secondary: "Cómo funciona",
+    trust: "Precios transparentes. Recogida y devolución local. Sin promesas inventadas.",
+    location: "Marbella · San Pedro · Nueva Andalucía · Puerto Banús",
     imageAlt: "Fotografía de referencia de una hoja de cuchillo sobre una piedra oscura",
     photoCredit: "Fotografía de referencia. No es el taller de BladeBud ni los cuchillos de un cliente.",
     scroll: "Desliza",
@@ -100,11 +101,11 @@ export const es: Dictionary = {
 
   how: {
     kicker: "El servicio",
-    title: "Cómo funciona el servicio.",
+    title: "Afilado profesional. Hecho simple.",
     steps: [
-      { num: "01", title: "Recogemos", text: "Elige un paquete y dinos dónde recoger tus cuchillos." },
-      { num: "02", title: "Afilamos", text: "Los afilamos con cuidado y con equipo profesional." },
-      { num: "03", title: "Devolvemos", text: "Te los devolvemos en tu dirección, listos para cocinar." },
+      { num: "01", title: "Reserva online", text: "Elige cuántos cuchillos quieres afilar y dinos dónde recogerlos." },
+      { num: "02", title: "Recogemos y afilamos", text: "Recogemos tus cuchillos y los afilamos con equipo profesional para cocina." },
+      { num: "03", title: "Vuelven afilados", text: "Te los devolvemos en la puerta, listos para usar." },
     ],
     options: {
       title: "Cómo recibimos tus cuchillos",
@@ -119,13 +120,20 @@ export const es: Dictionary = {
     },
   },
 
+  brands: {
+    title: "Afilamos la mayoría de las grandes marcas de cuchillos",
+    sub: "Desde cuchillos de cocina cotidianos hasta cuchillos de chef premium.",
+    disclaimer:
+      "Los nombres y marcas se muestran solo para identificación. BladeBud no está afiliado, respaldado ni patrocinado por estos fabricantes.",
+  },
+
   pricing: {
     kicker: "Precios",
-    title: "Paquetes claros, de un cuchillo a la colección completa.",
+    title: "Precios simples. Resultados realmente afilados.",
     intro: "Elige el paquete que mejor se adapte a tu cocina. Todos incluyen afilado profesional e inspección del filo.",
     perKnife: "por cuchillo",
     save: "Ahorra",
-    mostPopular: "Más popular",
+    mostPopular: "Elección popular",
     book: "Reservar",
     knifeOne: "1 cuchillo de cocina estándar",
     knifeMany: "{n} cuchillos de cocina estándar",
@@ -161,23 +169,58 @@ export const es: Dictionary = {
 
   why: {
     kicker: "Por qué BladeBud",
-    title: "Recogida, afilado y un precio claro.",
+    title: "Tus cuchillos merecen algo mejor.",
     items: [
       {
-        title: "Recogida y devolución",
-        text: "Recogemos tus cuchillos en tu dirección y te los devolvemos. Un solo viaje de ida y vuelta, de Marbella a Fuengirola.",
+        title: "Recogida conveniente",
+        text: "Recogemos y devolvemos tus cuchillos en tu dirección. Una sola tarifa de ida y vuelta por zona.",
       },
       {
-        title: "Afilado profesional",
-        text: "Cada cuchillo se afila con equipo profesional y después se revisa el filo.",
+        title: "Equipo profesional",
+        text: "Afilado cuidadoso con equipo adecuado para cuchillos de cocina, y después una revisión del filo.",
       },
       {
-        title: "Precios claros",
-        text: "El precio del paquete es el afilado. La entrega es una tarifa por zona, visible antes de registrarte.",
+        title: "Precios transparentes",
+        text: "Conoces el precio del paquete y la tarifa de entrega antes de registrarte.",
       },
       {
         title: "Servicio local",
-        text: "Con base en Marbella. Tratas con las personas que recogen y afilan.",
+        text: "Con base en la zona de Marbella. Tratas con las personas que recogen y afilan.",
+      },
+    ],
+  },
+
+  homeFaq: {
+    kicker: "FAQ",
+    title: "Preguntas, con respuestas claras.",
+    items: [
+      {
+        q: "¿Cómo funciona la recogida de cuchillos?",
+        a: "Registras un paquete y una dirección. Te contactamos para confirmar la recogida. Recogida y devolución es una sola tarifa de ida y vuelta por zona — nunca por separado.",
+      },
+      {
+        q: "¿Cuánto tarda el afilado?",
+        a: "Confirmamos los tiempos contigo cuando abramos las recogidas. No prometemos servicio el mismo día.",
+      },
+      {
+        q: "¿Qué tipos de cuchillos podéis afilar?",
+        a: "Cuchillos de cocina estándar como chef, santoku, de uso general, puntilla, pan y trinchar. Las hojas serradas, japonesas de un solo bisel y cerámicas requieren otro tratamiento — confirmamos cualquier coste extra antes.",
+      },
+      {
+        q: "¿Podéis afilar cuchillos japoneses?",
+        a: "Sí, podemos revisarlos. Las hojas especiales pueden necesitar otro enfoque, así que confirmamos los detalles contigo antes de empezar.",
+      },
+      {
+        q: "¿Cuánto cuesta la entrega?",
+        a: "Recogida y devolución es una sola tarifa de ida y vuelta por zona: 5 € / 8 € / 12 € según el área. La entrega es gratis cuando el subtotal de afilado es de 49 € o más.",
+      },
+      {
+        q: "¿Cómo puedo pagar?",
+        a: "El pago se acuerda directamente con nosotros al devolverte los cuchillos. No es necesario pagar online para registrar interés o reservar.",
+      },
+      {
+        q: "¿Qué pasa si mi cuchillo está dañado?",
+        a: "Indícalo en tu solicitud si la hoja está astillada o dañada. Inspeccionamos primero y confirmamos cualquier reparación o trabajo extra contigo antes de empezar.",
       },
     ],
   },
@@ -209,7 +252,7 @@ export const es: Dictionary = {
 
   areas: {
     kicker: "Servicio",
-    title: "Afilado de cuchillos de Marbella a Fuengirola.",
+    title: "Afilado de cuchillos en Marbella.",
     intro:
       "Con base en Marbella. Recogemos y devolvemos cuchillos en tu dirección entre Marbella y Fuengirola, incluyendo San Pedro, Nueva Andalucía, Puerto Banús y Mijas Costa.",
     pickupNote:
@@ -264,7 +307,7 @@ export const es: Dictionary = {
     photoCaption: "John Julius Erik Walden, CEO",
     founderName: "John Julius Erik Walden",
     founderRole: "CEO",
-    meetTitle: "Los fundadores.",
+    meetTitle: "Conoce BladeBud.",
     oliverName: "Oliver Landen",
     oliverRole: "Cofundador",
     oliverNote: "Todavía no tenemos un retrato de Oliver para publicar.",
@@ -278,9 +321,9 @@ export const es: Dictionary = {
   },
 
   cta: {
-    title: "¿Listo para una cocina más afilada?",
-    sub: "Envía una solicitud en un par de minutos. Confirmamos la cita contigo personalmente.",
-    button: "Reserva tu afilado",
+    title: "¿Listo para devolver la vida a tus cuchillos?",
+    sub: "Reserva tu afilado en minutos. Nosotros nos encargamos del resto.",
+    button: "Reservar afilado",
     secondary: "Escríbenos por WhatsApp",
   },
 

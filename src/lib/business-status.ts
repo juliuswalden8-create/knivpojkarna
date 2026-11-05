@@ -18,7 +18,7 @@ export function parseBusinessStatus(value: string | null | undefined): BusinessS
  */
 export function resolveBusinessStatus(
   stored: string | null | undefined,
-  env: NodeJS.ProcessEnv = process.env,
+  env: Record<string, string | undefined> = process.env as Record<string, string | undefined>,
 ): BusinessStatus {
   const parsed = parseBusinessStatus(stored);
   if (env.VERCEL_ENV !== "preview") return parsed;

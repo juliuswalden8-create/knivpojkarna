@@ -2,6 +2,7 @@ export const PAYMENT_METHODS = [
   { value: "SWISH", label: "Swish" },
   { value: "BIZUM", label: "Bizum" },
   { value: "CASH", label: "Cash" },
+  { value: "STRIPE", label: "Stripe" },
 ] as const;
 
 export const PAYMENT_CURRENCIES = ["EUR", "SEK"] as const;
@@ -146,7 +147,8 @@ export function parsePaymentDraft(
   },
   now: Date,
 ): PaymentDraftResult {
-  if (!METHOD_VALUES.has(input.method)) return { ok: false, error: "Choose Swish, Bizum, or Cash." };
+  if (!METHOD_VALUES.has(input.method)) return { ok: false, error: "Choose Swish, Bizum, Cash, or Stripe." };
+  if (input.method === "STRIPE") return { ok: false, error: "Stripe payments are recorded automatically from Checkout." };
   if (input.currency !== "EUR" && input.currency !== "SEK") return { ok: false, error: "Choose EUR or SEK." };
   if (!UUID.test(input.idempotencyKey.trim())) return { ok: false, error: "This payment form is no longer valid. Reload the page." };
 

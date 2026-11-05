@@ -51,7 +51,10 @@ export function BookingPayments({
   return (
     <section className="mt-8">
       <h2 className="font-serif text-2xl">Payments</h2>
-      <p className="mt-2 text-sm text-stone">Recorded manually. Nothing is sent to Swish, Bizum, or a bank, and no payment email is sent.</p>
+      <p className="mt-2 text-sm text-stone">
+        Manual records for Swish, Bizum, or cash. Stripe Checkout payments appear here automatically after a successful
+        payment — do not enter them by hand.
+      </p>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="border border-line bg-soft px-4 py-4 text-sm">
           <span className="kicker block">Total booking amount</span>
@@ -155,7 +158,7 @@ function PaymentForm({
         <label>
           <span className="kicker">Payment method</span>
           <select name="method" required className="field mt-2" defaultValue="SWISH">
-            {PAYMENT_METHODS.map((method) => (
+            {PAYMENT_METHODS.filter((method) => method.value !== "STRIPE").map((method) => (
               <option key={method.value} value={method.value}>
                 {method.label}
               </option>

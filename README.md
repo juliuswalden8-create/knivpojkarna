@@ -30,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000). Admin: [http://localhost:30
 
 ## What you can do in admin
 
-- Switch business status: **PRELAUNCH** (interest only), **ACTIVE** (booking requests), **PAUSED** (no new requests)
+- Switch business status: **PRELAUNCH** (interest only), **ACTIVE** (Stripe Checkout booking), **PAUSED** (no new requests)
 - View pickup/return requests and update operational stages (confirmation is blocked while PRELAUNCH)
 - Manage business quote inquiries
 - Edit package prices
@@ -40,9 +40,9 @@ Open [http://localhost:3000](http://localhost:3000). Admin: [http://localhost:30
 - View monthly estimated revenue from completed jobs
 - Export bookings as CSV
 
-Public submissions are stored as **NEW requests**. They are not confirmed appointments. Payments are not implemented. Email templates are ready (Resend) and stay off until `RESEND_API_KEY` and `EMAIL_FROM` are set.
+Public submissions are stored as **NEW requests**. They are not confirmed appointments. When status is **ACTIVE**, the booking form creates a Stripe Checkout Session with a server-calculated total (package + zone fee). Paid sessions are recorded as `BookingPayment` rows via webhook (`/api/stripe/webhook`) or the success-page sync. Email templates are ready (Resend) and stay off until `RESEND_API_KEY` and `EMAIL_FROM` are set.
 
-Default site mode is **PRELAUNCH**: customers can register interest, no appointment is confirmed, and no payment is collected. Change this in Admin → Settings.
+Default site mode is **PRELAUNCH**: customers can register interest, no appointment is confirmed, and no payment is collected. Change this in Admin → Settings when you are ready to take Stripe payments.
 
 See `LAUNCH_AUDIT.md` for launch blockers, credentials and remaining work.
 

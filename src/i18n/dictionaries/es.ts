@@ -248,7 +248,7 @@ export const es: Dictionary = {
       },
       {
         q: "¿Cómo se paga?",
-        a: "El pago se acuerda directamente con nosotros al devolverte los cuchillos. No es necesario pagar online para reservar.",
+        a: "Cuando las reservas están abiertas pagas de forma segura online con Stripe Checkout al enviar la solicitud. El total se calcula en nuestro servidor según el paquete y la zona de recogida.",
       },
     ],
   },
@@ -302,7 +302,7 @@ export const es: Dictionary = {
       },
       {
         q: "¿Cómo puedo pagar?",
-        a: "El pago se acuerda directamente con nosotros al devolverte los cuchillos. No es necesario pagar online para registrar interés o reservar.",
+        a: "Durante el prelanzamiento no se realiza ningún pago. Cuando abramos las reservas pagarás online con Stripe Checkout; el total se calcula en nuestro servidor según el paquete y la zona de recogida.",
       },
       {
         q: "¿Qué pasa si mi cuchillo está dañado?",
@@ -471,9 +471,9 @@ export const es: Dictionary = {
     kicker: "Reserva online",
     title: "Reserva tu afilado.",
     intro: "Elige un paquete, dinos dónde recoger tus cuchillos y confirmaremos la recogida contigo.",
-    successActiveTitle: "Solicitud recibida.",
+    successActiveTitle: "Pago confirmado.",
     successActiveText:
-      "Gracias. Tenemos tu solicitud de reserva y te contactaremos para confirmar la recogida. Todavía no es una cita confirmada.",
+      "Gracias. Hemos recibido tu pago y te contactaremos para confirmar la recogida. El pago por sí solo no reserva una franja en el calendario.",
     steps: {
       package: "Paquete",
       knives: "Cuchillos",
@@ -580,22 +580,26 @@ export const es: Dictionary = {
       deliveryOutside: "Fuera de la zona de servicio — la recogida no está confirmada",
       status: "Estado de la solicitud",
       statusPrelaunch: "Manifestación de interés — no es un pedido confirmado. Te contactaremos cuando abramos las reservas.",
-      statusActive: "Solicitud recibida — te contactaremos para confirmar la recogida. Esto no es una cita confirmada.",
+      statusActive: "Pagarás de forma segura online y después confirmaremos la recogida contigo. El pago por sí solo no reserva una franja.",
       statusOutside: "Interés registrado desde fuera de la zona de lanzamiento — la recogida no está confirmada.",
-      estimate: "Total estimado",
+      estimate: "Total",
       estimateNote:
-        "Subtotal de afilado más una sola tarifa de recogida y devolución de ida y vuelta. Esto no es una cita confirmada y no se realiza ningún pago ahora.",
+        "Subtotal de afilado más una sola tarifa de recogida y devolución de ida y vuelta. Pagas este importe de forma segura con Stripe Checkout. Después confirmamos contigo la hora de recogida.",
       interestNote:
         "Esto es una manifestación de interés, no un pedido confirmado. No se realiza ningún pago ahora. Te contactaremos cuando abramos las reservas.",
       extraKnivesOne: "{n} cuchillo adicional a {price} cada uno",
       extraKnivesMany: "{n} cuchillos adicionales a {price} cada uno",
       submit: "Enviar solicitud de reserva",
+      paySubmit: "Pagar de forma segura",
       damagedYes: "Hojas dañadas: sí",
     },
     success: {
       kicker: "Solicitud recibida",
       title: "¡Gracias! Hemos recibido tu solicitud.",
       text: "¡Gracias! Hemos recibido tu solicitud y te contactaremos para confirmar los detalles de la recogida.",
+      paidKicker: "Pago recibido",
+      paidTitle: "Gracias — tu pago está confirmado.",
+      paidText: "Hemos recibido tu pago y te contactaremos para confirmar los detalles de la recogida.",
       reference: "Tu referencia de reserva",
       keep: "Guarda esta referencia para cualquier consulta sobre tu reserva.",
       summary: "Resumen",
@@ -615,6 +619,9 @@ export const es: Dictionary = {
       paused: "Las solicitudes nuevas están pausadas. Vuelve a consultarnos más adelante.",
       rate: "Demasiadas solicitudes. Espera un momento e inténtalo de nuevo.",
       save: "No hemos podido guardar tu solicitud. Inténtalo de nuevo.",
+      zone: "Todavía no podemos confirmar una tarifa fija de recogida para esta dirección. Elige una localidad de la lista o escríbenos por WhatsApp.",
+      payment: "El pago online no está disponible temporalmente. Inténtalo de nuevo o escríbenos por WhatsApp.",
+      paid: "Esta reserva ya está pagada. Revisa tu email con la referencia, o contáctanos si necesitas ayuda.",
     },
   },
 

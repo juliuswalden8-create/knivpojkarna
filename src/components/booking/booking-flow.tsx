@@ -9,6 +9,7 @@ import type { PublicPackage } from "@/lib/pricing";
 import { formatPrice, interpolate } from "@/lib/utils";
 import { isDateAvailable, monthGrid, parseTimeSlots, parseWeekdays } from "@/lib/dates";
 import { submitBooking } from "@/lib/actions/booking";
+import { createCheckoutBooking } from "@/lib/actions/checkout";
 import { Button } from "@/components/ui/button";
 import { SelectField } from "@/components/ui/select-field";
 import { cn } from "@/lib/utils";
@@ -19,6 +20,7 @@ import {
   resolveDeliveryLocation,
   type DeliveryFeeSettings,
 } from "@/lib/delivery-zones";
+import { isPayableQuote } from "@/lib/stripe-checkout";
 
 type Props = {
   locale: Locale;
@@ -134,11 +136,16 @@ export function BookingFlow(props: Props) {
   async function submit() {
     if (pending) return;
     setError(null);
+    if (!prelaunch && quote && !isPayableQuote(quote)) {
+      setFieldError("area");
+      setError(dict.booking.errors.zone);
+      return;
+    }
     setPending(true);
-    const result = await submitBooking({
+    const payload = {
       locale,
       packageId,
-      serviceType: "PICKUP",
+      serviceType: "PICKUP" as const,
       addressLine,
       postalCode,
       areaName,
@@ -152,16 +159,31 @@ export function BookingFlow(props: Props) {
       comments: null,
       consent: true as const,
       website: "",
-    });
-    if (!result.ok) {
+    };
+    if (prelaunch) {
+      const result = await submitBooking(payload);
+      if (!result.ok) {
+        setPending(false);
+        setError(
+          dict.booking.errors[result.error as keyof typeof dict.booking.errors] ||
+            (result.error === "save" ? dict.booking.errors.save : dict.common.unknownError),
+        );
+        return;
+      }
+      router.push(`${localizedPath(locale, "book")}/success?ref=${encodeURIComponent(result.reference)}`);
+      return;
+    }
+
+    const checkout = await createCheckoutBooking(payload);
+    if (!checkout.ok) {
       setPending(false);
       setError(
-        dict.booking.errors[result.error as keyof typeof dict.booking.errors] ||
-          (result.error === "save" ? dict.booking.errors.save : dict.common.unknownError),
+        dict.booking.errors[checkout.error as keyof typeof dict.booking.errors] ||
+          (checkout.error === "save" ? dict.booking.errors.save : dict.common.unknownError),
       );
       return;
     }
-    router.push(`${localizedPath(locale, "book")}/success?ref=${encodeURIComponent(result.reference)}`);
+    window.location.href = checkout.checkoutUrl;
   }
 
   const townLabel =
@@ -473,8 +495,12 @@ export function BookingFlow(props: Props) {
             {dict.common.next}
           </Button>
         ) : (
-          <Button type="button" onClick={submit} disabled={pending}>
-            {pending ? dict.common.submitting : prelaunch ? dict.mode.bookingSubmit : dict.booking.review.submit}
+          <Button type="button" onClick={submit} disabled={pending || (!prelaunch && !!quote && !isPayableQuote(quote))}>
+            {pending
+              ? dict.common.submitting
+              : prelaunch
+                ? dict.mode.bookingSubmit
+                : dict.booking.review.paySubmit}
           </Button>
         )}
       </div>

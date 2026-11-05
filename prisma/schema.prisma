@@ -131,10 +131,12 @@ model Booking {
   locale              String    @default("en")
   consentAt           DateTime
   adminNotes          String?
+  /// Stripe Checkout Session id (cs_…). Null until a paid checkout is started.
+  stripeCheckoutSessionId String? @unique
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
   emails              EmailLog[]
-  /// Manual payment records. The booking total is never derived from these rows.
+  /// Payment records (manual Swish/Bizum/Cash or Stripe Checkout). The booking total is never derived from these rows.
   payments            BookingPayment[]
 
   @@index([status])
@@ -221,7 +223,7 @@ model BookingPayment {
   id                String    @id @default(cuid())
   bookingId         String
   booking           Booking   @relation(fields: [bookingId], references: [id], onDelete: Restrict)
-  /// SWISH | BIZUM | CASH
+  /// SWISH | BIZUM | CASH | STRIPE
   method            String
   /// EUR | SEK
   currency          String

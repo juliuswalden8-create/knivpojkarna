@@ -248,7 +248,7 @@ export const en = {
       },
       {
         q: "How do I pay?",
-        a: "Payment is arranged directly with us when your knives are returned. Online payment is not required to book.",
+        a: "When bookings are open you pay securely online with Stripe Checkout when you submit your request. The total is calculated on our server from your package and pickup zone.",
       },
     ],
   },
@@ -302,7 +302,7 @@ export const en = {
       },
       {
         q: "How can I pay?",
-        a: "Payment is arranged directly with us when your knives are returned. Online payment is not required to register interest or book.",
+        a: "During prelaunch no payment is taken. When bookings open you pay online via Stripe Checkout — the total is calculated on our server from your package and pickup zone.",
       },
       {
         q: "What happens if my knife is damaged?",
@@ -471,9 +471,9 @@ export const en = {
     kicker: "Online booking",
     title: "Book your sharpening.",
     intro: "Choose a package, tell us where to collect your knives, and we will confirm the pickup with you.",
-    successActiveTitle: "Request received.",
+    successActiveTitle: "Payment confirmed.",
     successActiveText:
-      "Thank you. We have your booking request and will contact you to confirm collection. This is not yet a confirmed appointment.",
+      "Thank you. Your payment was received and we will contact you to confirm collection. Paying does not by itself lock a calendar slot.",
     steps: {
       package: "Package",
       knives: "Knives",
@@ -580,22 +580,26 @@ export const en = {
       deliveryOutside: "Outside the service area — pickup is not confirmed",
       status: "Booking status",
       statusPrelaunch: "Expression of interest — not a confirmed order. We will contact you when bookings open.",
-      statusActive: "Request received — we will contact you to confirm pickup. This is not a confirmed appointment.",
+      statusActive: "You will pay securely online, then we confirm pickup with you. Payment does not lock a calendar slot by itself.",
       statusOutside: "Interest registered from outside the launch area — pickup is not confirmed.",
-      estimate: "Estimated total",
+      estimate: "Total",
       estimateNote:
-        "Sharpening subtotal plus a single roundtrip pickup-and-return fee. This is not a confirmed appointment, and no payment is taken now.",
+        "Sharpening subtotal plus a single roundtrip pickup-and-return fee. You pay this amount securely via Stripe Checkout. We still confirm the pickup time with you afterwards.",
       interestNote:
         "This is an expression of interest, not a confirmed order. No payment is taken now. We will contact you when bookings open.",
       extraKnivesOne: "{n} extra knife at {price} each",
       extraKnivesMany: "{n} extra knives at {price} each",
       submit: "Send booking request",
+      paySubmit: "Pay securely",
       damagedYes: "Damaged blades: yes",
     },
     success: {
       kicker: "Request received",
       title: "Thank you! Your request is in.",
       text: "Thank you! We've received your request and will contact you to confirm the pickup details.",
+      paidKicker: "Payment received",
+      paidTitle: "Thank you — your payment is confirmed.",
+      paidText: "We have received your payment and will contact you to confirm the pickup details.",
       reference: "Your booking reference",
       keep: "Keep this reference for any questions about your booking.",
       summary: "Summary",
@@ -615,6 +619,9 @@ export const en = {
       paused: "New requests are paused. Please check back later.",
       rate: "Too many requests. Please wait a moment and try again.",
       save: "We could not save your request. Please try again.",
+      zone: "We cannot confirm a fixed pickup fee for this address yet. Choose a listed town or contact us on WhatsApp.",
+      payment: "Online payment is temporarily unavailable. Please try again or message us on WhatsApp.",
+      paid: "This booking is already paid. Check your email for the reference, or contact us if you need help.",
     },
   },
 

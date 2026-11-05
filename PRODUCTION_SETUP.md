@@ -84,6 +84,11 @@ The public site is `https://www.bladebud.com`. A `*.vercel.app` host is only a d
 | `WHATSAPP_NUMBER` | No | Optional |
 | `CONTACT_EMAIL` | No | Optional |
 | `RESEND_API_KEY` / `EMAIL_FROM` | No | Leave empty for now |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Yes | Yes when taking Stripe payments (`pk_live_…` in Production) |
+| `STRIPE_SECRET_KEY` | No | Yes when taking Stripe payments (`sk_live_…` in Production) |
+| `STRIPE_WEBHOOK_SECRET` | No | Yes — Stripe Dashboard webhook for `https://www.bladebud.com/api/stripe/webhook` (`checkout.session.completed`) |
+
+Use **test** keys (`pk_test_` / `sk_test_`) on Preview/local only. Never commit secret keys. Stripe Checkout runs only when Admin → Settings → business status is **ACTIVE**.
 
 6. Deploy.
 7. Confirm Production `NEXT_PUBLIC_SITE_URL` is `https://www.bladebud.com`. Do not use `https://knivpojkarna.vercel.app` or any other `*.vercel.app` host.

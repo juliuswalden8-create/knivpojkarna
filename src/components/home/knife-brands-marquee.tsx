@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 /**
- * Brand marks for identification only (see on-page disclaimer).
+ * Brand marks for identification only.
  * Prefer Wikimedia Commons trademark SVGs where available; otherwise
  * brand-colored wordmarks / lockups that match the public brand identity.
  */
@@ -63,29 +63,25 @@ function BrandSequence({ ariaHidden }: { ariaHidden?: boolean }) {
 export function KnifeBrandsMarquee({ dict }: { dict: Dictionary }) {
   return (
     <section id="brands" className="overflow-x-hidden border-t border-line bg-ivory" aria-labelledby="brands-heading">
-      <div className="container-x py-14 lg:py-20">
-        <div className="mx-auto max-w-2xl text-center">
+      <div className="container-x py-12 lg:py-16">
+        <div className="mx-auto max-w-xl text-center">
           <h2 id="brands-heading" className="display text-[1.45rem] uppercase tracking-[0.1em] sm:text-[1.75rem]">
             {dict.brands.title}
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-stone sm:text-[16px]">{dict.brands.sub}</p>
         </div>
-      </div>
 
-      <div className="brand-marquee relative overflow-hidden pb-4 lg:pb-6">
-        <div className="brand-marquee-track">
-          <BrandSequence ariaHidden />
-          <BrandSequence ariaHidden />
+        <div className="brand-marquee relative mx-auto mt-10 max-w-4xl overflow-hidden sm:mt-12">
+          <div className="brand-marquee-track">
+            <BrandSequence ariaHidden />
+            <BrandSequence ariaHidden />
+          </div>
+          <ul className="sr-only">
+            {BRANDS.map((brand) => (
+              <li key={brand.name}>{brand.name}</li>
+            ))}
+          </ul>
         </div>
-        <ul className="sr-only">
-          {BRANDS.map((brand) => (
-            <li key={brand.name}>{brand.name}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="container-x pb-12 lg:pb-16">
-        <p className="mx-auto max-w-2xl text-center text-[12px] leading-relaxed text-stone/80">{dict.brands.disclaimer}</p>
       </div>
     </section>
   );

@@ -66,10 +66,16 @@ function isLocalOrigin(url: string) {
   return /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(url);
 }
 
-export function siteUrl() {
-  const configured = (process.env.NEXT_PUBLIC_SITE_URL || "").trim().replace(/\/$/, "");
+export function siteUrl(env: Record<string, string | undefined> = process.env as Record<string, string | undefined>) {
+  // Preview Checkout return URLs must stay on the Preview host, never production.
+  if (env.VERCEL_ENV === "preview") {
+    const vercelHost = (env.VERCEL_URL || "").trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
+    if (vercelHost) return `https://${vercelHost}`;
+  }
+
+  const configured = (env.NEXT_PUBLIC_SITE_URL || "").trim().replace(/\/$/, "");
   if (!configured || isLocalOrigin(configured)) {
-    return process.env.NODE_ENV === "production" ? CANONICAL_SITE_URL : configured || "http://localhost:3000";
+    return env.NODE_ENV === "production" ? CANONICAL_SITE_URL : configured || "http://localhost:3000";
   }
   try {
     const host = new URL(configured).hostname.toLowerCase();
@@ -79,7 +85,7 @@ export function siteUrl() {
     if (host.endsWith(".vercel.app")) return CANONICAL_SITE_URL;
     return configured;
   } catch {
-    return process.env.NODE_ENV === "production" ? CANONICAL_SITE_URL : "http://localhost:3000";
+    return env.NODE_ENV === "production" ? CANONICAL_SITE_URL : "http://localhost:3000";
   }
 }
 

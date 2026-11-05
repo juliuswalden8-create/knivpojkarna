@@ -57,6 +57,27 @@ test("local development keeps a localhost site URL", () => {
   });
 });
 
+test("Vercel Preview keeps Checkout return URLs on the Preview host", () => {
+  assert.equal(
+    siteUrl({
+      VERCEL_ENV: "preview",
+      VERCEL_URL: "knivpojkarna-preview.vercel.app",
+      NEXT_PUBLIC_SITE_URL: "https://www.bladebud.com",
+      NODE_ENV: "production",
+    }),
+    "https://knivpojkarna-preview.vercel.app",
+  );
+  assert.equal(
+    siteUrl({
+      VERCEL_ENV: "production",
+      VERCEL_URL: "knivpojkarna-preview.vercel.app",
+      NEXT_PUBLIC_SITE_URL: "https://knivpojkarna.vercel.app",
+      NODE_ENV: "production",
+    }),
+    CANONICAL,
+  );
+});
+
 test("public pages declare self-canonical bladebud URLs and EN/ES alternates", () => {
   withEnv({ NODE_ENV: "production", NEXT_PUBLIC_SITE_URL: "https://knivpojkarna.vercel.app" }, () => {
     assert.deepEqual(enabledLocales, ["en", "es"]);

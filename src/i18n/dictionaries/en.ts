@@ -70,19 +70,43 @@ export const en = {
     pausedBanner: "New requests are paused for the moment. Existing customer records remain with us. Please check back soon.",
     ctaTitle: "Be first in line for sharper knives.",
     ctaSub:
-      "Leave your details and we'll contact you when pickups open in your area. This is not a confirmed appointment, and no payment is taken.",
-    bookingKicker: "Pre-launch interest",
-    bookingTitle: "Register your interest.",
+      "Leave your name, a way to reach you, and your town. We'll contact you when pickups open. This is not a confirmed appointment, and no payment is taken.",
+    bookingKicker: "Pre-launch waitlist",
+    bookingTitle: "Join the waitlist.",
     bookingIntro:
-      "Tell us your package, address and town. We store your interest and contact you when pickup bookings open. This is an expression of interest, not a confirmed order, and no payment is taken.",
+      "Share your name, email or WhatsApp, and your town. We store your interest and contact you when pickup bookings open. No package or address needed yet — and no payment is taken.",
     bookingSubmit: "Join the waitlist",
-    successTitle: "Thank you for your interest.",
-    successText: "Thank you for your interest! We'll contact you when BladeBud opens for bookings.",
-    successKeep: "Keep this reference if you write to us about your interest.",
+    successTitle: "You're on the waitlist.",
+    successText:
+      "Thank you. We have saved your interest and will contact you when BladeBud opens pickups in your area. This is not a confirmed appointment.",
+    successKeep: "Keep this reference if you write to us about your waitlist spot.",
     pausedTitle: "Requests are paused.",
     pausedText: "We are not accepting new household or business requests right now. Existing records remain with us.",
     consent:
       "I agree that BladeBud stores my details to register this interest, as described in the",
+  },
+
+  waitlist: {
+    formTitle: "Your details",
+    formText: "A short form — we only need enough to reach you when pickups open.",
+    emailLabel: "Email",
+    emailPlaceholder: "name@example.com",
+    whatsappLabel: "WhatsApp",
+    whatsappPlaceholder: "+34 600 000 000",
+    contactHint: "Leave an email, a WhatsApp number, or both — at least one is required.",
+    errors: {
+      contact: "Please add an email or a WhatsApp number so we can reach you.",
+    },
+  },
+
+  experience: {
+    kicker: "The BladeBud experience",
+    title: "Every knife deserves a second edge",
+    sub: "Professional sharpening for everyday kitchen knives — collected at your door and returned ready to cut again.",
+    imageAlt: "Black and white photograph of a kitchen knife being sharpened on a stone",
+    photoCredit: "Photo: Emanuele Ricciardi / Pexels",
+    tagline: "Less effort. Better cutting.",
+    promise: "We collect. We sharpen. We deliver.",
   },
 
   hero: {
@@ -95,7 +119,7 @@ export const en = {
     secondary: "How it works",
     trust: "Transparent prices. Local pickup and return. No invented promises.",
     location: "Marbella · San Pedro · Nueva Andalucía · Puerto Banús",
-    imageAlt: "Decorative Costa del Sol service map",
+    imageAlt: "Black and white photograph of a kitchen knife on a sharpening stone",
     photoCredit: "",
     scroll: "Scroll",
     stats: [
@@ -106,13 +130,13 @@ export const en = {
   },
 
   how: {
-    kicker: "The service",
-    title: "Professional sharpening. Made simple.",
+    kicker: "How it works",
+    title: "Three steps. From door to door.",
     steps: [
       {
         num: "01",
-        title: "Book online",
-        text: "Choose how many knives you want sharpened and tell us where to collect them.",
+        title: "Join or book",
+        text: "Tell us you want sharper knives. When pickups are open, choose a package and where to collect them.",
       },
       {
         num: "02",
@@ -230,24 +254,24 @@ export const en = {
   },
 
   why: {
-    kicker: "Why BladeBud",
-    title: "Your knives deserve better.",
+    kicker: "Why sharp knives",
+    title: "Cooking gets easier when the edge is true.",
     items: [
       {
-        title: "Convenient collection",
+        title: "Less force, more control",
+        text: "A sharp edge glides instead of crushing. Prep feels lighter and safer.",
+      },
+      {
+        title: "Cleaner cuts",
+        text: "Tomatoes, herbs and proteins keep their texture when the blade does the work.",
+      },
+      {
+        title: "Door-to-door care",
         text: "We collect and return your knives at your address. One roundtrip fee by zone.",
       },
       {
-        title: "Professional equipment",
-        text: "Careful sharpening with equipment suited to kitchen knives, then an edge check.",
-      },
-      {
-        title: "Transparent pricing",
-        text: "Know the package price and delivery fee before you register.",
-      },
-      {
-        title: "Local service",
-        text: "Based in the Marbella area. You deal with the people who collect and sharpen.",
+        title: "Clear prices",
+        text: "Package prices and delivery fees are shown up front. No invented promises.",
       },
     ],
   },
@@ -258,7 +282,7 @@ export const en = {
     items: [
       {
         q: "How does knife collection work?",
-        a: "You register a package and address. We contact you to confirm collection. Pickup and return is one roundtrip fee by zone — never charged separately.",
+        a: "Join the waitlist or book when pickups are open. We contact you to confirm collection. Pickup and return is one roundtrip fee by zone — never charged separately.",
       },
       {
         q: "How long does sharpening take?",
@@ -447,6 +471,9 @@ export const en = {
     kicker: "Online booking",
     title: "Book your sharpening.",
     intro: "Choose a package, tell us where to collect your knives, and we will confirm the pickup with you.",
+    successActiveTitle: "Request received.",
+    successActiveText:
+      "Thank you. We have your booking request and will contact you to confirm collection. This is not yet a confirmed appointment.",
     steps: {
       package: "Package",
       knives: "Knives",

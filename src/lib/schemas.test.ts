@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { bookingSchema, inquirySchema } from "./schemas";
+import { bookingSchema, inquirySchema, waitlistSchema } from "./schemas";
 
 const validBooking = {
   locale: "en" as const,
@@ -74,4 +74,31 @@ test("rejects invalid business inquiry input", () => {
 
 test("accepts a valid business inquiry payload", () => {
   assert.equal(inquirySchema.safeParse(validInquiry).success, true);
+});
+
+const validWaitlist = {
+  locale: "en" as const,
+  customerName: "Ada Lovelace",
+  email: "ada@example.com",
+  phone: null,
+  areaName: "Marbella",
+  consent: true as const,
+};
+
+test("accepts waitlist with email only or WhatsApp only", () => {
+  assert.equal(waitlistSchema.safeParse(validWaitlist).success, true);
+  assert.equal(
+    waitlistSchema.safeParse({ ...validWaitlist, email: null, phone: "600000000" }).success,
+    true,
+  );
+});
+
+test("rejects waitlist without email or WhatsApp", () => {
+  assert.equal(waitlistSchema.safeParse({ ...validWaitlist, email: null, phone: null }).success, false);
+  assert.equal(waitlistSchema.safeParse({ ...validWaitlist, email: "", phone: "" }).success, false);
+});
+
+test("rejects waitlist without consent or with honeypot", () => {
+  assert.equal(waitlistSchema.safeParse({ ...validWaitlist, consent: false }).success, false);
+  assert.equal(waitlistSchema.safeParse({ ...validWaitlist, website: "https://spam.test" }).success, false);
 });

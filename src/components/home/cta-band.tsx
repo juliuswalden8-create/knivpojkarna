@@ -4,6 +4,7 @@ import type { BusinessStatus } from "@/lib/business-status";
 import { localizedPath } from "@/i18n/routes";
 import { ButtonLink } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/site";
+import { Reveal } from "@/components/ui/reveal";
 
 export function CtaBand({
   locale,
@@ -21,31 +22,33 @@ export function CtaBand({
   return (
     <section className="border-t border-line bg-ink text-soft">
       <div className="container-x py-16 text-center lg:py-24">
-        <h2 className="mx-auto max-w-2xl font-display text-[2.2rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-5xl">
-          {prelaunch ? dict.mode.ctaTitle : dict.cta.title}
-        </h2>
-        <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-soft/70">
-          {prelaunch ? dict.mode.ctaSub : dict.cta.sub}
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <ButtonLink
-            href={localizedPath(locale, "book")}
-            size="lg"
-            className="h-auto min-h-12 whitespace-normal px-7 py-3 text-center leading-snug"
-          >
-            {prelaunch ? dict.mode.registerCta : dict.cta.button}
-          </ButtonLink>
-          {wa && (
+        <Reveal>
+          <h2 className="mx-auto max-w-2xl font-display text-[2.2rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-5xl">
+            {prelaunch ? dict.mode.ctaTitle : dict.cta.title}
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-soft/70">
+            {prelaunch ? dict.mode.ctaSub : dict.cta.sub}
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <ButtonLink
-              href={wa}
-              variant="secondary"
+              href={localizedPath(locale, "book")}
               size="lg"
-              className="h-auto min-h-12 whitespace-normal border-soft/20 bg-transparent px-7 py-3 text-center leading-snug text-soft hover:border-soft/50 hover:bg-soft/5"
+              className="h-auto min-h-12 whitespace-normal px-7 py-3 text-center leading-snug"
             >
-              {dict.cta.secondary}
+              {prelaunch ? dict.mode.registerCta : dict.cta.button}
             </ButtonLink>
-          )}
-        </div>
+            {wa && (
+              <ButtonLink
+                href={wa}
+                variant="secondary"
+                size="lg"
+                className="h-auto min-h-12 whitespace-normal border-soft/20 bg-transparent px-7 py-3 text-center leading-snug text-soft hover:border-soft/50 hover:bg-soft/5"
+              >
+                {dict.cta.secondary}
+              </ButtonLink>
+            )}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

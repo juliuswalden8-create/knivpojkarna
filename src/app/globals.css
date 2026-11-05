@@ -16,8 +16,8 @@
   --color-sage: #a39e97;
   --color-forest: #202020;
   --color-forest-700: #111111;
-  --color-ember: #c95a32;
-  --color-orange: #c95a32;
+  --color-ember: #c95732;
+  --color-orange: #c95732;
   --color-orange-600: #a84a2a;
   --color-orange-100: #f6e8e1;
   --color-offwhite: #f8f6f2;
@@ -44,11 +44,11 @@
     @apply bg-ivory font-sans text-ink antialiased;
   }
   ::selection {
-    background: #c95a32;
+    background: #c95732;
     color: #ffffff;
   }
   :focus-visible {
-    outline: 2px solid #c95a32;
+    outline: 2px solid #c95732;
     outline-offset: 3px;
   }
   a {
@@ -120,8 +120,8 @@
 
 @layer components {
   .form-check:checked {
-    border-color: #c95a32;
-    background-color: #c95a32;
+    border-color: #c95732;
+    background-color: #c95732;
   }
   .form-check:checked::after {
     content: "";

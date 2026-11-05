@@ -21,7 +21,7 @@ export function AreasMap({
   const Heading = headingAs;
 
   return (
-    <section id="areas" className="border-t border-line bg-ivory">
+    <section id="areas" className="border-t border-line bg-soft">
       <div className="container-x py-14 lg:py-24">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="kicker">{dict.areas.kicker}</p>
@@ -29,24 +29,20 @@ export function AreasMap({
           <p className="mt-6 text-[16px] leading-relaxed text-stone sm:text-[17px]">{dict.areas.intro}</p>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
-          {dict.areas.examples.map((town, index) => (
-            <article key={town} className="rounded-[1.25rem] border border-line bg-soft p-5 sm:p-6">
-              <p className="font-display text-[13px] font-semibold tracking-[0.16em] text-orange">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-3 font-display text-[1.2rem] font-semibold tracking-[-0.02em] text-ink">{town}</h3>
-              <p className="mt-2 text-[13px] text-stone">{dict.areas.pickupAvailable}</p>
-            </article>
+        <ul className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-x-6 gap-y-3 sm:mt-12">
+          {dict.areas.examples.map((town) => (
+            <li key={town} className="font-display text-[1.05rem] font-semibold tracking-[-0.02em] text-ink">
+              {town}
+            </li>
           ))}
-        </div>
+        </ul>
 
         <p className="mx-auto mt-8 max-w-2xl text-center text-[14px] leading-relaxed text-stone">{dict.areas.pickupNote}</p>
         <p className="mx-auto mt-3 max-w-2xl text-center text-[14px] leading-relaxed text-stone">{dict.areas.notListed}</p>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12">
+        <div className="mx-auto mt-12 grid max-w-4xl gap-8 border-t border-line pt-10 sm:grid-cols-2">
           {dict.areas.methods.map((method) => (
-            <div key={method.title} className="rounded-[1.25rem] border border-line bg-soft p-6">
+            <div key={method.title}>
               <p className="kicker">{method.kicker}</p>
               <h3 className="mt-3 font-display text-[1.35rem] font-semibold tracking-[-0.02em]">{method.title}</h3>
               <p className="mt-3 max-w-md text-[15px] leading-relaxed text-stone">{method.text}</p>

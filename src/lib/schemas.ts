@@ -74,6 +74,56 @@ export const inquirySchema = z.object({
 
 export type InquiryInput = z.infer<typeof inquirySchema>;
 
+const optionalEmail = z
+  .string()
+  .trim()
+  .max(180)
+  .optional()
+  .nullable()
+  .transform((value) => {
+    const trimmed = value?.trim() || "";
+    return trimmed || null;
+  });
+
+const optionalPhone = z
+  .string()
+  .trim()
+  .max(40)
+  .optional()
+  .nullable()
+  .transform((value) => {
+    const trimmed = value?.trim() || "";
+    return trimmed || null;
+  });
+
+/** Compact PRELAUNCH waitlist — no package, address, or knife quantity. */
+export const waitlistSchema = z
+  .object({
+    locale: z.enum(["en", "es", "sv"]),
+    customerName: z.string().trim().min(2).max(120),
+    email: optionalEmail,
+    phone: optionalPhone,
+    areaName: z.string().trim().min(1).max(80),
+    areaDetail: optionalText,
+    consent: z.literal(true),
+    website: z.string().max(0).optional().default(""),
+  })
+  .superRefine((data, ctx) => {
+    const email = data.email;
+    const phone = data.phone;
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      ctx.addIssue({ code: "custom", message: "email", path: ["email"] });
+    }
+    if (phone && phone.length < 6) {
+      ctx.addIssue({ code: "custom", message: "phone", path: ["phone"] });
+    }
+    if (!email && !phone) {
+      ctx.addIssue({ code: "custom", message: "contact", path: ["email"] });
+    }
+  });
+
+export type WaitlistInput = z.infer<typeof waitlistSchema>;
+
 export const loginSchema = z.object({
   email: z.string().trim().email(),
   password: z.string().min(1).max(200),

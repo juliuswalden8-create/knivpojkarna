@@ -92,7 +92,11 @@ export function PricingGrid({
                 ) : null}
                 <div className="mt-auto pt-8">
                   <ButtonLink
-                    href={`${localizedPath(locale, "book")}?package=${pkg.slug}`}
+                    href={
+                      businessStatus === "PRELAUNCH"
+                        ? localizedPath(locale, "book")
+                        : `${localizedPath(locale, "book")}?package=${pkg.slug}`
+                    }
                     size="sm"
                     variant={featured ? "primary" : "primary"}
                     className={cn(
@@ -107,7 +111,7 @@ export function PricingGrid({
             );
           })}
         </div>
-        <div className="mt-10 rounded-[1.25rem] border border-line bg-soft p-5 sm:p-7">
+        <div className="mt-10 border-t border-line pt-8">
           <p className="kicker">{dict.pricing.zoneExamplesTitle}</p>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-stone">
             {interpolate(dict.pricing.zoneExamplesNote, {
@@ -115,7 +119,7 @@ export function PricingGrid({
               free: formatPrice(freeDeliveryThresholdCents, locale),
             })}
           </p>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <ul className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {[...packages]
               .sort((a, b) => a.knifeCount - b.knifeCount)
               .map((pkg) => {
@@ -126,7 +130,7 @@ export function PricingGrid({
                   n: `${pkg.knifeCount} ${noun}`,
                 });
                 return (
-                  <li key={pkg.id} className="rounded-2xl border border-line bg-ivory px-4 py-4">
+                  <li key={pkg.id} className="border-t border-line pt-4">
                     <p className="font-display text-[1.55rem] font-semibold leading-none tracking-[-0.03em]">
                       {formatPrice(total, locale)}
                     </p>

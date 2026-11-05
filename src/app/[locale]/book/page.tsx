@@ -3,6 +3,7 @@ import { resolveLocale } from "@/i18n/locale";
 import { getAreas, getAvailability, getPackages, getSettings } from "@/lib/site";
 import { LAUNCH_SERVICE_AREAS } from "@/lib/launch-areas";
 import { BookingFlow } from "@/components/booking/booking-flow";
+import { WaitlistForm } from "@/components/booking/waitlist-form";
 import { publicPageMeta } from "@/lib/page-meta";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -42,30 +43,34 @@ export default async function BookPage({
         </p>
       </div>
       {paused ? null : (
-        <div className="mt-10 rounded-[1.5rem] border border-line bg-soft p-5 sm:mt-12 sm:p-8 lg:p-10">
-          <BookingFlow
-            locale={locale}
-            dict={dict}
-            packages={packages}
-            initialSlug={pkgSlug}
-            extraKnifePriceCents={settings.extraKnifePriceCents}
-            singlePriceCents={single}
-            openWeekdays={availability.openWeekdays}
-            timeSlots={availability.timeSlots}
-            leadTimeDays={availability.leadTimeDays}
-            bookingWindowDays={availability.bookingWindowDays}
-            blocked={availability.blocked}
-            businessStatus={settings.businessStatus}
-            areas={areas}
-            deliveryFees={{
-              zone1Cents: settings.deliveryZone1FeeCents,
-              zone2Cents: settings.deliveryZone2FeeCents,
-              zone3Cents: settings.deliveryZone3FeeCents,
-              freeThresholdCents: settings.freeDeliveryThresholdCents,
-            }}
-            pickupInstructions={locale === "es" ? settings.pickupInstructionsEs : settings.pickupInstructionsEn}
-            returnInstructions={locale === "es" ? settings.returnInstructionsEs : settings.returnInstructionsEn}
-          />
+        <div className="mt-10 max-w-2xl border-t border-line bg-transparent pt-2 sm:mt-12">
+          {prelaunch ? (
+            <WaitlistForm locale={locale} dict={dict} areas={areas} />
+          ) : (
+            <BookingFlow
+              locale={locale}
+              dict={dict}
+              packages={packages}
+              initialSlug={pkgSlug}
+              extraKnifePriceCents={settings.extraKnifePriceCents}
+              singlePriceCents={single}
+              openWeekdays={availability.openWeekdays}
+              timeSlots={availability.timeSlots}
+              leadTimeDays={availability.leadTimeDays}
+              bookingWindowDays={availability.bookingWindowDays}
+              blocked={availability.blocked}
+              businessStatus={settings.businessStatus}
+              areas={areas}
+              deliveryFees={{
+                zone1Cents: settings.deliveryZone1FeeCents,
+                zone2Cents: settings.deliveryZone2FeeCents,
+                zone3Cents: settings.deliveryZone3FeeCents,
+                freeThresholdCents: settings.freeDeliveryThresholdCents,
+              }}
+              pickupInstructions={locale === "es" ? settings.pickupInstructionsEs : settings.pickupInstructionsEn}
+              returnInstructions={locale === "es" ? settings.returnInstructionsEs : settings.returnInstructionsEn}
+            />
+          )}
         </div>
       )}
     </div>

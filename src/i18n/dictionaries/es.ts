@@ -69,20 +69,44 @@ export const es: Dictionary = {
       "Las solicitudes nuevas están pausadas por el momento. Los registros existentes se conservan. Vuelve a consultarnos pronto.",
     ctaTitle: "Sé de los primeros en tener cuchillos más afilados.",
     ctaSub:
-      "Déjanos tus datos y te contactaremos cuando abramos las recogidas en tu zona. No es una cita confirmada y no se cobra ningún pago.",
-    bookingKicker: "Interés previo al lanzamiento",
-    bookingTitle: "Registra tu interés.",
+      "Déjanos tu nombre, una forma de contactarte y tu localidad. Te avisaremos cuando abramos recogidas. No es una cita confirmada y no se cobra ningún pago.",
+    bookingKicker: "Lista de espera previa al lanzamiento",
+    bookingTitle: "Apúntate a la lista de espera.",
     bookingIntro:
-      "Indica el paquete, la dirección y la localidad. Guardamos tu interés y te contactamos cuando abramos las recogidas. Es una manifestación de interés, no un pedido confirmado, y no se cobra ningún pago.",
+      "Comparte tu nombre, email o WhatsApp, y tu localidad. Guardamos tu interés y te contactamos cuando abramos las recogidas. Aún no hace falta paquete ni dirección — y no se cobra ningún pago.",
     bookingSubmit: "Apúntate a la lista de espera",
-    successTitle: "Gracias por tu interés.",
-    successText: "¡Gracias por tu interés! Te contactaremos cuando BladeBud abra las reservas.",
-    successKeep: "Guarda esta referencia si nos escribes sobre tu interés.",
+    successTitle: "Estás en la lista de espera.",
+    successText:
+      "Gracias. Hemos guardado tu interés y te contactaremos cuando BladeBud abra las recogidas en tu zona. Esto no es una cita confirmada.",
+    successKeep: "Guarda esta referencia si nos escribes sobre tu plaza en la lista.",
     pausedTitle: "Las solicitudes están pausadas.",
     pausedText:
       "Ahora mismo no aceptamos solicitudes nuevas de particulares ni empresas. Los registros existentes se conservan.",
     consent:
       "Acepto que BladeBud guarde mis datos para registrar este interés, según la",
+  },
+
+  waitlist: {
+    formTitle: "Tus datos",
+    formText: "Un formulario breve — solo lo necesario para avisarte cuando abramos recogidas.",
+    emailLabel: "Email",
+    emailPlaceholder: "nombre@ejemplo.com",
+    whatsappLabel: "WhatsApp",
+    whatsappPlaceholder: "+34 600 000 000",
+    contactHint: "Deja un email, un WhatsApp, o ambos — hace falta al menos uno.",
+    errors: {
+      contact: "Añade un email o un número de WhatsApp para que podamos contactarte.",
+    },
+  },
+
+  experience: {
+    kicker: "La experiencia BladeBud",
+    title: "Cada cuchillo merece un segundo filo",
+    sub: "Afilado profesional para cuchillos de cocina de cada día — recogidos en tu puerta y devueltos listos para cortar otra vez.",
+    imageAlt: "Fotografía en blanco y negro de un cuchillo de cocina afilándose en una piedra",
+    photoCredit: "Foto: Emanuele Ricciardi / Pexels",
+    tagline: "Menos esfuerzo. Mejor corte.",
+    promise: "Recogemos. Afilamos. Entregamos.",
   },
 
   hero: {
@@ -95,7 +119,7 @@ export const es: Dictionary = {
     secondary: "Cómo funciona",
     trust: "Precios transparentes. Recogida y devolución local. Sin promesas inventadas.",
     location: "Marbella · San Pedro · Nueva Andalucía · Puerto Banús",
-    imageAlt: "Mapa decorativo de la zona de servicio en la Costa del Sol",
+    imageAlt: "Fotografía en blanco y negro de un cuchillo de cocina sobre una piedra de afilar",
     photoCredit: "",
     scroll: "Desliza",
     stats: [
@@ -106,12 +130,24 @@ export const es: Dictionary = {
   },
 
   how: {
-    kicker: "El servicio",
-    title: "Afilado profesional. Hecho simple.",
+    kicker: "Cómo funciona",
+    title: "Tres pasos. De puerta a puerta.",
     steps: [
-      { num: "01", title: "Reserva online", text: "Elige cuántos cuchillos quieres afilar y dinos dónde recogerlos." },
-      { num: "02", title: "Recogemos y afilamos", text: "Recogemos tus cuchillos y los afilamos con equipo profesional para cocina." },
-      { num: "03", title: "Vuelven afilados", text: "Te los devolvemos en la puerta, listos para usar." },
+      {
+        num: "01",
+        title: "Apúntate o reserva",
+        text: "Dinos que quieres cuchillos más afilados. Cuando abramos recogidas, elige un paquete y dónde recogerlos.",
+      },
+      {
+        num: "02",
+        title: "Recogemos y afilamos",
+        text: "Recogemos tus cuchillos y los afilamos con equipo profesional para cocina.",
+      },
+      {
+        num: "03",
+        title: "Vuelven afilados",
+        text: "Te los devolvemos en la puerta, listos para usar.",
+      },
     ],
     options: {
       title: "Cómo recibimos tus cuchillos",
@@ -218,24 +254,24 @@ export const es: Dictionary = {
   },
 
   why: {
-    kicker: "Por qué BladeBud",
-    title: "Tus cuchillos merecen algo mejor.",
+    kicker: "Por qué un buen filo",
+    title: "Cocinar es más fácil cuando el filo es verdadero.",
     items: [
       {
-        title: "Recogida conveniente",
+        title: "Menos fuerza, más control",
+        text: "Un filo afilado desliza en lugar de aplastar. La preparación se siente más ligera y segura.",
+      },
+      {
+        title: "Cortes más limpios",
+        text: "Tomates, hierbas y proteínas conservan su textura cuando es la hoja la que trabaja.",
+      },
+      {
+        title: "Cuidado de puerta a puerta",
         text: "Recogemos y devolvemos tus cuchillos en tu dirección. Una sola tarifa de ida y vuelta por zona.",
       },
       {
-        title: "Equipo profesional",
-        text: "Afilado cuidadoso con equipo adecuado para cuchillos de cocina, y después una revisión del filo.",
-      },
-      {
-        title: "Precios transparentes",
-        text: "Conoces el precio del paquete y la tarifa de entrega antes de registrarte.",
-      },
-      {
-        title: "Servicio local",
-        text: "Con base en la zona de Marbella. Tratas con las personas que recogen y afilan.",
+        title: "Precios claros",
+        text: "Los precios de paquete y las tarifas de entrega se muestran de antemano. Sin promesas inventadas.",
       },
     ],
   },
@@ -246,7 +282,7 @@ export const es: Dictionary = {
     items: [
       {
         q: "¿Cómo funciona la recogida de cuchillos?",
-        a: "Registras un paquete y una dirección. Te contactamos para confirmar la recogida. Recogida y devolución es una sola tarifa de ida y vuelta por zona — nunca por separado.",
+        a: "Apúntate a la lista de espera o reserva cuando abramos recogidas. Te contactamos para confirmar la recogida. Recogida y devolución es una sola tarifa de ida y vuelta por zona — nunca por separado.",
       },
       {
         q: "¿Cuánto tarda el afilado?",
@@ -435,6 +471,9 @@ export const es: Dictionary = {
     kicker: "Reserva online",
     title: "Reserva tu afilado.",
     intro: "Elige un paquete, dinos dónde recoger tus cuchillos y confirmaremos la recogida contigo.",
+    successActiveTitle: "Solicitud recibida.",
+    successActiveText:
+      "Gracias. Tenemos tu solicitud de reserva y te contactaremos para confirmar la recogida. Todavía no es una cita confirmada.",
     steps: {
       package: "Paquete",
       knives: "Cuchillos",

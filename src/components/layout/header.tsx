@@ -44,14 +44,14 @@ export function Header({
   ];
 
   return (
-    <header className={cn("relative shrink-0", open ? "z-[60]" : "z-50")}>
+    <header className={cn("sticky top-0 shrink-0", open ? "z-[60]" : "z-50")}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-full focus:bg-orange focus:px-3 focus:py-2 focus:text-soft"
       >
         {dict.nav.skip}
       </a>
-      <div className="border-b border-line bg-ivory/95 backdrop-blur-sm">
+      <div className="border-b border-line bg-ivory/95 backdrop-blur-md supports-[backdrop-filter]:bg-ivory/85">
         <div className="container-x flex min-h-16 items-center justify-between gap-4 sm:min-h-[4.5rem]">
           <Link href={localizedPath(locale, "home")} className="relative z-10 shrink-0" aria-label="BladeBud">
             <Logo variant="header" />

@@ -183,7 +183,8 @@ export function BookingFlow(props: Props) {
       );
       return;
     }
-    window.location.href = checkout.checkoutUrl;
+    // Full navigation to Stripe Checkout (external host).
+    window.location.assign(checkout.checkoutUrl);
   }
 
   const townLabel =

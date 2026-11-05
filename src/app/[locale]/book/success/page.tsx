@@ -28,7 +28,8 @@ export default async function BookingSuccessPage({
   if (!ref) notFound();
 
   if (sessionId && stripeConfigured()) {
-    await syncCheckoutSessionById(sessionId);
+    // Bind the Stripe session to this booking reference before any payment row is written.
+    await syncCheckoutSessionById(sessionId, ref);
   }
 
   const booking = await prisma.booking.findUnique({

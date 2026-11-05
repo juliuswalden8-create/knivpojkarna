@@ -3,12 +3,12 @@ import type { PublicPackage } from "./pricing";
 import { prisma } from "./prisma";
 import { parseJsonArray } from "./utils";
 import { utcToISODate } from "./dates";
-import { parseBusinessStatus } from "./business-status";
+import { resolveBusinessStatus } from "./business-status";
 
 export async function getSettings() {
   const existing = await prisma.siteSettings.findUnique({ where: { id: 1 } });
   const row = existing ?? (await prisma.siteSettings.create({ data: { id: 1, businessStatus: "PRELAUNCH" } }));
-  return { ...row, businessStatus: parseBusinessStatus(row.businessStatus) };
+  return { ...row, businessStatus: resolveBusinessStatus(row.businessStatus) };
 }
 
 export async function getPackages(locale: Locale): Promise<PublicPackage[]> {

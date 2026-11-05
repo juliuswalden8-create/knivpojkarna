@@ -1,7 +1,6 @@
 import { resolveLocale } from "@/i18n/locale";
 import { getPackages, getSettings } from "@/lib/site";
 import { Hero } from "@/components/home/hero";
-import { Experience } from "@/components/home/experience";
 import { AboutTeaser } from "@/components/home/about-teaser";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { KnifeBrandsMarquee } from "@/components/home/knife-brands-marquee";
@@ -21,7 +20,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <JsonLd locale={locale} description={dict.meta.home.description} />
       <Hero locale={locale} dict={dict} businessStatus={settings.businessStatus} />
-      <Experience dict={dict} />
       <HowItWorks locale={locale} dict={dict} />
       <KnifeBrandsMarquee dict={dict} />
       <Why dict={dict} />
